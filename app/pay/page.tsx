@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import ScrollFade from '../components/ScrollFade';
 
 type PaymentMethod = 'helcim' | 'zelle' | 'venmo' | 'paypal';
@@ -22,9 +23,14 @@ const pricingTiers = {
 };
 
 export default function PayPage() {
+  const router = useRouter();
   const [serviceTier, setServiceTier] = useState<ServiceTier>('standard');
   const [selectedService, setSelectedService] = useState(pricingTiers.standard[0]);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null);
+  const [confirmationName, setConfirmationName] = useState('');
+  const [confirmationEmail, setConfirmationEmail] = useState('');
+  const [confirmationPhone, setConfirmationPhone] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const handleTierChange = (tier: ServiceTier) => {
     setServiceTier(tier);
@@ -34,6 +40,33 @@ export default function PayPage() {
 
   const handleServiceChange = (service: typeof pricingTiers.standard[0]) => {
     setSelectedService(service);
+  };
+
+  const handlePaymentConfirmation = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/payment/confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paymentMethod,
+          serviceName: selectedService.name,
+          amount: selectedService.price,
+          patientName: confirmationName,
+          patientEmail: confirmationEmail,
+          patientPhone: confirmationPhone,
+        }),
+      });
+
+      if (res.ok) {
+        router.push('/pay/success');
+      }
+    } catch (error) {
+      console.error('Payment confirmation error:', error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -198,7 +231,7 @@ export default function PayPage() {
                     Bank-to-bank transfer. Zero processing fees.
                   </p>
                   {paymentMethod === 'zelle' && (
-                    <div className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm">
+                    <form onSubmit={handlePaymentConfirmation} className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm space-y-3">
                       <p className="font-semibold text-[#c9a84c] mb-3">Send via Zelle to:</p>
                       <p className="mb-3">
                         <strong>Email:</strong> {process.env.NEXT_PUBLIC_ZELLE_EMAIL || 'pay@latomwellness.com'}
@@ -209,10 +242,44 @@ export default function PayPage() {
                       <p className="mb-3">
                         <strong>Memo:</strong> {selectedService.name} - Your Name
                       </p>
+                      <div className="border-t border-[#c9a84c]/20 pt-3 mt-4">
+                        <p className="text-xs text-gray-400 mb-3">Once you've sent the payment, confirm below:</p>
+                        <input
+                          type="text"
+                          placeholder="Your name"
+                          value={confirmationName}
+                          onChange={(e) => setConfirmationName(e.target.value)}
+                          required
+                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
+                        />
+                        <input
+                          type="email"
+                          placeholder="Email"
+                          value={confirmationEmail}
+                          onChange={(e) => setConfirmationEmail(e.target.value)}
+                          required
+                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Phone"
+                          value={confirmationPhone}
+                          onChange={(e) => setConfirmationPhone(e.target.value)}
+                          required
+                          className="w-full px-3 py-2 mb-3 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
+                        />
+                        <button
+                          type="submit"
+                          disabled={submitting}
+                          className="w-full py-2 bg-[#c9a84c] text-black font-semibold text-sm rounded hover:bg-[#e0c070] disabled:opacity-50 transition-colors"
+                        >
+                          {submitting ? 'Confirming...' : 'I\'ve Sent the Payment'}
+                        </button>
+                      </div>
                       <p className="text-xs text-gray-500 mt-4">
                         You'll receive a confirmation email within 24 hours of payment.
                       </p>
-                    </div>
+                    </form>
                   )}
                 </button>
               </ScrollFade>
@@ -232,7 +299,7 @@ export default function PayPage() {
                     Quick mobile payment from your phone.
                   </p>
                   {paymentMethod === 'venmo' && (
-                    <div className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm">
+                    <form onSubmit={handlePaymentConfirmation} className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm space-y-3">
                       <p className="font-semibold text-[#c9a84c] mb-3">Pay via Venmo:</p>
                       <p className="mb-3">
                         <strong>Username:</strong> @{process.env.NEXT_PUBLIC_VENMO_USERNAME || 'latom-wellness'}
@@ -240,10 +307,45 @@ export default function PayPage() {
                       <p className="mb-3">
                         <strong>Amount:</strong> ${selectedService.price}
                       </p>
+                      <p className="text-xs text-gray-400 mb-3">Include your name and service type in the note.</p>
+                      <div className="border-t border-[#c9a84c]/20 pt-3 mt-4">
+                        <p className="text-xs text-gray-400 mb-3">Once you've sent the payment, confirm below:</p>
+                        <input
+                          type="text"
+                          placeholder="Your name"
+                          value={confirmationName}
+                          onChange={(e) => setConfirmationName(e.target.value)}
+                          required
+                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
+                        />
+                        <input
+                          type="email"
+                          placeholder="Email"
+                          value={confirmationEmail}
+                          onChange={(e) => setConfirmationEmail(e.target.value)}
+                          required
+                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Phone"
+                          value={confirmationPhone}
+                          onChange={(e) => setConfirmationPhone(e.target.value)}
+                          required
+                          className="w-full px-3 py-2 mb-3 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
+                        />
+                        <button
+                          type="submit"
+                          disabled={submitting}
+                          className="w-full py-2 bg-[#c9a84c] text-black font-semibold text-sm rounded hover:bg-[#e0c070] disabled:opacity-50 transition-colors"
+                        >
+                          {submitting ? 'Confirming...' : 'I\'ve Sent the Payment'}
+                        </button>
+                      </div>
                       <p className="text-xs text-gray-500 mt-4">
-                        Include your name and service type in the note. Confirmation within 24 hours.
+                        Confirmation within 24 hours.
                       </p>
-                    </div>
+                    </form>
                   )}
                 </button>
               </ScrollFade>

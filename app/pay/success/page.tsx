@@ -40,9 +40,9 @@ export default function SuccessPage() {
                 1
               </div>
               <div className="text-left">
-                <h3 className="text-white font-semibold mb-2">Confirmation Email</h3>
+                <h3 className="text-white font-semibold mb-2">Payment Verification</h3>
                 <p className="text-gray-400 text-sm">
-                  You'll receive a confirmation email within 24 hours with your appointment link.
+                  We'll verify your payment within 24 hours and send you a booking confirmation email.
                 </p>
               </div>
             </div>
