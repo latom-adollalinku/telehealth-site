@@ -83,7 +83,7 @@ export default function BookPage() {
               <BookerEmbed
                 username="latom-wellness"
                 eventSlug="consultation"
-                view="month_view"
+                view="MONTH_VIEW"
                 customClassNames={{
                   bookerContainer: "text-white",
                 }}
