@@ -1,10 +1,29 @@
 'use client';
 
-import { useState } from 'react';
-import { BookerEmbed } from '@calcom/atoms';
+import { useState, useEffect } from 'react';
 import ScrollFade from '../components/ScrollFade';
 
 export default function BookPage() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://app.cal.com/embed/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+    script.onload = () => {
+      (window as any).Cal?.('init', { origin: 'https://cal.com' });
+      (window as any).Cal?.('inline', {
+        elementOrSelector: '#cal-embed',
+        calLink: 'latom-wellness/consultation',
+        layout: 'month_view',
+      });
+      (window as any).Cal?.('ui', {
+        theme: 'dark',
+        styles: { branding: { brandColor: '#c9a84c' } },
+      });
+    };
+    return () => { document.body.removeChild(script); };
+  }, []);
+
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -79,19 +98,7 @@ export default function BookPage() {
             </p>
 
             {/* Cal.com Embed */}
-            <div className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded p-4">
-              <BookerEmbed
-                username="latom-wellness"
-                eventSlug="consultation"
-                view="MONTH_VIEW"
-                customClassNames={{
-                  bookerContainer: "text-white",
-                }}
-                onCreateBookingSuccess={() => {
-                  console.log("Consultation booked successfully");
-                }}
-              />
-            </div>
+            <div id="cal-embed" className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded p-4 min-h-[500px]" />
           </div>
         </div>
       </section>
