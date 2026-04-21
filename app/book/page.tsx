@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { BookerEmbed } from '@calcom/atoms';
+import { useState, useEffect } from 'react';
 import ScrollFade from '../components/ScrollFade';
 
 export default function BookPage() {
@@ -79,17 +78,17 @@ export default function BookPage() {
             </p>
 
             {/* Cal.com Embed */}
-            <div className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded p-4">
-              <BookerEmbed
-                username="latom-wellness"
-                eventSlug="consultation"
-                view="MONTH_VIEW"
-                customClassNames={{
-                  bookerContainer: "text-white",
+            <div className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded overflow-hidden min-h-[600px]">
+              <iframe
+                src="https://cal.com/latom-wellness/consultation?embed=true&layout=month_view"
+                style={{
+                  width: '100%',
+                  height: '600px',
+                  border: 'none',
+                  borderRadius: '0.5rem',
                 }}
-                onCreateBookingSuccess={() => {
-                  console.log("Consultation booked successfully");
-                }}
+                frameBorder="0"
+                title="Book a consultation with LATOM Wellness"
               />
             </div>
           </div>
