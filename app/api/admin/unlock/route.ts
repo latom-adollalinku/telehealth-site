@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'edge';
+
 const UNLOCK_SECRET = process.env.PROTOCOL_UNLOCK_SECRET || 'default-secret-change-in-env';
 
 export async function POST(req: NextRequest) {

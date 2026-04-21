@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ScrollFade from '../components/ScrollFade';
 
@@ -13,6 +13,8 @@ const protocolNames: Record<string, string> = {
   'hormone-optimization': 'Hormone Optimization Protocol',
   longevity: 'Longevity Protocol',
   'surgical-preop': 'Surgical Preoperative Optimization Protocol',
+  cognitive: 'Cognitive & Study Protocol',
+  sleep: 'Sleep & Recovery Protocol',
 };
 
 const pricingTiers = {
@@ -30,7 +32,7 @@ const pricingTiers = {
   ],
 };
 
-export default function PayPage() {
+function PayPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const protocolId = searchParams.get('protocol');
@@ -205,7 +207,10 @@ export default function PayPage() {
       </section>
       )}
 
-          {/* Payment Methods */}
+      {/* Payment Methods */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#0d0d1a]" />
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-6 text-center">Choose Payment Method</h2>
 
@@ -438,5 +443,13 @@ export default function PayPage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function PayPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0a0a0a]" />}>
+      <PayPageContent />
+    </Suspense>
   );
 }

@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
 
 const protocolNames: Record<string, string> = {
   cardiovascular: 'Cardiovascular Optimization Protocol',
@@ -10,11 +10,12 @@ const protocolNames: Record<string, string> = {
   'hormone-optimization': 'Hormone Optimization Protocol',
   longevity: 'Longevity Protocol',
   'surgical-preop': 'Surgical Preoperative Optimization Protocol',
+  cognitive: 'Cognitive & Study Protocol',
+  sleep: 'Sleep & Recovery Protocol',
 };
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const protocolId = searchParams.get('protocol');
   const [unlockedMessage, setUnlockedMessage] = useState(false);
 
@@ -161,5 +162,13 @@ export default function SuccessPage() {
         </p>
       </div>
     </section>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0a0a0a]" />}>
+      <SuccessContent />
+    </Suspense>
   );
 }
