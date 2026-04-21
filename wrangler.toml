@@ -1,0 +1,5 @@
+name = "latom-wellness"
+pages_build_caching = true
+main = "_worker.js"
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2024-04-01"
