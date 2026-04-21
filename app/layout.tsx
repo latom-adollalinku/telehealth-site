@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     "Medical-grade wellness delivered. Physician-supervised weight management, peptide therapy, hormone optimization, and longevity protocols. Evidence-based care from a board-certified MD.",
   keywords: [
     "telehealth weight management",
-    "semaglutide online",
-    "tirzepatide prescription",
+    "weight loss physician",
+    "GLP-1 prescription online",
     "peptide therapy",
     "TRT online",
     "hormone optimization",

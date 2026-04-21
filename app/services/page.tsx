@@ -17,7 +17,7 @@ const services = [
     tagline: "Lose weight. Keep it off. Finally.",
     description:
       "GLP-1 receptor agonists have transformed weight management. These are the same medications prescribed by top obesity medicine specialists — now available through a physician-supervised telehealth practice.",
-    medications: ["Semaglutide (compounded)", "Tirzepatide (compounded)", "Retatrutide (compounded)"],
+    medications: ["Semaglutide (Ozempic/Wegovy)", "Tirzepatide (Mounjaro/Zepbound)"],
     benefits: [
       "Average 15-20% body weight loss in clinical studies",
       "Reduction in appetite and cravings",
@@ -26,11 +26,11 @@ const services = [
       "Weekly subcutaneous injection (self-administered)",
     ],
     whatToExpect:
-      "Start with a free consultation. We review your health history and goals. If appropriate, a physician prescribes your medication. It ships directly to you from a licensed compounding pharmacy within 5 business days. You check in monthly via video and your dose is adjusted as needed.",
+      "Start with a free consultation. We review your health history and goals. If appropriate, a physician prescribes your medication. Prescriptions are sent to your pharmacy of choice. You check in monthly via video and your dose is adjusted as needed.",
     pricing: [
-      { tier: "Starter", price: "$299/mo", detail: "Semaglutide + monthly check-in" },
-      { tier: "Advanced", price: "$349/mo", detail: "Tirzepatide + monthly check-in + labs" },
-      { tier: "Elite", price: "$399/mo", detail: "Retatrutide + monthly check-in + full labs" },
+      { tier: "Starter", price: "$299/mo", detail: "GLP-1 medication + monthly check-in" },
+      { tier: "Advanced", price: "$349/mo", detail: "GLP-1 medication + monthly check-in + labs" },
+      { tier: "Elite", price: "$399/mo", detail: "Dual-agonist GLP-1 + monthly check-in + full labs" },
     ],
   },
   {
@@ -101,8 +101,8 @@ export default function ServicesPage() {
             What We Treat
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            All protocols are physician-supervised, pharmacy-compounded from licensed US facilities,
-            and individually tailored to your health history and goals.
+            All protocols are physician-supervised, use FDA-approved medications,
+            and are individually tailored to your health history and goals.
           </p>
         </div>
       </section>

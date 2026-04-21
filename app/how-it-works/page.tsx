@@ -34,8 +34,8 @@ const steps = [
     number: "04",
     title: "Delivered to You",
     description:
-      "Medications are shipped directly from a licensed US compounding pharmacy within 5 business days. Cold-chain shipping where required.",
-    detail: "Each shipment includes your medication, syringes, alcohol swabs, and a printed dosing guide. Monthly refills ship automatically.",
+      "Your prescription is sent to your pharmacy of choice. FDA-approved medications are available at retail and specialty pharmacies nationwide.",
+    detail: "For peptide protocols, medications are dispensed by licensed US compounding pharmacies and shipped directly. GLP-1 prescriptions go to your preferred pharmacy.",
   },
 ];
 
@@ -43,7 +43,7 @@ const faqs = [
   {
     question: "Is this legal?",
     answer:
-      "Yes. All medications prescribed through LATOM Wellness are FDA-recognized compounds prescribed by a licensed physician and dispensed by a licensed compounding pharmacy in the United States. Compounding is a legal and well-established practice in American medicine.",
+      "Yes. LATOM Wellness prescribes FDA-approved medications through a licensed physician. GLP-1 medications (Ozempic, Wegovy, Mounjaro, Zepbound) are brand-name FDA-approved drugs. Peptide protocols use compounds dispensed by licensed US pharmacies.",
   },
   {
     question: "Do I need lab work?",

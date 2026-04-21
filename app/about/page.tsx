@@ -90,7 +90,7 @@ export default function AboutPage() {
                   </p>
                   <p>
                     LATOM Wellness was built to close that gap. Direct physician access. Evidence-based
-                    protocols. Compounded medications from licensed US pharmacies. Shipped directly.
+                    protocols. FDA-approved medications prescribed and managed by a real physician.
                     No middlemen, no wait lists, no gatekeeping.
                   </p>
                   <p className="text-white font-medium">

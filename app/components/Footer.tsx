@@ -86,7 +86,7 @@ export default function Footer() {
           <p className="text-gray-500 text-xs leading-relaxed max-w-3xl">
             <strong className="text-gray-400">Medical Disclaimer:</strong> LATOM Wellness is a
             telehealth medical practice. All medications are physician-prescribed and
-            pharmacy-compounded. This service is available only to patients in states where
+            dispensed by licensed US pharmacies. This service is available only to patients in states where
             Dr. Abdulhakim is licensed. Not a substitute for in-person emergency care.
             Results described are individual and not guaranteed. This site does not provide
             emergency medical services — if you are experiencing a medical emergency, call 911.

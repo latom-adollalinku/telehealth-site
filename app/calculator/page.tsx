@@ -17,39 +17,6 @@ interface Medication {
 
 const MEDICATIONS: Medication[] = [
   {
-    id: 'sema',
-    name: 'Semaglutide',
-    vialSize: 5,
-    defaultRecon: 2.5,
-    color: 'from-green-700 to-green-900',
-    icon: 'W',
-    description: 'Weekly weight management injection',
-    maxWeeklyDose: 2.4,
-    storageNote: 'Keep refrigerated. Do not freeze.',
-  },
-  {
-    id: 'tirz',
-    name: 'Tirzepatide',
-    vialSize: 15,
-    defaultRecon: 3,
-    color: 'from-amber-700 to-amber-900',
-    icon: 'W',
-    description: 'Weekly weight management injection',
-    maxWeeklyDose: 15,
-    storageNote: 'Keep refrigerated. Do not freeze.',
-  },
-  {
-    id: 'reta',
-    name: 'Retatrutide',
-    vialSize: 15,
-    defaultRecon: 1.5,
-    color: 'from-purple-700 to-purple-900',
-    icon: 'W',
-    description: 'Weekly weight management injection',
-    maxWeeklyDose: 12,
-    storageNote: 'Keep refrigerated. Do not freeze.',
-  },
-  {
     id: 'nad',
     name: 'NAD+',
     vialSize: 100,
@@ -62,7 +29,7 @@ const MEDICATIONS: Medication[] = [
 ];
 
 export default function DosingGuidePage() {
-  const [selectedId, setSelectedId] = useState<string>('sema');
+  const [selectedId, setSelectedId] = useState<string>('nad');
   const [reconVolume, setReconVolume] = useState<number>(2.5);
   const [targetDose, setTargetDose] = useState<string>('0.25');
 

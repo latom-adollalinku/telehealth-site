@@ -19,7 +19,7 @@ const services = [
     ),
     label: "Weight Management",
     description:
-      "GLP-1 medications (Semaglutide, Tirzepatide, Retatrutide) with physician monitoring. Lose weight safely and keep it off.",
+      "FDA-approved GLP-1 medications with physician monitoring. Lose weight safely and keep it off.",
     price: "Starting at $299/month",
     badge: "Most Popular",
   },
@@ -156,7 +156,7 @@ export default function HomePage() {
               Treatments We Offer
             </h2>
             <p className="text-gray-400 mt-4 max-w-xl mx-auto">
-              Every protocol is physician-designed, pharmacy-compounded, and individually supervised.
+              Every protocol is physician-designed, evidence-based, and individually supervised.
             </p>
           </div>
         </ScrollFade>
@@ -222,7 +222,7 @@ export default function HomePage() {
                 <p className="text-gray-300 text-base leading-relaxed mb-6">
                   Dr. Abdilatif Abdulhakim is a board-certified anesthesiologist who built LATOM Wellness
                   to bring evidence-based longevity medicine directly to patients. Every protocol is
-                  physician-designed, pharmacy-compounded, and individually supervised.
+                  physician-designed, evidence-based, and individually supervised.
                 </p>
                 <Link
                   href="/about"
@@ -248,8 +248,8 @@ export default function HomePage() {
                     detail: "Every treatment backed by clinical research and peer-reviewed literature",
                   },
                   {
-                    title: "Pharmacy-Compounded Medications",
-                    detail: "USA-based licensed compounding pharmacies — pharmaceutical grade",
+                    title: "FDA-Approved Medications",
+                    detail: "Brand-name prescriptions filled at licensed US pharmacies",
                   },
                   {
                     title: "Ongoing Physician Supervision",
