@@ -36,7 +36,7 @@ const labPartners = [
     description:
       "Cash-pay lab testing at deeply discounted prices through Quest and Labcorp. Free labs for blood donors. No insurance needed, no hidden fees.",
     price: "From $0–$99",
-    priceNote: "Free with blood donation",
+    priceNote: "20% off with our referral link",
     features: [
       "Uses Quest Diagnostics and Labcorp (same labs your doctor uses)",
       "CLIA-certified, CAP-accredited results",
@@ -45,8 +45,8 @@ const labPartners = [
       "Walk into any Quest or Labcorp location",
       "Results available online within days",
     ],
-    cta: "View GoodLabs Panels",
-    ctaLink: "https://goodlabs.com/",
+    cta: "Get 20% Off with Our Code",
+    ctaLink: "https://app.goodlabs.com/login?referralCode=PQ5PUU&mode=signup&utm_source=referral&utm_medium=referral&utm_campaign=referrals&utm_content=generic",
     ideal: "Baseline labs and one-time panels",
   },
   {
@@ -276,7 +276,7 @@ export default function LabsPage() {
                 order the right panels, and provide a detailed interpretation of your results
                 with actionable next steps.
               </p>
-              <p className="font-serif text-3xl font-bold text-[#c9a84c] mb-6">$100</p>
+              <p className="font-serif text-3xl font-bold text-[#c9a84c] mb-6">$49.99</p>
               <p className="text-gray-400 text-sm mb-8">
                 Includes: lab selection, ordering, result interpretation, and protocol recommendations.
                 Lab draw fees are separate and paid directly to the lab provider.
