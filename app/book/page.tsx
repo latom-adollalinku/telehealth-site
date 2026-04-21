@@ -80,7 +80,7 @@ export default function BookPage() {
             {/* Cal.com Embed */}
             <div className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded overflow-hidden min-h-[800px]">
               <iframe
-                src="https://cal.com/latom-wellness/consultation?embed=true&layout=month_view"
+                src="https://cal.com/latom-wellness/consultation?embed=true"
                 style={{
                   width: '100%',
                   height: '800px',
