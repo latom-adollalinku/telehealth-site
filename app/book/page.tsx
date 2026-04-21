@@ -78,12 +78,12 @@ export default function BookPage() {
             </p>
 
             {/* Cal.com Embed */}
-            <div className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded overflow-hidden min-h-[600px]">
+            <div className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded overflow-hidden min-h-[800px]">
               <iframe
                 src="https://cal.com/latom-wellness/consultation?embed=true&layout=month_view"
                 style={{
                   width: '100%',
-                  height: '600px',
+                  height: '800px',
                   border: 'none',
                   borderRadius: '0.5rem',
                 }}
