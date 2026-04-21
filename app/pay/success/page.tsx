@@ -1,12 +1,30 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Payment Received | LATOM Wellness',
-  description: 'Your payment has been received. Next steps for your consultation.',
+import Link from 'next/link';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+const protocolNames: Record<string, string> = {
+  cardiovascular: 'Cardiovascular Optimization Protocol',
+  metabolic: 'Metabolic Enhancement Protocol',
+  'hormone-optimization': 'Hormone Optimization Protocol',
+  longevity: 'Longevity Protocol',
+  'surgical-preop': 'Surgical Preoperative Optimization Protocol',
 };
 
 export default function SuccessPage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const protocolId = searchParams.get('protocol');
+  const [unlockedMessage, setUnlockedMessage] = useState(false);
+
+  useEffect(() => {
+    if (protocolId && protocolNames[protocolId]) {
+      // Set localStorage to unlock protocol
+      localStorage.setItem(`latom_protocol_${protocolId}`, 'unlocked');
+      setUnlockedMessage(true);
+    }
+  }, [protocolId]);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a]" />
@@ -23,11 +41,13 @@ export default function SuccessPage() {
         </div>
 
         <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-          Payment <span className="text-green-400">Received</span>
+          {unlockedMessage ? 'Protocol' : 'Payment'} <span className="text-green-400">{unlockedMessage ? 'Unlocked' : 'Received'}</span>
         </h1>
 
         <p className="text-gray-300 text-lg sm:text-xl max-w-xl mx-auto mb-8">
-          Thank you! Your payment has been processed successfully.
+          {unlockedMessage
+            ? `✨ Your access to ${protocolNames[protocolId!]} is now active!`
+            : 'Thank you! Your payment has been processed successfully.'}
         </p>
 
         {/* Next Steps */}
@@ -100,18 +120,37 @@ export default function SuccessPage() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/"
-            className="px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-all duration-200"
-          >
-            Return Home
-          </Link>
-          <Link
-            href="/services"
-            className="px-8 py-4 border border-[#c9a84c] text-[#c9a84c] font-semibold rounded tracking-wide hover:bg-[#c9a84c] hover:text-black transition-all duration-200"
-          >
-            Learn More Services
-          </Link>
+          {unlockedMessage ? (
+            <>
+              <Link
+                href={`/protocols/${protocolId}`}
+                className="px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-all duration-200"
+              >
+                View Your Protocol
+              </Link>
+              <Link
+                href="/protocols"
+                className="px-8 py-4 border border-[#c9a84c] text-[#c9a84c] font-semibold rounded tracking-wide hover:bg-[#c9a84c] hover:text-black transition-all duration-200"
+              >
+                Browse Other Protocols
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/"
+                className="px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-all duration-200"
+              >
+                Return Home
+              </Link>
+              <Link
+                href="/services"
+                className="px-8 py-4 border border-[#c9a84c] text-[#c9a84c] font-semibold rounded tracking-wide hover:bg-[#c9a84c] hover:text-black transition-all duration-200"
+              >
+                Learn More Services
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Compliance */}

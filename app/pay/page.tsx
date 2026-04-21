@@ -1,11 +1,19 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import ScrollFade from '../components/ScrollFade';
 
 type PaymentMethod = 'helcim' | 'zelle' | 'venmo' | 'paypal';
 type ServiceTier = 'standard' | 'priority';
+
+const protocolNames: Record<string, string> = {
+  cardiovascular: 'Cardiovascular Optimization Protocol',
+  metabolic: 'Metabolic Enhancement Protocol',
+  'hormone-optimization': 'Hormone Optimization Protocol',
+  longevity: 'Longevity Protocol',
+  'surgical-preop': 'Surgical Preoperative Optimization Protocol',
+};
 
 const pricingTiers = {
   standard: [
@@ -24,6 +32,9 @@ const pricingTiers = {
 
 export default function PayPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const protocolId = searchParams.get('protocol');
+
   const [serviceTier, setServiceTier] = useState<ServiceTier>('standard');
   const [selectedService, setSelectedService] = useState(pricingTiers.standard[0]);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null);
@@ -31,6 +42,20 @@ export default function PayPage() {
   const [confirmationEmail, setConfirmationEmail] = useState('');
   const [confirmationPhone, setConfirmationPhone] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [isProtocolPayment, setIsProtocolPayment] = useState(false);
+
+  useEffect(() => {
+    if (protocolId && protocolNames[protocolId]) {
+      setIsProtocolPayment(true);
+      // Create a protocol service object
+      const protocolService = {
+        name: `Unlock ${protocolNames[protocolId]}`,
+        price: 49,
+        type: 'one-time' as const,
+      };
+      setSelectedService(protocolService);
+    }
+  }, [protocolId]);
 
   const handleTierChange = (tier: ServiceTier) => {
     setServiceTier(tier);
@@ -56,11 +81,15 @@ export default function PayPage() {
           patientName: confirmationName,
           patientEmail: confirmationEmail,
           patientPhone: confirmationPhone,
+          protocolId: isProtocolPayment ? protocolId : null,
         }),
       });
 
       if (res.ok) {
-        router.push('/pay/success');
+        const successUrl = isProtocolPayment
+          ? `/pay/success?protocol=${protocolId}`
+          : '/pay/success';
+        router.push(successUrl);
       }
     } catch (error) {
       console.error('Payment confirmation error:', error);
@@ -78,10 +107,12 @@ export default function PayPage() {
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-            Physician Consultations
+            {isProtocolPayment ? 'Unlock Protocol' : 'Physician Consultations'}
           </h1>
           <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-4">
-            Select your service and payment method below.
+            {isProtocolPayment
+              ? `Get instant access to ${protocolNames[protocolId!]}`
+              : 'Select your service and payment method below.'}
           </p>
           <p className="text-sm text-gray-500 max-w-2xl mx-auto">
             💳 Medical Consultation Services Only. Medications are prescribed to and billed separately by licensed US compounding pharmacies.
@@ -89,7 +120,8 @@ export default function PayPage() {
         </div>
       </section>
 
-      {/* Tier Selection */}
+      {/* Tier Selection - Hide for Protocol Payments */}
+      {!isProtocolPayment && (
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#0d0d1a]" />
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -169,6 +201,9 @@ export default function PayPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      )}
 
           {/* Payment Methods */}
           <div className="mb-12">
