@@ -18,6 +18,13 @@ const protocolNames: Record<string, string> = {
   'trt-lipids': 'TRT Lipid Recovery Protocol',
   'glp1-optimization': 'GLP-1 Optimization Protocol',
   'belly-fat': 'Belly Fat Reduction Protocol',
+  'aging-parents': 'Aging Parents Essentials Protocol',
+  'diabetic-neuropathy': 'Diabetic Neuropathy Recovery Protocol',
+  pots: 'POTS Recovery Protocol',
+  hangover: 'Hangover Prevention Protocol',
+  'jet-lag': 'Jet Lag Recovery Protocol',
+  menopause: 'Perimenopause & Menopause Protocol',
+  skincare: 'Skincare Basics Protocol',
 };
 
 const pricingTiers = {
