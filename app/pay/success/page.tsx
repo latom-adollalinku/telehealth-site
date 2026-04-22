@@ -12,6 +12,9 @@ const protocolNames: Record<string, string> = {
   'surgical-preop': 'Surgical Preoperative Optimization Protocol',
   cognitive: 'Cognitive & Study Protocol',
   sleep: 'Sleep & Recovery Protocol',
+  'trt-lipids': 'TRT Lipid Recovery Protocol',
+  'glp1-optimization': 'GLP-1 Optimization Protocol',
+  'belly-fat': 'Belly Fat Reduction Protocol',
 };
 
 function SuccessContent() {
