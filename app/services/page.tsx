@@ -10,6 +10,30 @@ export const metadata: Metadata = {
 
 const services = [
   {
+    id: "labs-membership",
+    label: "LATOM Labs Membership",
+    badge: "Best Value",
+    badgeColor: "bg-[#c9a84c]",
+    tagline: "AI-guided health optimization — no prescription required.",
+    description:
+      "The scalable entry point. Get every LATOM protocol (longevity, hormone optimization, cognitive, sleep, metabolic, cardiovascular, and more), monthly new drops, physician-curated lab interpretation templates, and access to a private community. No medication, no monthly commitment — cancel anytime.",
+    medications: ["Lab panel guides", "Supplement stacks", "Protocol library (17+)", "Lab interpretation templates"],
+    benefits: [
+      "Every current protocol ($49 value each) included",
+      "New protocol drop every month",
+      "Lab interpretation templates (GoodLabs, Quest, Labcorp)",
+      "Private community access",
+      "Direct Q&A with Dr. Abdulhakim weekly",
+      "Cancel anytime — no commitment",
+    ],
+    whatToExpect:
+      "Sign up for $29/month. Instantly unlock the full protocol library. New content drops every month. Use the lab interpretation templates to understand your own bloodwork. If you ever want to escalate to a prescription program (GLP-1, TRT, peptides), your membership price applies as credit toward your first month.",
+    pricing: [
+      { tier: "Monthly", price: "$29/mo", detail: "Full protocol library + monthly drops + community" },
+      { tier: "Annual", price: "$290/yr", detail: "Same benefits, 2 months free ($24/mo effective)" },
+    ],
+  },
+  {
     id: "weight-management",
     label: "Weight Management",
     badge: "Most Popular",

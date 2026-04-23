@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import ScrollFade from '../components/ScrollFade';
 
 export default function BookPage() {
+  const router = useRouter();
   const [submitted, setSubmitted] = useState(false);
+  const [acceptancesVerified, setAcceptancesVerified] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,6 +18,19 @@ export default function BookPage() {
     preferredTime: '',
     goals: '',
   });
+
+  // Verify both NDA and Consent acceptances before rendering
+  useEffect(() => {
+    const ndaAccepted = localStorage.getItem('latom_nda_accepted');
+    const consentAccepted = localStorage.getItem('latom_consent_accepted');
+
+    if (ndaAccepted && consentAccepted) {
+      setAcceptancesVerified(true);
+    } else {
+      // Redirect to NDA if not both accepted
+      router.push('/privacy/nda');
+    }
+  }, [router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,6 +63,17 @@ export default function BookPage() {
       console.error('Booking error:', error);
     }
   };
+
+  // Don't render until acceptances are verified
+  if (!acceptancesVerified) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a] flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-400">Verifying compliance documents...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
