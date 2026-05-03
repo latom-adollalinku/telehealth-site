@@ -32,10 +32,10 @@ const steps = [
   },
   {
     number: "04",
-    title: "Delivered to You",
+    title: "Your Program Begins",
     description:
-      "Your prescription is sent to your pharmacy of choice. FDA-approved medications are available at retail and specialty pharmacies nationwide.",
-    detail: "For peptide protocols, medications are dispensed by licensed US compounding pharmacies and shipped directly. GLP-1 prescriptions go to your preferred pharmacy.",
+      "Your consultation program is delivered digitally. If your physician determines a prescription is appropriate, it routes through standard pharmacy channels.",
+    detail: "All prescription decisions are made by your physician based on your specific health history and lab results. You receive complete written guidance and a dosing schedule.",
   },
 ];
 
@@ -43,7 +43,7 @@ const faqs = [
   {
     question: "Is this legal?",
     answer:
-      "Yes. LATOM Wellness prescribes FDA-approved medications through a licensed physician. GLP-1 medications (Ozempic, Wegovy, Mounjaro, Zepbound) are brand-name FDA-approved drugs. Peptide protocols use compounds dispensed by licensed US pharmacies.",
+      "Yes. LATOM Wellness is a licensed physician-led telehealth practice. All clinical consultations are conducted by a licensed physician. Any prescriptions issued are FDA-approved medications dispensed through standard licensed US pharmacy channels.",
   },
   {
     question: "Do I need lab work?",
@@ -58,7 +58,7 @@ const faqs = [
   {
     question: "What if I have side effects?",
     answer:
-      "You'll have direct access to the practice for any concerns between appointments. Common side effects (nausea with GLP-1s, injection site reactions) are managed with dose adjustments and guidance. If you experience a serious adverse event, go to your nearest emergency room or call 911.",
+      "You'll have direct access to the practice for any concerns between appointments. Common side effects are managed with dose adjustments and physician guidance. If you experience a serious adverse event, go to your nearest emergency room or call 911.",
   },
   {
     question: "Is it covered by insurance?",

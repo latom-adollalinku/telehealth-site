@@ -83,7 +83,7 @@ export default function AboutPage() {
                     offered nothing beyond generic advice and referrals.
                   </p>
                   <p>
-                    The medications that work — GLP-1s, peptides, hormone optimization — existed.
+                    The evidence-based health optimization protocols existed.
                     The evidence was clear. But access was fragmented, expensive, and often gated
                     behind insurance gatekeeping that prioritized cost over outcomes.
                   </p>

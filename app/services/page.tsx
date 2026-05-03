@@ -3,9 +3,9 @@ import Link from "next/link";
 import ScrollFade from "../components/ScrollFade";
 
 export const metadata: Metadata = {
-  title: "Services — Weight Management, Peptides & Hormone Therapy",
+  title: "Services — Weight Management, Longevity & Hormonal Health Consultation",
   description:
-    "Physician-supervised weight management with GLP-1s, peptide therapy with BPC-157 and NAD+, and hormone optimization with TRT and HRT. Starting at $199/month.",
+    "Physician-supervised wellness consultation programs: weight management, longevity consultation, and hormonal health consultation. Starting at $199/month.",
 };
 
 const services = [
@@ -14,9 +14,9 @@ const services = [
     label: "LATOM Labs Membership",
     badge: "Best Value",
     badgeColor: "bg-[#c9a84c]",
-    tagline: "AI-guided health optimization — no prescription required.",
+    tagline: "Physician-curated guidance — no prescription required.",
     description:
-      "The scalable entry point. Get every LATOM protocol (longevity, hormone optimization, cognitive, sleep, metabolic, cardiovascular, and more), monthly new drops, physician-curated lab interpretation templates, and access to a private community. No medication, no monthly commitment — cancel anytime.",
+      "The scalable entry point. Get every LATOM protocol (longevity, hormonal health, cognitive, sleep, metabolic, cardiovascular, and more), monthly new drops, physician-curated lab interpretation templates, and access to a private community. No monthly commitment — cancel anytime.",
     medications: ["Lab panel guides", "Supplement stacks", "Protocol library (17+)", "Lab interpretation templates"],
     benefits: [
       "Every current protocol ($49 value each) included",
@@ -27,7 +27,7 @@ const services = [
       "Cancel anytime — no commitment",
     ],
     whatToExpect:
-      "Sign up for $29/month. Instantly unlock the full protocol library. New content drops every month. Use the lab interpretation templates to understand your own bloodwork. If you ever want to escalate to a prescription program (GLP-1, TRT, peptides), your membership price applies as credit toward your first month.",
+      "Sign up for $29/month. Instantly unlock the full protocol library. New content drops every month. Use the lab interpretation templates to understand your own bloodwork. If you ever want to escalate to a physician-supervised clinical program, your membership price applies as credit toward your first month.",
     pricing: [
       { tier: "Monthly", price: "$29/mo", detail: "Full protocol library + monthly drops + community" },
       { tier: "Annual", price: "$290/yr", detail: "Same benefits, 2 months free ($24/mo effective)" },
@@ -40,69 +40,69 @@ const services = [
     badgeColor: "bg-green-600",
     tagline: "Lose weight. Keep it off. Finally.",
     description:
-      "GLP-1 receptor agonists have transformed weight management. These are the same medications prescribed by top obesity medicine specialists — now available through a physician-supervised telehealth practice.",
-    medications: ["Semaglutide (Ozempic/Wegovy)", "Tirzepatide (Mounjaro/Zepbound)"],
+      "Evidence-based weight management consultation with physician oversight. These are the same programs used by top obesity medicine specialists — now available through a physician-supervised telehealth practice.",
+    medications: ["Metabolic health assessment", "Body composition review", "Appetite regulation consultation", "Lifestyle and nutrition planning"],
     benefits: [
-      "Average 15-20% body weight loss in clinical studies",
+      "Significant body weight reduction in clinical programs",
       "Reduction in appetite and cravings",
       "Improved blood sugar regulation",
       "Reduced cardiovascular risk markers",
-      "Weekly subcutaneous injection (self-administered)",
+      "Ongoing physician monitoring and dose management",
     ],
     whatToExpect:
-      "Start with a free consultation. We review your health history and goals. If appropriate, a physician prescribes your medication. Prescriptions are sent to your pharmacy of choice. You check in monthly via video and your dose is adjusted as needed.",
+      "Start with a free consultation. We review your health history and goals. A physician evaluates your candidacy and designs a personalized program. If a prescription is appropriate, it routes through standard pharmacy channels. Monthly check-ins to review progress and adjust the plan.",
     pricing: [
-      { tier: "Starter", price: "$299/mo", detail: "GLP-1 medication + monthly check-in" },
-      { tier: "Advanced", price: "$349/mo", detail: "GLP-1 medication + monthly check-in + labs" },
-      { tier: "Elite", price: "$399/mo", detail: "Dual-agonist GLP-1 + monthly check-in + full labs" },
+      { tier: "Starter", price: "$299/mo", detail: "Weight management consultation + monthly check-in" },
+      { tier: "Advanced", price: "$349/mo", detail: "Weight management consultation + monthly check-in + labs" },
+      { tier: "Elite", price: "$399/mo", detail: "Comprehensive metabolic program + monthly check-in + full labs" },
     ],
   },
   {
-    id: "peptide-therapy",
-    label: "Peptide Therapy",
+    id: "longevity-consultation",
+    label: "Longevity Consultation",
     badge: "Physician-Designed",
     badgeColor: "bg-blue-600",
     tagline: "Repair, recover, and perform at a higher level.",
     description:
-      "Peptides are short chains of amino acids that signal the body to perform specific functions — from tissue repair to cellular energy to immune modulation. Our protocols are individualized based on your health goals.",
-    medications: ["BPC-157", "TB-500 (Thymosin Beta-4)", "NAD+", "Sermorelin", "CJC-1295 / Ipamorelin"],
+      "Evidence-based longevity consultation designed around your health goals. Our physician-supervised wellness programs are individualized based on your lab results and clinical history.",
+    medications: ["Tissue recovery programs", "Sleep and recovery optimization", "Cellular energy support", "Growth factor consultation", "Anti-inflammatory wellness protocols"],
     benefits: [
-      "Accelerated tissue and joint repair",
+      "Accelerated tissue and joint recovery",
       "Improved sleep quality and recovery",
-      "Cellular energy and mitochondrial support (NAD+)",
-      "Increased growth hormone output (peptide stacks)",
-      "Anti-inflammatory and gut healing effects",
+      "Cellular energy and mitochondrial support",
+      "Evidence-based longevity wellness programs",
+      "Anti-inflammatory and gut health support",
     ],
     whatToExpect:
-      "After your consultation, the physician designs a custom peptide protocol based on your goals — whether that is injury recovery, sleep optimization, or longevity. Peptides are compounded and shipped directly. You receive a complete injection guide and dosing schedule.",
+      "After your consultation, the physician designs a custom wellness protocol based on your goals — whether that is injury recovery, sleep optimization, or longevity. If a prescription is clinically appropriate, it is fulfilled via standard pharmacy channels. You receive a complete written protocol and guidance.",
     pricing: [
-      { tier: "Recovery", price: "$199/mo", detail: "BPC-157 or TB-500 solo protocol" },
-      { tier: "Performance", price: "$279/mo", detail: "Stacked peptide protocol + NAD+" },
-      { tier: "Longevity", price: "$349/mo", detail: "Full longevity stack + quarterly bloodwork" },
+      { tier: "Recovery", price: "$199/mo", detail: "Targeted recovery consultation + physician protocol" },
+      { tier: "Performance", price: "$279/mo", detail: "Comprehensive wellness protocol + cellular support" },
+      { tier: "Longevity", price: "$349/mo", detail: "Full longevity consultation + quarterly bloodwork" },
     ],
   },
   {
-    id: "hormone-optimization",
-    label: "Hormone Optimization",
+    id: "hormone-consultation",
+    label: "Hormonal Health Consultation",
     badge: "Full Lab Panel",
     badgeColor: "bg-purple-600",
     tagline: "Feel like yourself again.",
     description:
-      "Hormonal imbalance affects millions — low testosterone, thyroid dysfunction, estrogen decline, adrenal fatigue. We run comprehensive labs and design replacement or optimization protocols that restore how you should feel.",
-    medications: ["Testosterone Cypionate (TRT)", "Estradiol / Progesterone (HRT)", "DHEA", "Anastrozole (aromatase inhibitor)", "Thyroid support (T3/T4)"],
+      "Hormonal imbalance affects millions — reduced energy, thyroid dysfunction, estrogen decline, adrenal fatigue. We run comprehensive labs and design evidence-based wellness programs that restore how you should feel.",
+    medications: ["Full hormone panel review", "Reproductive health markers", "Adrenal and stress markers", "Thyroid function assessment", "Metabolic marker analysis"],
     benefits: [
       "Restored energy, libido, and motivation",
       "Improved muscle mass and body composition",
       "Better mood, focus, and cognitive clarity",
       "Reduced fat accumulation (especially visceral)",
-      "Comprehensive labs before and after protocol",
+      "Comprehensive labs before and after program",
     ],
     whatToExpect:
-      "We start with a full hormone panel — testosterone total/free, estradiol, DHEA-S, thyroid, and metabolic markers. A physician reviews your results and designs a personalized protocol. Follow-up labs at 6 and 12 weeks to optimize levels. Monthly check-ins throughout.",
+      "We start with a full hormone panel including key reproductive and stress markers. A physician reviews your results and designs a personalized consultation program. Follow-up labs at 6 and 12 weeks to assess progress. Monthly check-ins throughout. If medications are clinically appropriate, they route through standard pharmacy channels.",
     pricing: [
-      { tier: "TRT Basic", price: "$349/mo", detail: "Testosterone + lab panel + quarterly follow-up" },
-      { tier: "HRT", price: "$349/mo", detail: "Estradiol/Progesterone + full hormone panel" },
-      { tier: "Full Optimization", price: "$449/mo", detail: "Complete hormone protocol + monthly labs" },
+      { tier: "Consultation", price: "$349/mo", detail: "Hormonal health consultation + lab panel + quarterly follow-up" },
+      { tier: "Women's Health", price: "$349/mo", detail: "Women's hormonal health consultation + full panel" },
+      { tier: "Full Program", price: "$449/mo", detail: "Comprehensive hormonal wellness program + monthly labs" },
     ],
   },
 ];
@@ -125,8 +125,8 @@ export default function ServicesPage() {
             What We Treat
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            All protocols are physician-supervised, use FDA-approved medications,
-            and are individually tailored to your health history and goals.
+            All programs are physician-supervised, evidence-based,
+            and individually tailored to your health history and goals.
           </p>
         </div>
       </section>
@@ -158,7 +158,7 @@ export default function ServicesPage() {
 
                   <div className="mb-8">
                     <h3 className="text-white font-semibold text-sm tracking-widest uppercase mb-4">
-                      Medications Available
+                      What We Address
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {service.medications.map((med, i) => (

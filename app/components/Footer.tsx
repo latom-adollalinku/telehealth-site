@@ -11,9 +11,9 @@ export default function Footer() {
               LATOM
             </span>
             <p className="mt-3 text-gray-400 text-sm leading-relaxed max-w-sm">
-              LATOM Wellness is a telehealth medical practice delivering
-              physician-supervised weight management, peptide therapy, and
-              hormone optimization directly to patients.
+              LATOM Wellness is a physician-led telehealth consultation practice delivering
+              evidence-based wellness guidance, longevity consultation, and
+              lab interpretation services directly to patients.
             </p>
             <div className="mt-6 flex flex-col gap-1 text-sm text-gray-400">
               <a
@@ -39,8 +39,8 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { href: '/services', label: 'Weight Management' },
-                { href: '/services#peptide-therapy', label: 'Peptide Therapy' },
-                { href: '/services#hormone-optimization', label: 'Hormone Optimization' },
+                { href: '/services#longevity-consultation', label: 'Longevity Consultation' },
+                { href: '/services#hormone-consultation', label: 'Hormonal Health Consultation' },
                 { href: '/how-it-works', label: 'How It Works' },
                 { href: '/calculator', label: 'Dosing Guide' },
                 { href: '/about', label: 'About Dr. Abdulhakim' },
@@ -85,8 +85,9 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-[#c9a84c]/10">
           <p className="text-gray-500 text-xs leading-relaxed max-w-3xl">
             <strong className="text-gray-400">Medical Disclaimer:</strong> LATOM Wellness is a
-            telehealth medical practice. All medications are physician-prescribed and
-            dispensed by licensed US pharmacies. This service is available only to patients in states where
+            physician-led telehealth consultation practice. All clinical programs are physician-supervised.
+            When prescriptions are clinically appropriate, they are dispensed by licensed US pharmacies.
+            This service is available only to patients in states where
             Dr. Abdulhakim is licensed. Not a substitute for in-person emergency care.
             Results described are individual and not guaranteed. This site does not provide
             emergency medical services — if you are experiencing a medical emergency, call 911.

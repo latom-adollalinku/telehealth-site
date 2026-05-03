@@ -6,7 +6,7 @@ import EmailCapture from "./components/EmailCapture";
 export const metadata: Metadata = {
   title: "LATOM Wellness | Medical-Grade Wellness, Delivered",
   description:
-    "Physician-supervised weight management, peptide therapy, and longevity medicine. Evidence-based protocols from a physician MD.",
+    "Physician-supervised wellness consultation, longevity guidance, and lab interpretation. Evidence-based programs from a physician MD.",
 };
 
 const services = [
@@ -32,33 +32,33 @@ const services = [
     ),
     label: "Weight Management",
     description:
-      "FDA-approved GLP-1 medications with physician monitoring. Lose weight safely and keep it off.",
+      "Physician-supervised weight management consultation with ongoing monitoring. Lose weight safely and keep it off.",
     price: "Starting at $299/month",
     badge: "Most Popular",
   },
   {
-    href: "/services#peptide-therapy",
+    href: "/services#longevity-consultation",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
       </svg>
     ),
-    label: "Peptide Therapy",
+    label: "Longevity Consultation",
     description:
-      "BPC-157, TB-500, NAD+, and longevity peptides with custom protocols designed for your goals.",
+      "Physician-curated longevity protocols with custom plans designed around your health goals and lab results.",
     price: "Starting at $199/month",
     badge: "Physician-Designed",
   },
   {
-    href: "/services#hormone-optimization",
+    href: "/services#hormone-consultation",
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
-    label: "Hormone Optimization",
+    label: "Hormonal Health Consultation",
     description:
-      "TRT, HRT, and metabolic optimization with comprehensive bloodwork and ongoing physician supervision.",
+      "Comprehensive hormonal health consultation with lab review and ongoing physician supervision.",
     price: "Starting at $349/month",
     badge: "Full Lab Panel",
   },
@@ -78,10 +78,10 @@ const services = [
 ];
 
 const stats = [
-  { value: "20%", label: "average body weight lost with GLP-1" },
-  { value: "FDA", label: "approved medications" },
+  { value: "30+", label: "evidence-based wellness protocols" },
+  { value: "FDA", label: "approved medications when appropriate" },
   { value: "100%", label: "physician supervised" },
-  { value: "5", label: "day shipping" },
+  { value: "24hr", label: "physician response time" },
 ];
 
 export default function HomePage() {
@@ -115,8 +115,8 @@ export default function HomePage() {
           </h1>
 
           <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Physician-supervised weight management, peptide therapy, and longevity medicine.
-            Evidence-based protocols from a physician MD — shipped to your door.
+            Physician-supervised wellness consultation, longevity guidance, and lab interpretation.
+            Evidence-based programs from a physician MD — delivered digitally.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

@@ -5,20 +5,20 @@ import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "LATOM Wellness | Physician-Supervised Peptides, GLP-1s, Hormone Therapy",
+    default: "LATOM Wellness | Physician-Led Telehealth Consultation",
     template: "%s | LATOM Wellness",
   },
   description:
-    "Medical-grade wellness delivered. Physician-supervised weight management, peptide therapy, hormone optimization, and longevity protocols. Evidence-based care from a physician MD.",
+    "Physician-led telehealth consultation, longevity guidance, and laboratory interpretation services. Membership-based digital wellness.",
   keywords: [
     "telehealth weight management",
     "weight loss physician",
-    "GLP-1 prescription online",
-    "peptide therapy",
-    "TRT online",
-    "hormone optimization",
-    "GLP-1 physician",
+    "physician telehealth consultation",
+    "wellness consultation",
+    "hormonal health consultation",
     "longevity medicine",
+    "lab interpretation",
+    "digital wellness membership",
   ],
   authors: [{ name: "Dr. Abdi Abdulhakim, MD" }],
   creator: "LATOM Wellness",
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://latomwellness.com",
     siteName: "LATOM Wellness",
-    title: "LATOM Wellness | Physician-Supervised Peptides, GLP-1s, Hormone Therapy",
+    title: "LATOM Wellness | Physician-Led Telehealth Consultation",
     description:
-      "Medical-grade wellness delivered. Physician-supervised weight management, peptide therapy, and longevity medicine.",
+      "Physician-led telehealth consultation, longevity guidance, and laboratory interpretation services.",
   },
   twitter: {
     card: "summary_large_image",
     title: "LATOM Wellness",
     description:
-      "Physician-supervised weight management, peptide therapy, and hormone optimization.",
+      "Physician-supervised wellness consultation, longevity guidance, and lab interpretation services.",
   },
   robots: {
     index: true,
@@ -48,7 +48,7 @@ const structuredData = {
   "@type": "MedicalOrganization",
   name: "LATOM Wellness",
   description:
-    "Physician-supervised telehealth practice offering weight management, peptide therapy, and hormone optimization. Led by Dr. Abdi Abdulhakim, MD.",
+    "Physician-led telehealth consultation practice offering wellness consultation, longevity guidance, and lab interpretation services. Led by Dr. Abdi Abdulhakim, MD.",
   url: "https://latomwellness.com",
   telephone: "+16787903900",
   email: "info@latomwellness.com",
@@ -64,10 +64,11 @@ const structuredData = {
     jobTitle: "Anesthesiologist",
   },
   serviceType: [
-    "Weight Management",
-    "Peptide Therapy",
-    "Hormone Optimization",
-    "Longevity Medicine",
+    "Weight Management Consultation",
+    "Longevity Consultation",
+    "Hormonal Health Consultation",
+    "Lab Interpretation Services",
+    "Digital Wellness Membership",
   ],
 };
 

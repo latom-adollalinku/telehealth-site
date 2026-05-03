@@ -18,7 +18,7 @@ const labPartners = [
     price: "$79/month",
     priceNote: "Included in Optimization & Premium memberships",
     features: [
-      "Hormone panel (testosterone, estradiol, DHEA-S, cortisol)",
+      "Hormone panel including key reproductive and stress markers",
       "Metabolic markers (HbA1c, fasting glucose, insulin)",
       "Heart health (lipid panel, hs-CRP, homocysteine)",
       "Thyroid function (TSH, T3, T4)",
@@ -81,13 +81,13 @@ const panels = [
   {
     name: "Hormone Panel",
     tests: "Total/Free Testosterone, Estradiol, DHEA-S, SHBG, Cortisol, Prolactin, LH/FSH",
-    when: "Before TRT/HRT and every 6–12 weeks on protocol",
+    when: "Before starting a hormonal health program and every 6–12 weeks",
     cost: "$99–$200",
   },
   {
     name: "Metabolic & Weight Loss Panel",
     tests: "HbA1c, Fasting Insulin, Glucose, Lipid Panel, CRP, Liver Panel, Thyroid",
-    when: "Before GLP-1 therapy and every 8 weeks",
+    when: "Before starting a weight management program and every 8 weeks",
     cost: "$79–$150",
   },
   {
