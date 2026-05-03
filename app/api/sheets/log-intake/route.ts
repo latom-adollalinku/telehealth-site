@@ -9,7 +9,7 @@
  *   GOOGLE_SERVICE_ACCOUNT_KEY    — full JSON key from Google Cloud Console, base64-encoded
  *   GOOGLE_SHEETS_INTAKE_LOG_ID   — Sheet ID for the intake log (falls back to PAYMENT_LOG_ID)
  *   RESEND_API_KEY                — Resend API key for sending email
- *   NOTIFICATION_EMAIL            — admin notification email (default: anesbrothers@gmail.com)
+ *   NOTIFICATION_EMAIL            — admin notification email (default: info@latomwellness.com)
  *
  * Sheet columns (auto-created header on first write if sheet is empty):
  *   Date | Service | Patient Name | Email | Phone | Responses (JSON)
@@ -306,7 +306,7 @@ function buildPatientConfirmEmail(
     </div>
 
     <div style="padding: 16px 28px; background-color: #0d0d1a; border-top: 1px solid rgba(201,168,76,0.2); color: #888; font-size: 12px; text-align: center;">
-      LATOM Wellness &bull; Dr. Abdilatif Abdulhakim, MD
+      LATOM Wellness &bull; Dr. Abdi Abdulhakim, MD
     </div>
   </div>
 </body>
@@ -384,7 +384,7 @@ export async function POST(req: NextRequest) {
         emailError = 'RESEND_API_KEY not configured';
       } else {
         const resend = new Resend(process.env.RESEND_API_KEY);
-        const adminEmail = process.env.NOTIFICATION_EMAIL || 'anesbrothers@gmail.com';
+        const adminEmail = process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com';
 
         const admin = buildAdminEmail(
           serviceLabel,

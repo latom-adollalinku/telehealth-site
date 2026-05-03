@@ -158,7 +158,7 @@ export default function AgingParentsProtocolPage() {
                   <ul className="space-y-3 text-gray-300 text-sm">
                     <li><strong className="text-[#c9a84c]">10-min walks after meals:</strong> Single best intervention for glucose, mood, and sleep. Even in a wheelchair — movement matters.</li>
                     <li><strong className="text-[#c9a84c]">Protein at every meal:</strong> 30g minimum. Elderly need more protein, not less. Sarcopenia is prevented, not reversed.</li>
-                    <li><strong className="text-[#c9a84c]">Morning sunlight:</strong> 10 min outside before 10 AM. Reverses fragmented sleep.</li>
+                    <li><strong className="text-[#c9a84c]">Morning sunlight:</strong> 10 min outside before 10 AM. Helps regulate fragmented sleep.</li>
                     <li><strong className="text-[#c9a84c]">Hydration:</strong> Elderly have reduced thirst signals. 8 cups minimum. Dehydration mimics dementia.</li>
                     <li><strong className="text-[#c9a84c]">Medication review yearly:</strong> Bring the full list to every doctor visit. Ask: &ldquo;What can we deprescribe?&rdquo;</li>
                   </ul>

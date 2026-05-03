@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     }
 
     const practiceEmail =
-      process.env.NOTIFICATION_EMAIL || 'anesbrothers@gmail.com';
+      process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com';
 
     const hasInvoice = Boolean(invoicePdfBase64);
 

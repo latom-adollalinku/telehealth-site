@@ -6,7 +6,7 @@ import EmailCapture from "./components/EmailCapture";
 export const metadata: Metadata = {
   title: "LATOM Wellness | Medical-Grade Wellness, Delivered",
   description:
-    "Physician-supervised weight management, peptide therapy, and longevity medicine. Evidence-based protocols from a board-certified MD.",
+    "Physician-supervised weight management, peptide therapy, and longevity medicine. Evidence-based protocols from a physician MD.",
 };
 
 const services = [
@@ -79,7 +79,7 @@ const services = [
 
 const stats = [
   { value: "20%", label: "average body weight lost with GLP-1" },
-  { value: "FDA", label: "recognized medications" },
+  { value: "FDA", label: "approved medications" },
   { value: "100%", label: "physician supervised" },
   { value: "5", label: "day shipping" },
 ];
@@ -105,7 +105,7 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
             <div className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
             <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
-              Board-Certified Physician &bull; Now Accepting Patients
+              Physician &bull; Now Accepting Patients
             </span>
           </div>
 
@@ -116,7 +116,7 @@ export default function HomePage() {
 
           <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
             Physician-supervised weight management, peptide therapy, and longevity medicine.
-            Evidence-based protocols from a board-certified MD — shipped to your door.
+            Evidence-based protocols from a physician MD — shipped to your door.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -233,7 +233,7 @@ export default function HomePage() {
                   <span className="block text-[#c9a84c]">Always.</span>
                 </h2>
                 <p className="text-gray-300 text-base leading-relaxed mb-6">
-                  Dr. Abdilatif Abdulhakim is a board-certified anesthesiologist who built LATOM Wellness
+                  Dr. Abdi Abdulhakim is an anesthesiologist who built LATOM Wellness
                   to bring evidence-based longevity medicine directly to patients. Every protocol is
                   physician-designed, evidence-based, and individually supervised.
                 </p>
@@ -253,8 +253,8 @@ export default function HomePage() {
               <div className="space-y-4">
                 {[
                   {
-                    title: "MD, Board-Certified Anesthesiologist",
-                    detail: "15+ years of clinical practice",
+                    title: "MD, Anesthesiologist",
+                    detail: "Direct physician-led care, no PA mid-levels",
                   },
                   {
                     title: "Evidence-Based Protocols Only",

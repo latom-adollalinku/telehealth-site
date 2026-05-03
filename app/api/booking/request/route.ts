@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     // Send confirmation email to patient (test mode: send to practice email)
     const patientEmailPromise = resend.emails.send({
       from: 'LATOM Wellness <onboarding@resend.dev>',
-      to: process.env.NOTIFICATION_EMAIL || 'anesbrothers@gmail.com',
+      to: process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com',
       subject: 'Your Consultation Request Received — LATOM Wellness',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     // Send notification email to practice
     const practiceEmailPromise = resend.emails.send({
       from: 'LATOM Wellness <onboarding@resend.dev>',
-      to: process.env.NOTIFICATION_EMAIL || 'anesbrothers@gmail.com',
+      to: process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com',
       subject: `New Consultation Request — ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

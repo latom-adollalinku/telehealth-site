@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Send payment confirmation email to practice
-    const practiceEmail = process.env.NOTIFICATION_EMAIL || 'anesbrothers@gmail.com';
+    const practiceEmail = process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com';
 
     const paymentMethodLabel = paymentMethod === 'zelle' ? 'Zelle' : 'Venmo';
     const accountInfo = paymentMethod === 'zelle'

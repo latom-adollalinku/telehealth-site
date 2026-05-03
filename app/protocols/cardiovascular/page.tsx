@@ -57,7 +57,7 @@ export default function CardiovascularProtocolPage() {
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
             Evidence-based supplement stack for elevated Lp(a), ApoB, and hs-CRP.
-            Designed by a board-certified anesthesiologist for patients with genetic cardiovascular risk.
+            Designed by an anesthesiologist for patients with genetic cardiovascular risk.
           </p>
         </div>
       </section>

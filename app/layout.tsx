@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | LATOM Wellness",
   },
   description:
-    "Medical-grade wellness delivered. Physician-supervised weight management, peptide therapy, hormone optimization, and longevity protocols. Evidence-based care from a board-certified MD.",
+    "Medical-grade wellness delivered. Physician-supervised weight management, peptide therapy, hormone optimization, and longevity protocols. Evidence-based care from a physician MD.",
   keywords: [
     "telehealth weight management",
     "weight loss physician",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "GLP-1 physician",
     "longevity medicine",
   ],
-  authors: [{ name: "Dr. Abdilatif Abdulhakim, MD" }],
+  authors: [{ name: "Dr. Abdi Abdulhakim, MD" }],
   creator: "LATOM Wellness",
   openGraph: {
     type: "website",
@@ -48,10 +48,10 @@ const structuredData = {
   "@type": "MedicalOrganization",
   name: "LATOM Wellness",
   description:
-    "Physician-supervised telehealth practice offering weight management, peptide therapy, and hormone optimization. Led by Dr. Abdilatif Abdulhakim, MD.",
+    "Physician-supervised telehealth practice offering weight management, peptide therapy, and hormone optimization. Led by Dr. Abdi Abdulhakim, MD.",
   url: "https://latomwellness.com",
   telephone: "+16787903900",
-  email: "anesbrothers@gmail.com",
+  email: "info@latomwellness.com",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Richmond",
@@ -60,8 +60,8 @@ const structuredData = {
   },
   founder: {
     "@type": "Person",
-    name: "Dr. Abdilatif Abdulhakim",
-    jobTitle: "Board-Certified Anesthesiologist",
+    name: "Dr. Abdi Abdulhakim",
+    jobTitle: "Anesthesiologist",
   },
   serviceType: [
     "Weight Management",

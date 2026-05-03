@@ -98,7 +98,7 @@ export default function ConsentPage() {
             <section>
               <h2 className="text-xl font-bold text-white mb-4">2. PHYSICIAN QUALIFICATIONS</h2>
               <p>
-                Services are provided by Dr. Abdilatif Abdulhakim, MD, a board-certified anesthesiologist with extensive experience in perioperative medicine, critical care, and health optimization. Dr. Abdulhakim is licensed to practice medicine in accordance with applicable state regulations.
+                Services are provided by Dr. Abdi Abdulhakim, MD, an anesthesiologist with extensive experience in perioperative medicine, critical care, and health optimization. Dr. Abdulhakim is licensed to practice medicine in accordance with applicable state regulations.
               </p>
             </section>
 
@@ -174,7 +174,7 @@ export default function ConsentPage() {
                 <li>The Client has been fully informed of potential risks, benefits, and alternatives</li>
                 <li>The Client has had opportunity to ask questions and discuss concerns with Dr. Abdulhakim</li>
                 <li>The Client voluntarily and willingly assumes all risks of peptide therapy</li>
-                <li>The Client releases and holds harmless LATOM Wellness, Dr. Abdilatif Abdulhakim, and all associated entities from liability for any adverse effects, side effects, or complications arising from peptide therapy or health optimization services</li>
+                <li>The Client releases and holds harmless LATOM Wellness, Dr. Abdi Abdulhakim, and all associated entities from liability for any adverse effects, side effects, or complications arising from peptide therapy or health optimization services</li>
               </ul>
             </section>
 
@@ -231,7 +231,7 @@ export default function ConsentPage() {
                 className="mt-1 w-5 h-5 cursor-pointer accent-[#c9a84c]"
               />
               <label htmlFor="assume-risk" className="text-gray-300 cursor-pointer">
-                I voluntarily assume all risks associated with peptide therapy and health optimization services provided by LATOM Wellness. I release LATOM Wellness and Dr. Abdilatif Abdulhakim from liability for any adverse effects or complications.
+                I voluntarily assume all risks associated with peptide therapy and health optimization services provided by LATOM Wellness. I release LATOM Wellness and Dr. Abdi Abdulhakim from liability for any adverse effects or complications.
               </label>
             </div>
 

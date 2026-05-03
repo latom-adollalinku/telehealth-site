@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     }
 
     const acceptanceType = type === 'nda' ? 'NDA' : 'Consent Form (Peptide Therapy)';
-    const practiceEmail = process.env.NOTIFICATION_EMAIL || 'anesbrothers@gmail.com';
+    const practiceEmail = process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com';
 
     await resend.emails.send({
       from: 'LATOM Wellness <onboarding@resend.dev>',

@@ -87,7 +87,7 @@ export default function BookPage() {
             Book Your Consultation
           </h1>
           <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10">
-            30-minute video call with Dr. Abdulhakim, MD — Board-Certified Anesthesiologist.
+            30-minute video call with Dr. Abdulhakim, MD — Anesthesiologist.
             <br />
             <span className="text-[#c9a84c]">No obligation. No pressure.</span>
           </p>
@@ -293,9 +293,9 @@ export default function BookPage() {
               <h3 className="text-2xl font-bold text-white mb-6">Why Book With Us?</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="text-[#c9a84c] font-semibold mb-2">Board-Certified MD</h4>
+                  <h4 className="text-[#c9a84c] font-semibold mb-2">Physician MD</h4>
                   <p className="text-gray-400 text-sm">
-                    Physician consultations led by a board-certified anesthesiologist with 12+ years in healthcare.
+                    Physician consultations led by an anesthesiologist with 12+ years in healthcare.
                   </p>
                 </div>
                 <div>

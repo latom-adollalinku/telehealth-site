@@ -7,13 +7,13 @@ import ProtocolPaywall from "../../components/ProtocolPaywall";
 export const metadata: Metadata = {
   title: "Diabetic Neuropathy Recovery Protocol | TTFD, Benfotiamine & ALA",
   description:
-    "Evidence-based protocol for diabetic neuropathy. TTFD, benfotiamine, alpha-lipoic acid, and acetyl-L-carnitine. The Japanese breakthrough most doctors don't prescribe.",
+    "Evidence-based protocol for diabetic neuropathy. TTFD, benfotiamine, alpha-lipoic acid, and acetyl-L-carnitine — including the high-bioavailability B1 derivative TTFD developed in Japan.",
 };
 
 const morningStack = [
   { name: "Benfotiamine", dose: "300 mg", target: "Fat-soluble B1 — crosses into nerves, reduces AGEs" },
   { name: "TTFD (Allithiamine)", dose: "100-200 mg", target: "Crosses blood-brain barrier — developed in Japan 1950" },
-  { name: "Alpha-Lipoic Acid", dose: "600 mg", target: "Neuropathic pain reduction (FDA-approved in Germany)" },
+  { name: "Alpha-Lipoic Acid", dose: "600 mg", target: "Neuropathic pain reduction (approved for this use in Germany)" },
   { name: "Acetyl-L-Carnitine", dose: "1,000 mg", target: "Nerve fiber regeneration" },
 ];
 

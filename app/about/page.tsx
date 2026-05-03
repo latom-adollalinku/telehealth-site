@@ -3,15 +3,14 @@ import Link from "next/link";
 import ScrollFade from "../components/ScrollFade";
 
 export const metadata: Metadata = {
-  title: "About Dr. Abdilatif Abdulhakim, MD — LATOM Wellness",
+  title: "About Dr. Abdi Abdulhakim, MD — LATOM Wellness",
   description:
-    "Dr. Abdilatif Abdulhakim is a board-certified anesthesiologist who founded LATOM Wellness to deliver evidence-based longevity medicine directly to patients.",
+    "Dr. Abdi Abdulhakim is an anesthesiologist who founded LATOM Wellness to deliver evidence-based longevity medicine directly to patients.",
 };
 
 const credentials = [
   "MD — Medical Doctor",
-  "Board-Certified Anesthesiologist",
-  "15+ Years Clinical Experience",
+  "Anesthesiologist",
   "Advanced Training in Pain Medicine & Pharmacology",
   "Licensed in Virginia",
 ];
@@ -54,10 +53,10 @@ export default function AboutPage() {
             </span>
           </div>
           <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-            Dr. Abdilatif Abdulhakim, MD
+            Dr. Abdi Abdulhakim, MD
           </h1>
           <p className="text-[#c9a84c] text-lg font-medium mb-4">
-            Board-Certified Anesthesiologist &bull; Richmond, Virginia
+            Anesthesiologist &bull; Richmond, Virginia
           </p>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
             Founder of LATOM Wellness. Built to make physician-supervised longevity medicine accessible to everyone who deserves it.
@@ -79,7 +78,7 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-4 text-gray-300 text-base leading-relaxed">
                   <p>
-                    After 15 years practicing anesthesiology, Dr. Abdulhakim saw a consistent pattern:
+                    Practicing anesthesiology, Dr. Abdulhakim saw a consistent pattern:
                     patients struggling with weight, hormonal imbalance, and declining energy who were
                     offered nothing beyond generic advice and referrals.
                   </p>
@@ -123,11 +122,11 @@ export default function AboutPage() {
                   <ul className="space-y-3">
                     <li>
                       <a
-                        href="mailto:anesbrothers@gmail.com"
+                        href="mailto:info@latomwellness.com"
                         className="flex gap-3 text-sm text-gray-300 hover:text-[#c9a84c] transition-colors"
                       >
                         <span className="text-[#c9a84c] font-medium">Email</span>
-                        anesbrothers@gmail.com
+                        info@latomwellness.com
                       </a>
                     </li>
                     <li className="flex gap-3 text-sm text-gray-300">

@@ -83,10 +83,10 @@ export default function PrivacyPage() {
           <p className="text-gray-400 text-sm leading-relaxed">
             For privacy-related questions, contact us at{" "}
             <a
-              href="mailto:anesbrothers@gmail.com"
+              href="mailto:info@latomwellness.com"
               className="text-[#c9a84c] hover:underline"
             >
-              anesbrothers@gmail.com
+              info@latomwellness.com
             </a>
             .
           </p>

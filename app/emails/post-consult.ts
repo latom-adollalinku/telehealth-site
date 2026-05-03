@@ -68,7 +68,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
           <tr>
             <td style="padding: 32px; border-bottom: 2px solid #c9a84c;">
               <h1 style="margin:0; color:#c9a84c; font-size: 24px; letter-spacing: 1px;">LATOM Wellness</h1>
-              <p style="margin: 4px 0 0 0; color:#999999; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Dr. Abdilatif Abdulhakim, MD</p>
+              <p style="margin: 4px 0 0 0; color:#999999; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Dr. Abdi Abdulhakim, MD</p>
             </td>
           </tr>
           <tr>
@@ -107,7 +107,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
 </html>`;
 
   const text = [
-    `LATOM Wellness — Dr. Abdilatif Abdulhakim, MD`,
+    `LATOM Wellness — Dr. Abdi Abdulhakim, MD`,
     ``,
     `Hi ${patientName},`,
     ``,

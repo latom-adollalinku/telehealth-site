@@ -5,7 +5,7 @@ import ScrollFade from "../components/ScrollFade";
 export const metadata: Metadata = {
   title: "Physician-Designed Protocols | Evidence-Based Supplement Stacks",
   description:
-    "Evidence-based supplement protocols designed by a board-certified physician. Cardiovascular, metabolic, hormone, longevity, and surgical preop optimization.",
+    "Evidence-based supplement protocols designed by a physician. Cardiovascular, metabolic, hormone, longevity, and surgical preop optimization.",
 };
 
 const protocols = [
@@ -250,7 +250,7 @@ export default function ProtocolsPage() {
             <span className="block gold-gradient">Supplement Protocols</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Complete daily supplement stacks designed by a board-certified physician.
+            Complete daily supplement stacks designed by a physician.
             Exact dosing, timing, brand recommendations, safety notes, and expected outcomes.
           </p>
         </div>

@@ -55,7 +55,7 @@ export default function NDAPage() {
             <section>
               <h2 className="text-xl font-bold text-white mb-4">1. CONFIDENTIALITY OF INFORMATION</h2>
               <p>
-                The Client agrees that all information, advice, protocols, and medical recommendations provided by LATOM Wellness and Dr. Abdilatif Abdulhakim are confidential and proprietary. This includes but is not limited to:
+                The Client agrees that all information, advice, protocols, and medical recommendations provided by LATOM Wellness and Dr. Abdi Abdulhakim are confidential and proprietary. This includes but is not limited to:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Personalized health optimization protocols and treatment plans</li>

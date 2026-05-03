@@ -104,10 +104,10 @@ export default function ContactClient() {
                       <div>
                         <div className="text-gray-500 text-xs mb-1">Email</div>
                         <a
-                          href="mailto:anesbrothers@gmail.com"
+                          href="mailto:info@latomwellness.com"
                           className="text-gray-300 text-sm hover:text-[#c9a84c] transition-colors"
                         >
-                          anesbrothers@gmail.com
+                          info@latomwellness.com
                         </a>
                       </div>
                     </div>

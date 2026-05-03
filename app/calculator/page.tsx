@@ -304,7 +304,7 @@ export default function DosingGuidePage() {
             Need a Prescription?
           </h3>
           <p className="text-gray-400 mb-6">
-            Start your free consultation with a board-certified physician.
+            Start your free consultation with a physician.
           </p>
           <Link
             href="/contact"

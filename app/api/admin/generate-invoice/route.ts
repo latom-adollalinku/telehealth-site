@@ -125,8 +125,8 @@ export async function POST(req: NextRequest) {
     // ── From section (right column) ──────────────────────────────────────────
     page.drawText('FROM', { x: width / 2, y: billTop, size: 8, font: fontBold, color: GOLD });
     page.drawText('LATOM Wellness', { x: width / 2, y: billTop - 16, size: 11, font: fontBold, color: DARK });
-    page.drawText('Dr. Abdilatif Abdulhakim, MD', { x: width / 2, y: billTop - 31, size: 9, font: fontRegular, color: MID });
-    page.drawText('Board-Certified Anesthesiologist', { x: width / 2, y: billTop - 46, size: 9, font: fontRegular, color: MID });
+    page.drawText('Dr. Abdi Abdulhakim, MD', { x: width / 2, y: billTop - 31, size: 9, font: fontRegular, color: MID });
+    page.drawText('Anesthesiologist', { x: width / 2, y: billTop - 46, size: 9, font: fontRegular, color: MID });
 
     // ── Service table ─────────────────────────────────────────────────────────
     const tableTop = billTop - 85;

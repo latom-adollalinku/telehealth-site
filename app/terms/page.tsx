@@ -51,7 +51,7 @@ export default function TermsPage() {
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed">
             Accessing or submitting information on this site does not create a
-            patient-physician relationship with Dr. Abdilatif Abdulhakim or any
+            patient-physician relationship with Dr. Abdi Abdulhakim or any
             affiliated provider. A formal patient-physician relationship is only
             established through explicit written consent after proper intake
             procedures.
@@ -76,7 +76,7 @@ export default function TermsPage() {
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed">
             LATOM Medical & Wellness, Adolla Link Management LLC, and Dr.
-            Abdilatif Abdulhakim are not liable for any direct, indirect,
+            Abdi Abdulhakim are not liable for any direct, indirect,
             incidental, or consequential damages resulting from use of
             information on this site or decisions made based on content herein.
           </p>
@@ -89,10 +89,10 @@ export default function TermsPage() {
           <p className="text-gray-400 text-sm leading-relaxed">
             Questions about these terms:{" "}
             <a
-              href="mailto:anesbrothers@gmail.com"
+              href="mailto:info@latomwellness.com"
               className="text-[#c9a84c] hover:underline"
             >
-              anesbrothers@gmail.com
+              info@latomwellness.com
             </a>
           </p>
         </section>
