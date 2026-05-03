@@ -122,7 +122,7 @@ function SuccessContent() {
             Have questions? We're here to help.
           </p>
           <p className="text-white font-semibold text-lg mb-2">
-            (678) 404-0730
+            (307) 210-8604
           </p>
           <p className="text-gray-400 text-sm">
             Available Monday-Friday, 9 AM - 5 PM ET

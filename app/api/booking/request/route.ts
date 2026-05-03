@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
             <li>You'll have your consultation via secure video call</li>
           </ol>
 
-          <p style="color: #666; font-size: 14px;">If you have any questions before we contact you, call <strong>(678) 404-0730</strong></p>
+          <p style="color: #666; font-size: 14px;">If you have any questions before we contact you, call <strong>(307) 210-8604</strong></p>
 
           <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
           <p style="color: #999; font-size: 12px;">This is a transactional email. You received this because you submitted a consultation request on latomwellness.com.</p>

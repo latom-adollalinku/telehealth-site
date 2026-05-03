@@ -260,7 +260,7 @@ function PayPageContent() {
                   {paymentMethod === 'helcim' && (
                     <div className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm">
                       <p className="font-semibold text-[#c9a84c] mb-2">Processing Secure Payment...</p>
-                      <p>Card payment form will be embedded here. Contact support to process payment manually at (678) 404-0730</p>
+                      <p>Card payment form will be embedded here. Contact support to process payment manually at (307) 210-8604</p>
                     </div>
                   )}
                 </button>
@@ -438,7 +438,7 @@ function PayPageContent() {
               Medications are prescribed to and billed separately by licensed US compounding pharmacies.
             </p>
             <p className="text-xs text-gray-500 text-center mb-4">
-              All payments are secure and encrypted. Questions? Call <strong>(678) 404-0730</strong>
+              All payments are secure and encrypted. Questions? Call <strong>(307) 210-8604</strong>
             </p>
             <p className="text-xs text-gray-500 text-center">
               <a href="/privacy" className="text-[#c9a84c] hover:underline">

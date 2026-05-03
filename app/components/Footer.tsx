@@ -23,10 +23,10 @@ export default function Footer() {
                 info@latomwellness.com
               </a>
               <a
-                href="tel:6787903900"
+                href="tel:3072108604"
                 className="hover:text-[#c9a84c] transition-colors"
               >
-                (678) 790-3900
+                (307) 210-8604
               </a>
             </div>
           </div>

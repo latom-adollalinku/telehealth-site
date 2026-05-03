@@ -40,7 +40,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
     `
     : `
       <h3 style="color:#c9a84c; margin-top: 24px; font-size: 16px;">Next Steps</h3>
-      <p style="color:#e5e5e5; line-height: 1.6;">Dr. Abdulhakim will follow up with any prescribed protocols, pharmacy orders, or lab work separately. If you have questions, reply to this email or call (678) 404-0730.</p>
+      <p style="color:#e5e5e5; line-height: 1.6;">Dr. Abdulhakim will follow up with any prescribed protocols, pharmacy orders, or lab work separately. If you have questions, reply to this email or call (307) 210-8604.</p>
     `;
 
   const invoiceBlock = invoiceAttached
@@ -90,12 +90,12 @@ export function renderPostConsultEmail(data: PostConsultData): {
               ${nextStepsBlock}
 
               <h3 style="color:#c9a84c; margin-top: 24px; font-size: 16px;">Questions?</h3>
-              <p style="color:#e5e5e5; line-height: 1.6;">Reply to this email or call <strong style="color:#c9a84c;">(678) 404-0730</strong>.</p>
+              <p style="color:#e5e5e5; line-height: 1.6;">Reply to this email or call <strong style="color:#c9a84c;">(307) 210-8604</strong>.</p>
             </td>
           </tr>
           <tr>
             <td style="padding: 20px 32px; border-top: 1px solid #2a2a2a; background:#0f0f0f; border-radius: 0 0 8px 8px;">
-              <p style="margin: 0; color:#777777; font-size: 12px; line-height: 1.5;">LATOM Wellness &middot; (678) 404-0730 &middot; latomwellness.com</p>
+              <p style="margin: 0; color:#777777; font-size: 12px; line-height: 1.5;">LATOM Wellness &middot; (307) 210-8604 &middot; latomwellness.com</p>
               <p style="margin: 8px 0 0 0; color:#555555; font-size: 11px;">This is a transactional email sent after your consultation at latomwellness.com.</p>
             </td>
           </tr>
@@ -123,7 +123,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
       ? nextSteps
       : `Dr. Abdulhakim will follow up with any prescribed protocols, pharmacy orders, or lab work separately.`,
     ``,
-    `Questions? Reply to this email or call (678) 404-0730.`,
+    `Questions? Reply to this email or call (307) 210-8604.`,
     ``,
     `LATOM Wellness · latomwellness.com`,
   ]

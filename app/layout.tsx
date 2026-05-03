@@ -50,7 +50,7 @@ const structuredData = {
   description:
     "Physician-led telehealth consultation practice offering wellness consultation, longevity guidance, and lab interpretation services. Led by Dr. Abdi Abdulhakim, MD.",
   url: "https://latomwellness.com",
-  telephone: "+16787903900",
+  telephone: "+13072108604",
   email: "info@latomwellness.com",
   address: {
     "@type": "PostalAddress",

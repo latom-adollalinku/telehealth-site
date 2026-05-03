@@ -82,12 +82,12 @@ export function renderBookingConfirmedEmail(data: BookingConfirmedData): {
               ${prepBlock}
 
               <h3 style="color:#c9a84c; margin-top: 24px; font-size: 16px;">Need to reschedule?</h3>
-              <p style="color:#e5e5e5; line-height: 1.6;">Call <strong style="color:#c9a84c;">(678) 404-0730</strong> or reply to this email at least 24 hours before your appointment.</p>
+              <p style="color:#e5e5e5; line-height: 1.6;">Call <strong style="color:#c9a84c;">(307) 210-8604</strong> or reply to this email at least 24 hours before your appointment.</p>
             </td>
           </tr>
           <tr>
             <td style="padding: 20px 32px; border-top: 1px solid #2a2a2a; background:#0f0f0f; border-radius: 0 0 8px 8px;">
-              <p style="margin: 0; color:#777777; font-size: 12px; line-height: 1.5;">LATOM Wellness &middot; (678) 404-0730 &middot; latomwellness.com</p>
+              <p style="margin: 0; color:#777777; font-size: 12px; line-height: 1.5;">LATOM Wellness &middot; (307) 210-8604 &middot; latomwellness.com</p>
               <p style="margin: 8px 0 0 0; color:#555555; font-size: 11px;">This is a transactional email sent because you booked a consultation at latomwellness.com.</p>
             </td>
           </tr>
@@ -117,7 +117,7 @@ export function renderBookingConfirmedEmail(data: BookingConfirmedData): {
       ? prepInstructions
       : `- Have your medications and supplements list ready\n- Note any recent lab work to discuss\n- Write down your top 2-3 health goals\n- Test camera/microphone beforehand\n- Join 5 minutes early`,
     ``,
-    `Need to reschedule? Call (678) 404-0730 at least 24 hours before.`,
+    `Need to reschedule? Call (307) 210-8604 at least 24 hours before.`,
     ``,
     `LATOM Wellness · latomwellness.com`,
   ].join('\n');
