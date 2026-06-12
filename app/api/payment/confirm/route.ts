@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { rateLimit } from '../../../lib/rateLimit';
+import { insertBooking } from '../../../lib/db';
 
 export const runtime = 'edge';
 
@@ -9,12 +11,19 @@ const validProtocols = ['cardiovascular', 'metabolic', 'hormone-optimization', '
 const protocolNames: Record<string, string> = {
   cardiovascular: 'Cardiovascular Optimization Protocol',
   metabolic: 'Metabolic Enhancement Protocol',
-  'hormone-optimization': 'Hormone Optimization Protocol',
+  'hormone-optimization': 'Hormone Health Education',
   longevity: 'Longevity Protocol',
   'surgical-preop': 'Surgical Preoperative Optimization Protocol',
 };
 
 export async function POST(req: NextRequest) {
+  const limit = rateLimit(req, { max: 10, windowMs: 60_000, bucket: 'payment-confirm' });
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    });
+  }
   try {
     const body = await req.json();
     const { paymentMethod, serviceName, amount, patientName, patientEmail, patientPhone, protocolId } = body;
@@ -32,10 +41,16 @@ export async function POST(req: NextRequest) {
     // Send payment confirmation email to practice
     const practiceEmail = process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com';
 
-    const paymentMethodLabel = paymentMethod === 'zelle' ? 'Zelle' : 'Venmo';
-    const accountInfo = paymentMethod === 'zelle'
-      ? `${process.env.NEXT_PUBLIC_ZELLE_EMAIL || 'pay@latomwellness.com'}`
-      : `@${process.env.NEXT_PUBLIC_VENMO_USERNAME || 'latom-wellness'}`;
+    const paymentMethodLabel =
+      paymentMethod === 'card' ? 'Card (Helcim)' :
+      paymentMethod === 'zelle' ? 'Zelle' :
+      paymentMethod === 'venmo' ? 'Venmo' :
+      String(paymentMethod || 'Unknown');
+    const accountInfo =
+      paymentMethod === 'card' ? 'Helcim dashboard' :
+      paymentMethod === 'zelle' ? `${process.env.ZELLE_EMAIL || 'pay@latomwellness.com'}` :
+      paymentMethod === 'venmo' ? `@${process.env.VENMO_USERNAME || 'latom-wellness'}` :
+      'manual review';
 
     const protocolSection = isProtocolPayment
       ? `
@@ -70,7 +85,7 @@ export async function POST(req: NextRequest) {
     const confirmationEmail = await resend.emails.send({
       from: 'LATOM Wellness <onboarding@resend.dev>',
       to: practiceEmail,
-      subject: `Payment Confirmation — ${patientName} ($${amount})${isProtocolPayment ? ` - ${protocolNames[protocolId]}` : ''}`,
+      subject: `Payment Confirmation - ${patientName} ($${amount})${isProtocolPayment ? ` - ${protocolNames[protocolId]}` : ''}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #c9a84c;">Payment Confirmation Received</h2>
@@ -107,6 +122,32 @@ export async function POST(req: NextRequest) {
         { error: 'Failed to send confirmation email' },
         { status: 500 }
       );
+    }
+
+    try {
+      await insertBooking({
+        tier: protocolId ? 'protocol' : 'service',
+        patient_name: patientName,
+        patient_email: patientEmail,
+        patient_phone: patientPhone,
+        patient_dob: null,
+        patient_state: null,
+        service: serviceName,
+        amount_cents: Math.round(Number(amount) * 100),
+        goals: null,
+        medical_history: null,
+        current_medications: null,
+        allergies: null,
+        protocol_id: protocolId || null,
+        preferred_date: null,
+        preferred_time: null,
+        invoice_url: null,
+        helcim_transaction_id: null,
+        notes: null,
+        raw_payload: JSON.stringify(body),
+      });
+    } catch (dbError) {
+      console.error('D1 insert error (payment still returned 200):', dbError);
     }
 
     return NextResponse.json(

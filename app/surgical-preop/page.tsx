@@ -3,7 +3,7 @@ import ScrollFade from '../components/ScrollFade';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Surgical Preoperative Optimization — Evidence-Based Supplement Protocols',
+  title: 'Surgical Preoperative Optimization - Evidence-Based Supplement Protocols',
   description:
     'Prepare your body for surgery with physician-designed supplement protocols. RCT-backed supplements for metabolic, cardiovascular, respiratory, and wound-healing optimization. Start 4-8 weeks pre-op.',
 };
@@ -233,7 +233,7 @@ export default function SurgicalPreopPage() {
                 <div>
                   <h3 className="text-[#c9a84c] font-semibold mb-3 text-lg">Evidence-Based Approach</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    Every supplement in these protocols is backed by randomized controlled trials. Not guesswork—proven science integrated into surgical prep.
+                    Every supplement in these protocols is backed by randomized controlled trials. Not guesswork - proven science integrated into surgical prep.
                   </p>
                 </div>
               </div>

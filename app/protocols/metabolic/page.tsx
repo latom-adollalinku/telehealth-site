@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -158,8 +159,8 @@ export default function MetabolicProtocolPage() {
                   </p>
                   <ul className="space-y-3 text-gray-300 text-sm">
                     <li><strong className="text-[#c9a84c]">Time-restricted eating:</strong> 14-16 hour fasts daily (8-10 hour eating window)</li>
-                    <li><strong className="text-[#c9a84c]">Post-meal walks:</strong> 10-15 min walks after each meal — blunts glucose spikes</li>
-                    <li><strong className="text-[#c9a84c]">Resistance training:</strong> 2-3x/week — muscle is the primary glucose disposal tissue</li>
+                    <li><strong className="text-[#c9a84c]">Post-meal walks:</strong> 10-15 min walks after each meal - blunts glucose spikes</li>
+                    <li><strong className="text-[#c9a84c]">Resistance training:</strong> 2-3x/week - muscle is the primary glucose disposal tissue</li>
                     <li><strong className="text-[#c9a84c]">Carb sequencing:</strong> Fiber → protein → fat → carbs within each meal</li>
                     <li><strong className="text-[#c9a84c]">Sleep 7-8 hrs:</strong> Sleep deprivation mimics insulin resistance</li>
                   </ul>
@@ -207,7 +208,7 @@ export default function MetabolicProtocolPage() {
                 <div className="bg-[#1a1a2e] border border-amber-500/30 rounded-xl p-8">
                   <h3 className="text-amber-400 font-semibold mb-4">Safety Notes</h3>
                   <ul className="space-y-3 text-gray-400 text-sm">
-                    <li><strong className="text-white">Berberine + Metformin:</strong> Do not combine without physician oversight — additive glucose-lowering effect can cause hypoglycemia.</li>
+                    <li><strong className="text-white">Berberine + Metformin:</strong> Do not combine without physician oversight - additive glucose-lowering effect can cause hypoglycemia.</li>
                     <li><strong className="text-white">Blood glucose monitoring:</strong> Consider CGM (Dexcom Stelo, Abbott Lingo) for real-time feedback.</li>
                     <li><strong className="text-white">Glucomannan:</strong> Take with 8 oz water. Stop 3-5 days before surgery (ileus risk).</li>
                     <li><strong className="text-white">Recheck labs:</strong> HbA1c, fasting glucose, fasting insulin, HOMA-IR at 12 weeks.</li>
@@ -217,11 +218,65 @@ export default function MetabolicProtocolPage() {
             </div>
           </section>
 
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <ScrollFade>
+                <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
+                  <h3 className="font-serif text-2xl font-bold text-white mb-4">When to Add GLP-1 Therapy</h3>
+                  <p className="text-gray-400 text-sm mb-6">
+                    This supplement protocol is first-line. If HbA1c remains above 6.0% after 12 weeks or
+                    weight loss is less than 5%, physician-prescribed GLP-1 agonists are the next tier.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="bg-[#0d0d1a] rounded-lg p-5 border border-[#2a2a4e]">
+                      <p className="text-[#c9a84c] font-semibold text-sm mb-2">Semaglutide (Ozempic / Wegovy)</p>
+                      <ul className="space-y-1 text-gray-400 text-xs">
+                        <li>Starting dose: 0.25 mg/week SC x4 weeks</li>
+                        <li>Titration: 0.5 mg, 1 mg, 1.7 mg, 2.4 mg q4 weeks</li>
+                        <li>Mechanism: GLP-1 receptor agonist (94% homology with native GLP-1)</li>
+                        <li>Weight loss: 15-17% on 2.4 mg (STEP 1 trial)</li>
+                      </ul>
+                    </div>
+                    <div className="bg-[#0d0d1a] rounded-lg p-5 border border-[#2a2a4e]">
+                      <p className="text-[#c9a84c] font-semibold text-sm mb-2">Tirzepatide (Mounjaro / Zepbound)</p>
+                      <ul className="space-y-1 text-gray-400 text-xs">
+                        <li>Starting dose: 2.5 mg/week SC x4 weeks</li>
+                        <li>Titration: 5 mg, 7.5 mg, 10 mg, 12.5 mg, 15 mg q4 weeks</li>
+                        <li>Mechanism: Dual GIP + GLP-1 receptor agonist</li>
+                        <li>Weight loss: 20-22% on 15 mg (SURMOUNT-1 trial)</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="mt-6 p-4 bg-amber-900/20 border border-amber-500/30 rounded-lg">
+                    <p className="text-amber-400 text-xs font-semibold mb-1">Prescriber Note</p>
+                    <p className="text-gray-400 text-xs">
+                      This supplement stack applies on top of GLP-1 therapy. Berberine + GLP-1 combination
+                      requires monitoring for hypoglycemia. Mitochondrial support (CoQ10, L-carnitine, NAD+)
+                      is especially important to add at initiation to prevent the fatigue and muscle loss common
+                      at weeks 4-8 of GLP-1 treatment.
+                    </p>
+                  </div>
+                </div>
+              </ScrollFade>
+            </div>
+          </section>
+
+          <FullscriptCTA
+            highlights={[
+              "Berberine HCl",
+              "Alpha-lipoic acid",
+              "Chromium picolinate",
+              "Inositol (myo + d-chiro)",
+              "Omega-3 EPA/DHA",
+              "Magnesium glycinate",
+            ]}
+          />
+
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 text-center">
                 <h2 className="font-serif text-2xl font-bold text-white mb-4">Need GLP-1 Therapy?</h2>
-                <p className="text-gray-400 mb-6">For patients with higher HbA1c or significant weight loss goals, physician-prescribed GLP-1s may be appropriate.</p>
+                <p className="text-gray-400 mb-6">For patients with higher HbA1c or significant weight loss goals, physician-prescribed GLP-1s (semaglutide, tirzepatide) may be appropriate.</p>
                 <Link href="/services#weight-management" className="inline-block px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded hover:bg-[#e0c070] transition-colors">
                   View Weight Management
                 </Link>

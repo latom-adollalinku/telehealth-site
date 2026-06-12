@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -11,22 +12,22 @@ export const metadata: Metadata = {
 };
 
 const morningStack = [
-  { name: "Sodium (with water)", dose: "500-1,000 mg", target: "Expands blood volume — core POTS intervention" },
+  { name: "Sodium (with water)", dose: "500-1,000 mg", target: "Expands blood volume - core POTS intervention" },
   { name: "Electrolyte Mix (LMNT or similar)", dose: "1 packet", target: "Sodium + potassium + magnesium" },
   { name: "Vitamin C", dose: "1,000 mg", target: "Collagen synthesis for vascular tone" },
   { name: "B-Complex", dose: "1 capsule", target: "B1/B6/B12 often deficient in POTS" },
 ];
 
 const middayStack = [
-  { name: "Magnesium Glycinate", dose: "400 mg", target: "Nervous system stability (avoid citrate — worsens diarrhea in POTS)" },
-  { name: "CoQ10", dose: "200 mg", target: "Mitochondrial support — POTS has mitochondrial component" },
+  { name: "Magnesium Glycinate", dose: "400 mg", target: "Nervous system stability (avoid citrate - worsens diarrhea in POTS)" },
+  { name: "CoQ10", dose: "200 mg", target: "Mitochondrial support - POTS has mitochondrial component" },
   { name: "L-Carnitine", dose: "1,000 mg", target: "Energy + cardiac function" },
 ];
 
 const eveningStack = [
   { name: "Second electrolyte dose", dose: "500 mg sodium", target: "Overnight volume support" },
-  { name: "Iron (if low ferritin)", dose: "Per labs", target: "POTS often has low ferritin — check first" },
-  { name: "Melatonin (low-dose)", dose: "0.3-1 mg", target: "Sleep quality — POTS + insomnia common" },
+  { name: "Iron (if low ferritin)", dose: "Per labs", target: "POTS often has low ferritin - check first" },
+  { name: "Melatonin (low-dose)", dose: "0.3-1 mg", target: "Sleep quality - POTS + insomnia common" },
 ];
 
 const targets = [
@@ -55,7 +56,7 @@ export default function POTSProtocolPage() {
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
             Postural Orthostatic Tachycardia Syndrome. Most PCPs don&apos;t know what to do.
             This is the evidence-based foundation: volume expansion, vagal retraining, mitochondrial support.
-            Not a cure — a management framework that makes life functional again.
+            Not a cure - a management framework that makes life functional again.
           </p>
         </div>
       </section>
@@ -152,7 +153,7 @@ export default function POTSProtocolPage() {
                 <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
                   <h3 className="font-serif text-2xl font-bold text-white mb-4">Non-Supplement Interventions (Equally Important)</h3>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li><strong className="text-[#c9a84c]">Fluid target:</strong> 3 liters daily. Add salt. Dilute water worsens POTS — oral rehydration is the point.</li>
+                    <li><strong className="text-[#c9a84c]">Fluid target:</strong> 3 liters daily. Add salt. Dilute water worsens POTS - oral rehydration is the point.</li>
                     <li><strong className="text-[#c9a84c]">Compression:</strong> 20-30 mmHg thigh-high stockings. Abdominal binders for severe cases.</li>
                     <li><strong className="text-[#c9a84c]">Recumbent exercise first:</strong> Rowing, recumbent bike, swimming. Graded upright exercise comes later. Pushing upright cardio too early worsens POTS.</li>
                     <li><strong className="text-[#c9a84c]">Vagal exercises:</strong> Slow breathing (4-in, 6-out), cold face immersion, humming. 10 min daily.</li>
@@ -202,7 +203,7 @@ export default function POTSProtocolPage() {
                   <h3 className="text-amber-400 font-semibold mb-4">Safety Notes</h3>
                   <ul className="space-y-3 text-gray-400 text-sm">
                     <li><strong className="text-white">Not a cure:</strong> POTS is a chronic condition. This protocol is management, not resolution.</li>
-                    <li><strong className="text-white">Prescription options:</strong> Midodrine, fludrocortisone, ivabradine, beta-blockers — discuss with cardiologist. Supplements complement, don&apos;t replace.</li>
+                    <li><strong className="text-white">Prescription options:</strong> Midodrine, fludrocortisone, ivabradine, beta-blockers - discuss with cardiologist. Supplements complement, don&apos;t replace.</li>
                     <li><strong className="text-white">Kidney/heart disease:</strong> High-sodium protocols require physician clearance.</li>
                     <li><strong className="text-white">Check ferritin:</strong> POTS often coexists with low iron. Get labs before supplementing.</li>
                     <li><strong className="text-white">MCAS overlap:</strong> Mast Cell Activation Syndrome coexists in ~40% of POTS cases. Different protocol if present.</li>
@@ -211,6 +212,17 @@ export default function POTSProtocolPage() {
               </ScrollFade>
             </div>
           </section>
+
+          <FullscriptCTA
+            highlights={[
+              "Magnesium glycinate",
+              "Sodium tablets (high-dose, salt sticks)",
+              "B-complex (with B12)",
+              "CoQ10 / Ubiquinol",
+              "Adaptogen blend",
+              "Electrolyte powder (high-sodium)",
+            ]}
+          />
 
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 const preDrinkStack = [
-  { name: "NAC (N-Acetylcysteine)", dose: "600 mg", target: "Replenishes glutathione — supports alcohol metabolism" },
-  { name: "Dihydromyricetin (DHM)", dose: "300 mg", target: "GABA receptor support — reduces next-day anxiety" },
+  { name: "NAC (N-Acetylcysteine)", dose: "600 mg", target: "Replenishes glutathione - supports alcohol metabolism" },
+  { name: "Dihydromyricetin (DHM)", dose: "300 mg", target: "GABA receptor support - reduces next-day anxiety" },
   { name: "B-Complex", dose: "1 capsule", target: "Alcohol depletes B1, B6, B12 rapidly" },
   { name: "Electrolytes + 16oz water", dose: "1 packet", target: "Prevents dehydration head start" },
 ];
@@ -24,9 +25,9 @@ const duringDrinkStack = [
 ];
 
 const beforeBedStack = [
-  { name: "NAC", dose: "600 mg", target: "Second dose — continues detox overnight" },
+  { name: "NAC", dose: "600 mg", target: "Second dose - continues detox overnight" },
   { name: "Vitamin C", dose: "1,000 mg", target: "Antioxidant + acetaldehyde detox" },
-  { name: "Magnesium Glycinate", dose: "400 mg", target: "Alcohol depletes — prevents morning headache" },
+  { name: "Magnesium Glycinate", dose: "400 mg", target: "Alcohol depletes - prevents morning headache" },
   { name: "Electrolytes + 20oz water", dose: "Large glass", target: "Overnight rehydration" },
 ];
 
@@ -55,7 +56,7 @@ export default function HangoverProtocolPage() {
             <span className="block gold-gradient">&amp; Recovery Protocol</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Physician-designed stack for the before, during, and after. Not a license to drink more —
+            Physician-designed stack for the before, during, and after. Not a license to drink more  - 
             a harm reduction protocol when you&apos;re going to drink anyway.
           </p>
         </div>
@@ -67,7 +68,7 @@ export default function HangoverProtocolPage() {
             <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
               <h2 className="font-serif text-2xl font-bold text-white mb-4">The Science: What Actually Causes a Hangover</h2>
               <p className="text-gray-400 text-sm mb-4">
-                Alcohol is metabolized to acetaldehyde — a toxic intermediate that causes most hangover
+                Alcohol is metabolized to acetaldehyde - a toxic intermediate that causes most hangover
                 symptoms. Your body uses glutathione to clear it. Heavy drinking depletes glutathione faster
                 than you can make it. That&apos;s why NAC (a glutathione precursor) is the single most useful
                 supplement in this protocol.
@@ -157,6 +158,17 @@ export default function HangoverProtocolPage() {
               </ScrollFade>
             </div>
           </section>
+          <FullscriptCTA
+            highlights={[
+              "NAC (N-acetyl cysteine)",
+              "Milk thistle (silymarin standardized)",
+              "Electrolyte powder",
+              "B-complex (high B1/B6/B12)",
+              "Glutathione (liposomal)",
+              "Vitamin C (buffered)",
+            ]}
+          />
+
         </ProtocolPaywall>
       </Suspense>
     </>

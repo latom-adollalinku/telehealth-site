@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "lab interpretation",
     "digital wellness membership",
   ],
-  authors: [{ name: "Dr. Abdi Abdulhakim, MD" }],
+  authors: [{ name: "Dr. Abdul, MD" }],
   creator: "LATOM Wellness",
   openGraph: {
     type: "website",
@@ -48,20 +48,13 @@ const structuredData = {
   "@type": "MedicalOrganization",
   name: "LATOM Wellness",
   description:
-    "Physician-led telehealth consultation practice offering wellness consultation, longevity guidance, and lab interpretation services. Led by Dr. Abdi Abdulhakim, MD.",
+    "Physician-led telehealth consultation practice offering wellness consultation, longevity guidance, and lab interpretation services. Led by Dr. Abdul, MD.",
   url: "https://latomwellness.com",
-  telephone: "+13072108604",
   email: "info@latomwellness.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Richmond",
-    addressRegion: "VA",
-    addressCountry: "US",
-  },
   founder: {
     "@type": "Person",
-    name: "Dr. Abdi Abdulhakim",
-    jobTitle: "Anesthesiologist",
+    name: "Dr. Abdul",
+    jobTitle: "Physician",
   },
   serviceType: [
     "Weight Management Consultation",

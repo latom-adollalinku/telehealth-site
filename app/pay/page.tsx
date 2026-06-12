@@ -4,19 +4,38 @@ import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ScrollFade from '../components/ScrollFade';
 
-type PaymentMethod = 'helcim' | 'zelle' | 'venmo' | 'paypal';
+declare global {
+  interface Window {
+    appendHelcimPayIframe?: (token: string, allowExit?: boolean) => void;
+  }
+}
+
+function loadHelcimScript(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if ((window as any).appendHelcimPayIframe) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://secure.helcim.app/helcim-pay/services/start.js';
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error('Failed to load Helcim Pay.js'));
+    document.body.appendChild(script);
+  });
+}
+
 type ServiceTier = 'standard' | 'priority';
 
 const protocolNames: Record<string, string> = {
   cardiovascular: 'Cardiovascular Optimization Protocol',
   metabolic: 'Metabolic Enhancement Protocol',
-  'hormone-optimization': 'Hormone Optimization Protocol',
+  'hormone-optimization': 'Hormone Health Education',
   longevity: 'Longevity Protocol',
   'surgical-preop': 'Surgical Preoperative Optimization Protocol',
   cognitive: 'Cognitive & Study Protocol',
   sleep: 'Sleep & Recovery Protocol',
-  'trt-lipids': 'TRT Lipid Recovery Protocol',
-  'glp1-optimization': 'GLP-1 Optimization Protocol',
+  'trt-lipids': 'Cardiovascular and Lipid Health Education',
+  'glp1-optimization': 'Weight Management Optimization',
   'belly-fat': 'Belly Fat Reduction Protocol',
   'aging-parents': 'Aging Parents Essentials Protocol',
   'diabetic-neuropathy': 'Diabetic Neuropathy Recovery Protocol',
@@ -49,11 +68,11 @@ function PayPageContent() {
 
   const [serviceTier, setServiceTier] = useState<ServiceTier>('standard');
   const [selectedService, setSelectedService] = useState(pricingTiers.standard[0]);
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(null);
-  const [confirmationName, setConfirmationName] = useState('');
-  const [confirmationEmail, setConfirmationEmail] = useState('');
-  const [confirmationPhone, setConfirmationPhone] = useState('');
+  const [patientName, setPatientName] = useState('');
+  const [patientEmail, setPatientEmail] = useState('');
+  const [patientPhone, setPatientPhone] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [isProtocolPayment, setIsProtocolPayment] = useState(false);
 
   useEffect(() => {
@@ -72,39 +91,114 @@ function PayPageContent() {
   const handleTierChange = (tier: ServiceTier) => {
     setServiceTier(tier);
     setSelectedService(pricingTiers[tier][0]);
-    setPaymentMethod(null);
   };
 
   const handleServiceChange = (service: typeof pricingTiers.standard[0]) => {
     setSelectedService(service);
   };
 
-  const handlePaymentConfirmation = async (e: React.FormEvent) => {
+  const formValid =
+    patientName.trim().length > 1 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(patientEmail) &&
+    patientPhone.trim().length >= 7;
+
+  const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formValid || submitting) return;
+    setSubmitError(null);
     setSubmitting(true);
+
+    // Attempt Helcim embedded checkout first.
+    try {
+      const helcimRes = await fetch('/api/helcim/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tier: serviceTier,
+          patientName,
+          patientEmail,
+          patientPhone,
+          serviceName: selectedService.name,
+          amount: selectedService.price,
+          protocolId: isProtocolPayment ? protocolId : null,
+        }),
+      });
+
+      // 503 means HELCIM_API_KEY not configured: fall through to legacy flow.
+      if (helcimRes.status !== 503) {
+        if (!helcimRes.ok) {
+          let errMsg = `Request failed (HTTP ${helcimRes.status}).`;
+          try {
+            const j = await helcimRes.json();
+            if (j?.error) errMsg = j.error;
+          } catch {}
+          setSubmitError(errMsg + ' Please try again or call (307) 210-8604.');
+          setSubmitting(false);
+          return;
+        }
+
+        const { checkoutToken, bookingId } = await helcimRes.json();
+
+        await loadHelcimScript();
+
+        // Listen for Helcim modal events before opening the iframe.
+        const messageHandler = (event: MessageEvent) => {
+          if (event.data?.eventName !== 'helcim-pay-js-' + checkoutToken) return;
+          window.removeEventListener('message', messageHandler);
+
+          if (event.data.eventStatus === 'SUCCESS') {
+            const successUrl = isProtocolPayment
+              ? `/pay/success?protocol=${protocolId}&booking=${bookingId}`
+              : `/pay/success?booking=${bookingId}`;
+            router.push(successUrl);
+          } else if (event.data.eventStatus === 'ABORTED') {
+            setSubmitError('Payment was declined. Try a different card or call (307) 210-8604.');
+            setSubmitting(false);
+          } else if (event.data.eventStatus === 'HIDE') {
+            // User closed the modal without completing payment.
+            setSubmitting(false);
+          }
+        };
+
+        window.addEventListener('message', messageHandler);
+        window.appendHelcimPayIframe!(checkoutToken, true);
+        // Do not setSubmitting(false) here — the message handler resolves the state.
+        return;
+      }
+    } catch {
+      // Network error calling /api/helcim/checkout: fall through to legacy flow.
+    }
+
+    // Legacy fallback: /api/payment/confirm
     try {
       const res = await fetch('/api/payment/confirm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          paymentMethod,
+          paymentMethod: 'card',
           serviceName: selectedService.name,
           amount: selectedService.price,
-          patientName: confirmationName,
-          patientEmail: confirmationEmail,
-          patientPhone: confirmationPhone,
+          patientName,
+          patientEmail,
+          patientPhone,
           protocolId: isProtocolPayment ? protocolId : null,
         }),
       });
-
       if (res.ok) {
         const successUrl = isProtocolPayment
           ? `/pay/success?protocol=${protocolId}`
           : '/pay/success';
         router.push(successUrl);
+      } else {
+        let errMsg = `Request failed (HTTP ${res.status}).`;
+        try {
+          const j = await res.json();
+          if (j?.error) errMsg = j.error;
+        } catch {}
+        setSubmitError(errMsg + ' Please try again or call (307) 210-8604.');
       }
     } catch (error) {
-      console.error('Payment confirmation error:', error);
+      setSubmitError('Network error. Please try again or call (307) 210-8604.');
     } finally {
       setSubmitting(false);
     }
@@ -241,193 +335,68 @@ function PayPageContent() {
               </div>
             </div>
 
-            {/* Payment Options */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Helcim */}
-              <ScrollFade>
-                <button
-                  onClick={() => setPaymentMethod('helcim')}
-                  className={`p-6 border-2 rounded-lg transition-all text-left ${
-                    paymentMethod === 'helcim'
-                      ? 'border-[#c9a84c] bg-[#c9a84c]/5'
-                      : 'border-[#c9a84c]/20 bg-[#1a1a2e] hover:border-[#c9a84c]/50'
-                  }`}
-                >
-                  <h3 className="text-xl font-bold text-white mb-2">💳 Card Payment</h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Visa, Mastercard, Amex via Helcim
-                  </p>
-                  {paymentMethod === 'helcim' && (
-                    <div className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm">
-                      <p className="font-semibold text-[#c9a84c] mb-2">Processing Secure Payment...</p>
-                      <p>Card payment form will be embedded here. Contact support to process payment manually at (307) 210-8604</p>
-                    </div>
-                  )}
-                </button>
-              </ScrollFade>
+            {/* Card Checkout */}
+            <ScrollFade>
+              <form onSubmit={handleCheckout} className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-6 sm:p-8 space-y-4">
+                <div className="mb-2">
+                  <h3 className="font-serif text-xl font-bold text-white mb-1">Checkout</h3>
+                  <p className="text-gray-400 text-sm">Enter your details to continue to secure card payment.</p>
+                </div>
 
-              {/* Zelle */}
-              <ScrollFade>
-                <button
-                  onClick={() => setPaymentMethod('zelle')}
-                  className={`p-6 border-2 rounded-lg transition-all text-left ${
-                    paymentMethod === 'zelle'
-                      ? 'border-[#c9a84c] bg-[#c9a84c]/5'
-                      : 'border-[#c9a84c]/20 bg-[#1a1a2e] hover:border-[#c9a84c]/50'
-                  }`}
-                >
-                  <h3 className="text-xl font-bold text-white mb-2">🏦 Zelle</h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Bank-to-bank transfer. Zero processing fees.
-                  </p>
-                  {paymentMethod === 'zelle' && (
-                    <form onSubmit={handlePaymentConfirmation} className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm space-y-3">
-                      <p className="font-semibold text-[#c9a84c] mb-3">Send via Zelle to:</p>
-                      <p className="mb-3">
-                        <strong>Email:</strong> {process.env.NEXT_PUBLIC_ZELLE_EMAIL || 'pay@latomwellness.com'}
-                      </p>
-                      <p className="mb-3">
-                        <strong>Amount:</strong> ${selectedService.price}
-                      </p>
-                      <p className="mb-3">
-                        <strong>Memo:</strong> {selectedService.name} - Your Name
-                      </p>
-                      <div className="border-t border-[#c9a84c]/20 pt-3 mt-4">
-                        <p className="text-xs text-gray-400 mb-3">Once you've sent the payment, confirm below:</p>
-                        <input
-                          type="text"
-                          placeholder="Your name"
-                          value={confirmationName}
-                          onChange={(e) => setConfirmationName(e.target.value)}
-                          required
-                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
-                        />
-                        <input
-                          type="email"
-                          placeholder="Email"
-                          value={confirmationEmail}
-                          onChange={(e) => setConfirmationEmail(e.target.value)}
-                          required
-                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
-                        />
-                        <input
-                          type="tel"
-                          placeholder="Phone"
-                          value={confirmationPhone}
-                          onChange={(e) => setConfirmationPhone(e.target.value)}
-                          required
-                          className="w-full px-3 py-2 mb-3 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
-                        />
-                        <button
-                          type="submit"
-                          disabled={submitting}
-                          className="w-full py-2 bg-[#c9a84c] text-black font-semibold text-sm rounded hover:bg-[#e0c070] disabled:opacity-50 transition-colors"
-                        >
-                          {submitting ? 'Confirming...' : 'I\'ve Sent the Payment'}
-                        </button>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-4">
-                        You'll receive a confirmation email within 24 hours of payment.
-                      </p>
-                    </form>
-                  )}
-                </button>
-              </ScrollFade>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    placeholder="Full name"
+                    value={patientName}
+                    onChange={(e) => setPatientName(e.target.value)}
+                    required
+                    autoComplete="name"
+                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white text-sm focus:outline-none focus:border-[#c9a84c]"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone"
+                    value={patientPhone}
+                    onChange={(e) => setPatientPhone(e.target.value)}
+                    required
+                    autoComplete="tel"
+                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white text-sm focus:outline-none focus:border-[#c9a84c]"
+                  />
+                </div>
 
-              {/* Venmo */}
-              <ScrollFade>
-                <button
-                  onClick={() => setPaymentMethod('venmo')}
-                  className={`p-6 border-2 rounded-lg transition-all text-left ${
-                    paymentMethod === 'venmo'
-                      ? 'border-[#c9a84c] bg-[#c9a84c]/5'
-                      : 'border-[#c9a84c]/20 bg-[#1a1a2e] hover:border-[#c9a84c]/50'
-                  }`}
-                >
-                  <h3 className="text-xl font-bold text-white mb-2">📱 Venmo</h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Quick mobile payment from your phone.
-                  </p>
-                  {paymentMethod === 'venmo' && (
-                    <form onSubmit={handlePaymentConfirmation} className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm space-y-3">
-                      <p className="font-semibold text-[#c9a84c] mb-3">Pay via Venmo:</p>
-                      <p className="mb-3">
-                        <strong>Username:</strong> @{process.env.NEXT_PUBLIC_VENMO_USERNAME || 'latom-wellness'}
-                      </p>
-                      <p className="mb-3">
-                        <strong>Amount:</strong> ${selectedService.price}
-                      </p>
-                      <p className="text-xs text-gray-400 mb-3">Include your name and service type in the note.</p>
-                      <div className="border-t border-[#c9a84c]/20 pt-3 mt-4">
-                        <p className="text-xs text-gray-400 mb-3">Once you've sent the payment, confirm below:</p>
-                        <input
-                          type="text"
-                          placeholder="Your name"
-                          value={confirmationName}
-                          onChange={(e) => setConfirmationName(e.target.value)}
-                          required
-                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
-                        />
-                        <input
-                          type="email"
-                          placeholder="Email"
-                          value={confirmationEmail}
-                          onChange={(e) => setConfirmationEmail(e.target.value)}
-                          required
-                          className="w-full px-3 py-2 mb-2 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
-                        />
-                        <input
-                          type="tel"
-                          placeholder="Phone"
-                          value={confirmationPhone}
-                          onChange={(e) => setConfirmationPhone(e.target.value)}
-                          required
-                          className="w-full px-3 py-2 mb-3 bg-[#1a1a2e] border border-[#c9a84c]/30 rounded text-white text-xs focus:outline-none focus:border-[#c9a84c]"
-                        />
-                        <button
-                          type="submit"
-                          disabled={submitting}
-                          className="w-full py-2 bg-[#c9a84c] text-black font-semibold text-sm rounded hover:bg-[#e0c070] disabled:opacity-50 transition-colors"
-                        >
-                          {submitting ? 'Confirming...' : 'I\'ve Sent the Payment'}
-                        </button>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-4">
-                        Confirmation within 24 hours.
-                      </p>
-                    </form>
-                  )}
-                </button>
-              </ScrollFade>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={patientEmail}
+                  onChange={(e) => setPatientEmail(e.target.value)}
+                  required
+                  autoComplete="email"
+                  className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white text-sm focus:outline-none focus:border-[#c9a84c]"
+                />
 
-              {/* PayPal */}
-              <ScrollFade>
+                {submitError && (
+                  <div className="p-3 bg-red-900/20 border border-red-500/40 rounded text-red-300 text-sm">
+                    {submitError}
+                  </div>
+                )}
+
                 <button
-                  onClick={() => setPaymentMethod('paypal')}
-                  className={`p-6 border-2 rounded-lg transition-all text-left ${
-                    paymentMethod === 'paypal'
-                      ? 'border-[#c9a84c] bg-[#c9a84c]/5'
-                      : 'border-[#c9a84c]/20 bg-[#1a1a2e] hover:border-[#c9a84c]/50'
+                  type="submit"
+                  disabled={!formValid || submitting}
+                  className={`w-full py-4 font-semibold rounded tracking-wide transition-colors ${
+                    formValid && !submitting
+                      ? 'bg-[#c9a84c] text-black hover:bg-[#e0c070] cursor-pointer'
+                      : 'bg-gray-700 text-gray-500 cursor-not-allowed'
                   }`}
                 >
-                  <h3 className="text-xl font-bold text-white mb-2">🔵 PayPal</h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    PayPal balance, card, or bank account.
-                  </p>
-                  {paymentMethod === 'paypal' && (
-                    <div className="mt-4 p-4 bg-[#0a0a0a] border border-[#c9a84c]/20 rounded text-gray-300 text-sm">
-                      <p className="font-semibold text-[#c9a84c] mb-2">PayPal Checkout</p>
-                      <p className="mb-4">
-                        Click below to pay via PayPal (sandbox mode - contact support for live payments)
-                      </p>
-                      <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-semibold transition-colors">
-                        Pay ${selectedService.price} with PayPal
-                      </button>
-                    </div>
-                  )}
+                  {submitting ? 'Processing...' : `Pay $${selectedService.price} by Card`}
                 </button>
-              </ScrollFade>
-            </div>
+
+                <p className="text-xs text-gray-500 text-center">
+                  Secure card payment. Visa, Mastercard, Amex, Discover accepted.
+                </p>
+              </form>
+            </ScrollFade>
           </div>
 
           {/* Compliance Footer */}

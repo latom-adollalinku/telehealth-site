@@ -45,7 +45,7 @@ export function renderBookingConfirmedEmail(data: BookingConfirmedData): {
       </ul>
     `;
 
-  const subject = `Your Consultation is Scheduled — ${appointmentDate}`;
+  const subject = `Your Consultation is Scheduled - ${appointmentDate}`;
 
   const html = `<!DOCTYPE html>
 <html>
@@ -62,14 +62,14 @@ export function renderBookingConfirmedEmail(data: BookingConfirmedData): {
           <tr>
             <td style="padding: 32px; border-bottom: 2px solid #c9a84c;">
               <h1 style="margin:0; color:#c9a84c; font-size: 24px; letter-spacing: 1px;">LATOM Wellness</h1>
-              <p style="margin: 4px 0 0 0; color:#999999; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Dr. Abdi Abdulhakim, MD</p>
+              <p style="margin: 4px 0 0 0; color:#999999; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Dr. Abdul, MD</p>
             </td>
           </tr>
           <tr>
             <td style="padding: 32px;">
               <h2 style="color:#ffffff; margin: 0 0 16px 0; font-size: 22px;">Your consultation is confirmed</h2>
               <p style="color:#e5e5e5; line-height: 1.6; margin: 0 0 20px 0;">Hi ${patientName},</p>
-              <p style="color:#e5e5e5; line-height: 1.6; margin: 0 0 24px 0;">Thank you for booking with LATOM Wellness. Your consultation is scheduled, and Dr. Abdulhakim is looking forward to meeting with you.</p>
+              <p style="color:#e5e5e5; line-height: 1.6; margin: 0 0 24px 0;">Thank you for booking with LATOM Wellness. Your consultation is scheduled, and Dr. Abdul is looking forward to meeting with you.</p>
 
               <div style="background:#1c1c1c; border-left: 3px solid #c9a84c; padding: 20px; margin: 24px 0; border-radius: 4px;">
                 <h3 style="margin: 0 0 12px 0; color:#c9a84c; font-size: 16px;">Appointment Details</h3>
@@ -99,7 +99,7 @@ export function renderBookingConfirmedEmail(data: BookingConfirmedData): {
 </html>`;
 
   const text = [
-    `LATOM Wellness — Dr. Abdi Abdulhakim, MD`,
+    `LATOM Wellness - Dr. Abdul, MD`,
     ``,
     `Hi ${patientName},`,
     ``,

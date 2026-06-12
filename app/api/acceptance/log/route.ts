@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { rateLimit } from '../../../lib/rateLimit';
 
 export const runtime = 'edge';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
+  const limit = rateLimit(req, { max: 10, windowMs: 60_000, bucket: 'acceptance-log' });
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    });
+  }
   try {
     const body = await req.json();
     const { type, timestamp, userAgent } = body;
@@ -14,7 +22,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const acceptanceType = type === 'nda' ? 'NDA' : 'Consent Form (Peptide Therapy)';
+    const acceptanceType = type === 'nda' ? 'NDA' : 'Consent Form';
     const practiceEmail = process.env.NOTIFICATION_EMAIL || 'info@latomwellness.com';
 
     await resend.emails.send({

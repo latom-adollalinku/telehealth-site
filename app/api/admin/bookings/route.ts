@@ -7,17 +7,35 @@
  * Docs: https://cal.com/docs/api-reference/v2
  *
  * Env:
- *   CAL_COM_API_KEY — personal API key (cal_live_...)
+ *   CAL_COM_API_KEY - personal API key (cal_live_...)
  *
  * Response shape:
  *   { bookings: AdminBooking[], fetchedAt: string, error?: string }
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 // Revalidate every 60s when this route is called through a fetch with { next: { revalidate: 60 } }.
 export const revalidate = 60;
+
+function requireAdmin(req: NextRequest): NextResponse | null {
+  const expected = process.env.ADMIN_SECRET_TOKEN;
+  if (!expected) {
+    return NextResponse.json(
+      { error: 'Server misconfiguration: ADMIN_SECRET_TOKEN not set' },
+      { status: 503 },
+    );
+  }
+  const provided =
+    req.headers.get('x-admin-token') ||
+    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '') ||
+    new URL(req.url).searchParams.get('token');
+  if (provided !== expected) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  return null;
+}
 
 // ---------------------------------------------------------------------------
 // Types
@@ -89,7 +107,7 @@ function splitDateTime(iso: string | undefined): { date: string; time: string } 
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return { date: '', time: '' };
   const date = d.toISOString().split('T')[0];
-  // HH:MM in UTC — simple and consistent; the UI can reformat if needed.
+  // HH:MM in UTC - simple and consistent; the UI can reformat if needed.
   const time = d.toISOString().split('T')[1].slice(0, 5);
   return { date, time };
 }
@@ -140,7 +158,7 @@ function extractPaymentStatus(b: CalV2Booking): 'paid' | 'pending' {
 
 function matchesEventType(b: CalV2Booking): boolean {
   const slug = b.eventType?.slug ?? '';
-  if (!slug) return true; // if we can't tell, don't drop it — better UX than empty list
+  if (!slug) return true; // if we can't tell, don't drop it - better UX than empty list
   return slug === EVENT_TYPE_SLUG || slug === EVENT_TYPE_FULL;
 }
 
@@ -167,7 +185,10 @@ function normalizeBooking(b: CalV2Booking): AdminBooking {
 // Route handler
 // ---------------------------------------------------------------------------
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const authError = requireAdmin(req);
+  if (authError) return authError;
+
   const apiKey = process.env.CAL_COM_API_KEY;
 
   if (!apiKey) {
@@ -178,7 +199,7 @@ export async function GET() {
   }
 
   try {
-    // Cal.com API v2 — list bookings endpoint.
+    // Cal.com API v2 - list bookings endpoint.
     // Docs: https://cal.com/docs/api-reference/v2/bookings/get-all-bookings
     const res = await fetch('https://api.cal.com/v2/bookings?take=100', {
       headers: {

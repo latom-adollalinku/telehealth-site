@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 const morningStack = [
   { name: "NMN (Nicotinamide Mononucleotide)", dose: "500–1,000 mg", target: "NAD+ precursor, cellular energy" },
   { name: "Resveratrol (trans)", dose: "500 mg", target: "SIRT1 activation, take with fat" },
-  { name: "TMG (Trimethylglycine)", dose: "500 mg", target: "Methyl donor — pairs with NMN" },
+  { name: "TMG (Trimethylglycine)", dose: "500 mg", target: "Methyl donor - pairs with NMN" },
   { name: "CoQ10 / Ubiquinol", dose: "200 mg", target: "Mitochondrial electron transport" },
   { name: "Omega-3 EPA/DHA", dose: "2,000 mg", target: "Cellular membrane integrity" },
 ];
@@ -33,7 +34,7 @@ const eveningStack = [
 
 const weeklyProtocol = [
   { name: "Fisetin (senolytic)", dose: "500 mg × 2 days", frequency: "Weekly cycle", target: "Clears senescent cells" },
-  { name: "Rapamycin (Rx only)", dose: "Per physician", frequency: "Weekly", target: "mTOR inhibition — requires MD" },
+  { name: "Rapamycin (Rx only)", dose: "Per physician", frequency: "Weekly", target: "mTOR inhibition - requires MD" },
   { name: "Extended fast", dose: "18-24 hours", frequency: "1-2x/week", target: "Autophagy, insulin sensitivity" },
 ];
 
@@ -79,11 +80,11 @@ export default function LongevityProtocolPage() {
                 </div>
                 <div>
                   <p className="text-amber-400 font-semibold text-sm mb-1">Metabolically Healthy</p>
-                  <p className="text-gray-400 text-sm">Baseline labs clean — ready to optimize rather than correct dysfunction.</p>
+                  <p className="text-gray-400 text-sm">Baseline labs clean - ready to optimize rather than correct dysfunction.</p>
                 </div>
                 <div>
                   <p className="text-amber-400 font-semibold text-sm mb-1">Long-Term Focused</p>
-                  <p className="text-gray-400 text-sm">Goal is healthspan extension — cognitive and physical longevity over decades.</p>
+                  <p className="text-gray-400 text-sm">Goal is healthspan extension - cognitive and physical longevity over decades.</p>
                 </div>
               </div>
             </div>
@@ -186,7 +187,7 @@ export default function LongevityProtocolPage() {
                     Supplements are 20% of longevity. These behaviors are the other 80%:
                   </p>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li><strong className="text-[#c9a84c]">Zone 2 cardio 3-4 hrs/week:</strong> Mitochondrial biogenesis — the #1 longevity lever.</li>
+                    <li><strong className="text-[#c9a84c]">Zone 2 cardio 3-4 hrs/week:</strong> Mitochondrial biogenesis - the #1 longevity lever.</li>
                     <li><strong className="text-[#c9a84c]">Resistance training 3x/week:</strong> Muscle mass is the strongest predictor of all-cause mortality after age 50.</li>
                     <li><strong className="text-[#c9a84c]">Sleep 7-9 hrs with tracking:</strong> Whoop/Oura/8Sleep for HRV, RHR, deep sleep optimization.</li>
                     <li><strong className="text-[#c9a84c]">Time-restricted eating:</strong> 14-16 hour daily fast for autophagy.</li>
@@ -240,7 +241,7 @@ export default function LongevityProtocolPage() {
                   <h3 className="text-amber-400 font-semibold mb-4">Safety Notes</h3>
                   <ul className="space-y-3 text-gray-400 text-sm">
                     <li><strong className="text-white">Rapamycin:</strong> Prescription only. Dosing highly individualized. Requires physician supervision.</li>
-                    <li><strong className="text-white">NMN + Methylation:</strong> NMN depletes methyl groups — TMG is mandatory, not optional.</li>
+                    <li><strong className="text-white">NMN + Methylation:</strong> NMN depletes methyl groups - TMG is mandatory, not optional.</li>
                     <li><strong className="text-white">Senolytic cycling:</strong> Fisetin/quercetin in 2-day pulses weekly, not daily.</li>
                     <li><strong className="text-white">Fasting cautions:</strong> Not appropriate if you have history of eating disorders, are pregnant, or under 18.</li>
                     <li><strong className="text-white">Biomarker tracking:</strong> Baseline biological age test (TruDiagnostic, Horvath) to measure real progress.</li>
@@ -249,6 +250,17 @@ export default function LongevityProtocolPage() {
               </ScrollFade>
             </div>
           </section>
+
+          <FullscriptCTA
+            highlights={[
+              "NMN / NAD+ precursors",
+              "Resveratrol (trans- form)",
+              "Spermidine",
+              "CoQ10 / Ubiquinol",
+              "Vitamin K2 MK-7",
+              "Astaxanthin (high-dose)",
+            ]}
+          />
 
           <section className="py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

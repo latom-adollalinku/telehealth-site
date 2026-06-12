@@ -14,10 +14,10 @@ type ServiceId =
   | 'general-wellness';
 
 const SERVICES: { id: ServiceId; label: string; tagline: string }[] = [
-  { id: 'weight-management', label: 'Weight Management', tagline: 'GLP-1, peptides, metabolic health' },
-  { id: 'peptide-therapy', label: 'Peptide Therapy', tagline: 'BPC-157, TB-500, recovery & performance' },
-  { id: 'hormone-optimization', label: 'Hormone Optimization', tagline: 'Energy, mood, libido, sleep' },
-  { id: 'surgical-preop', label: 'Surgical Preoperative Optimization', tagline: 'Anesthesiologist-led surgical prep' },
+  { id: 'weight-management', label: 'Weight Management', tagline: 'Metabolic health and sustainable weight management' },
+  { id: 'peptide-therapy', label: 'Recovery and Performance', tagline: 'Recovery, performance, and healthy aging support' },
+  { id: 'hormone-optimization', label: 'Hormone Health Education', tagline: 'Energy, mood, libido, sleep' },
+  { id: 'surgical-preop', label: 'Surgical Preoperative Optimization', tagline: 'Physician-led surgical prep' },
   { id: 'general-wellness', label: 'General Wellness Consultation', tagline: 'Longevity, performance, overall health' },
 ];
 
@@ -360,7 +360,7 @@ export default function PatientIntakePage() {
             Patient Intake
           </h1>
           <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
-            Share a few details so Dr. Abdulhakim can prepare for your consultation.
+            Share a few details so Dr. Abdul can prepare for your consultation.
             <br />
             <span className="text-[#c9a84c]">All responses are confidential.</span>
           </p>
@@ -378,7 +378,7 @@ export default function PatientIntakePage() {
               </div>
               <h2 className="text-2xl font-bold text-white mb-3">Thank you, {patientName.split(' ')[0] || 'there'}.</h2>
               <p className="text-gray-300 mb-6">
-                Your intake has been received. Dr. Abdulhakim will review your responses before your consultation.
+                Your intake has been received. Dr. Abdul will review your responses before your consultation.
                 A confirmation has been sent to <span className="text-[#c9a84c]">{patientEmail}</span>.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -504,7 +504,7 @@ export default function PatientIntakePage() {
                         3. {SERVICES.find((s) => s.id === activeService)?.label} intake
                       </h2>
                       <p className="text-gray-400 text-sm">
-                        These answers help Dr. Abdulhakim tailor your consultation. Be as specific as you can.
+                        These answers help Dr. Abdul tailor your consultation. Be as specific as you can.
                       </p>
                     </div>
 
@@ -654,7 +654,7 @@ function WeightManagementForm({ responses, update }: FormProps) {
         name="triedBefore"
         values={arr(responses.triedBefore)}
         onChange={(v) => update('triedBefore', v)}
-        options={['Ozempic', 'GLP-1 (other)', 'Keto', 'Intermittent fasting', 'Supplements']}
+        options={['Prescription medication', 'Keto', 'Intermittent fasting', 'Supplements', 'Personal trainer or coach']}
       />
     </>
   );
@@ -668,7 +668,7 @@ function PeptideTherapyForm({ responses, update }: FormProps) {
         name="previousExperience"
         value={str(responses.previousExperience)}
         onChange={(v) => update('previousExperience', v)}
-        options={['Never', 'BPC-157', 'TB-500', 'AOD-9604', 'Other']}
+        options={['Never', 'Yes, previously', 'Yes, currently', 'Other']}
         required
       />
 
@@ -772,7 +772,7 @@ function HormoneOptimizationForm({ responses, update }: FormProps) {
         name="currentHormonalMeds"
         value={str(responses.currentHormonalMeds)}
         onChange={(v) => update('currentHormonalMeds', v)}
-        placeholder="TRT, thyroid, birth control, HCG, etc."
+        placeholder="List any hormonal medications you currently take"
       />
 
       <CheckboxGroup
@@ -840,7 +840,7 @@ function SurgicalPreopForm({ responses, update }: FormProps) {
         name="surgeonHospital"
         value={str(responses.surgeonHospital)}
         onChange={(v) => update('surgeonHospital', v)}
-        placeholder="Dr. Smith — VCU Medical Center"
+        placeholder="Dr. Smith - VCU Medical Center"
       />
 
       <TextArea
@@ -852,7 +852,7 @@ function SurgicalPreopForm({ responses, update }: FormProps) {
       />
 
       <TextArea
-        label="Current medications (CRITICAL — list everything)"
+        label="Current medications (CRITICAL - list everything)"
         name="currentMedications"
         value={str(responses.currentMedications)}
         onChange={(v) => update('currentMedications', v)}
@@ -861,11 +861,11 @@ function SurgicalPreopForm({ responses, update }: FormProps) {
       />
 
       <TextArea
-        label="Current supplements (CRITICAL — list everything)"
+        label="Current supplements (CRITICAL - list everything)"
         name="currentSupplements"
         value={str(responses.currentSupplements)}
         onChange={(v) => update('currentSupplements', v)}
-        placeholder="Vitamins, herbs, protein powders, nootropics — all of it"
+        placeholder="Vitamins, herbs, protein powders, nootropics - all of it"
         required
       />
 

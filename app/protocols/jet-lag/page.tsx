@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -17,14 +18,14 @@ const preFlightStack = [
 ];
 
 const inflightStack = [
-  { name: "Electrolyte packets", dose: "1 per 4 hrs flight", target: "Cabin air is 15% humidity — chronic dehydration" },
+  { name: "Electrolyte packets", dose: "1 per 4 hrs flight", target: "Cabin air is 15% humidity - chronic dehydration" },
   { name: "L-Theanine", dose: "200 mg", target: "Sleep without sedation at 35,000 ft" },
   { name: "Magnesium + glycine", dose: "before sleep", target: "Mid-flight sleep onset" },
-  { name: "Avoid alcohol", dose: "—", target: "Single biggest jet lag amplifier" },
+  { name: "Avoid alcohol", dose: " - ", target: "Single biggest jet lag amplifier" },
 ];
 
 const onArrivalStack = [
-  { name: "Morning sunlight (destination)", dose: "15-20 min outside", target: "Most powerful circadian resetter — free" },
+  { name: "Morning sunlight (destination)", dose: "15-20 min outside", target: "Most powerful circadian resetter - free" },
   { name: "Caffeine (destination morning only)", dose: "Normal dose", target: "Boost alertness + anchor wake time" },
   { name: "Melatonin (destination bedtime)", dose: "0.3-1 mg", target: "3-5 nights to re-entrain" },
   { name: "Meal timing to destination", dose: "No snacking between", target: "Food timing is a circadian zeitgeber" },
@@ -157,6 +158,17 @@ export default function JetLagProtocolPage() {
               </ScrollFade>
             </div>
           </section>
+          <FullscriptCTA
+            highlights={[
+              "Low-dose melatonin (0.3-1 mg)",
+              "L-theanine",
+              "Magnesium glycinate",
+              "Adaptogen blend (ashwagandha + rhodiola)",
+              "Electrolyte powder",
+              "B-complex (high B1/B6/B12)",
+            ]}
+          />
+
         </ProtocolPaywall>
       </Suspense>
     </>

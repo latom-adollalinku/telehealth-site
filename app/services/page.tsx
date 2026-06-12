@@ -3,7 +3,7 @@ import Link from "next/link";
 import ScrollFade from "../components/ScrollFade";
 
 export const metadata: Metadata = {
-  title: "Services — Weight Management, Longevity & Hormonal Health Consultation",
+  title: "Services - Weight Management, Longevity & Hormonal Health Consultation",
   description:
     "Physician-supervised wellness consultation programs: weight management, longevity consultation, and hormonal health consultation. Starting at $199/month.",
 };
@@ -14,17 +14,17 @@ const services = [
     label: "LATOM Labs Membership",
     badge: "Best Value",
     badgeColor: "bg-[#c9a84c]",
-    tagline: "Physician-curated guidance — no prescription required.",
+    tagline: "Physician-curated guidance - no prescription required.",
     description:
-      "The scalable entry point. Get every LATOM protocol (longevity, hormonal health, cognitive, sleep, metabolic, cardiovascular, and more), monthly new drops, physician-curated lab interpretation templates, and access to a private community. No monthly commitment — cancel anytime.",
+      "The scalable entry point. Get every LATOM protocol (longevity, hormonal health, cognitive, sleep, metabolic, cardiovascular, and more), monthly new drops, physician-curated lab interpretation templates, and access to a private community. No monthly commitment - cancel anytime.",
     medications: ["Lab panel guides", "Supplement stacks", "Protocol library (17+)", "Lab interpretation templates"],
     benefits: [
       "Every current protocol ($49 value each) included",
       "New protocol drop every month",
-      "Lab interpretation templates (GoodLabs, Quest, Labcorp)",
+      "Lab interpretation templates (Fullscript, Quest, Labcorp)",
       "Private community access",
-      "Direct Q&A with Dr. Abdulhakim weekly",
-      "Cancel anytime — no commitment",
+      "Direct Q&A with Dr. Abdul weekly",
+      "Cancel anytime - no commitment",
     ],
     whatToExpect:
       "Sign up for $29/month. Instantly unlock the full protocol library. New content drops every month. Use the lab interpretation templates to understand your own bloodwork. If you ever want to escalate to a physician-supervised clinical program, your membership price applies as credit toward your first month.",
@@ -40,7 +40,7 @@ const services = [
     badgeColor: "bg-green-600",
     tagline: "Lose weight. Keep it off. Finally.",
     description:
-      "Evidence-based weight management consultation with physician oversight. These are the same programs used by top obesity medicine specialists — now available through a physician-supervised telehealth practice.",
+      "Evidence-based weight management consultation with physician oversight. These are the same programs used by top obesity medicine specialists - now available through a physician-supervised telehealth practice.",
     medications: ["Metabolic health assessment", "Body composition review", "Appetite regulation consultation", "Lifestyle and nutrition planning"],
     benefits: [
       "Significant body weight reduction in clinical programs",
@@ -74,7 +74,7 @@ const services = [
       "Anti-inflammatory and gut health support",
     ],
     whatToExpect:
-      "After your consultation, the physician designs a custom wellness protocol based on your goals — whether that is injury recovery, sleep optimization, or longevity. If a prescription is clinically appropriate, it is fulfilled via standard pharmacy channels. You receive a complete written protocol and guidance.",
+      "After your consultation, the physician designs a custom wellness protocol based on your goals - whether that is injury recovery, sleep optimization, or longevity. If a prescription is clinically appropriate, it is fulfilled via standard pharmacy channels. You receive a complete written protocol and guidance.",
     pricing: [
       { tier: "Recovery", price: "$199/mo", detail: "Targeted recovery consultation + physician protocol" },
       { tier: "Performance", price: "$279/mo", detail: "Comprehensive wellness protocol + cellular support" },
@@ -88,7 +88,7 @@ const services = [
     badgeColor: "bg-purple-600",
     tagline: "Feel like yourself again.",
     description:
-      "Hormonal imbalance affects millions — reduced energy, thyroid dysfunction, estrogen decline, adrenal fatigue. We run comprehensive labs and design evidence-based wellness programs that restore how you should feel.",
+      "Hormonal imbalance affects millions - reduced energy, thyroid dysfunction, estrogen decline, adrenal fatigue. We run comprehensive labs and design evidence-based wellness programs that restore how you should feel.",
     medications: ["Full hormone panel review", "Reproductive health markers", "Adrenal and stress markers", "Thyroid function assessment", "Metabolic marker analysis"],
     benefits: [
       "Restored energy, libido, and motivation",

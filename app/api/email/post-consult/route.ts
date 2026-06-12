@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { renderPostConsultEmail } from '../../../emails/post-consult';
+import { rateLimit } from '../../../lib/rateLimit';
 
 export const runtime = 'edge';
 
@@ -20,6 +21,13 @@ interface PostConsultPayload {
 }
 
 export async function POST(req: NextRequest) {
+  const limit = rateLimit(req, { max: 10, windowMs: 60_000, bucket: 'email-post-consult' });
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    });
+  }
   try {
     const body = (await req.json()) as Partial<PostConsultPayload>;
     const {

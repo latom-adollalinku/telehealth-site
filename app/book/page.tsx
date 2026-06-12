@@ -1,318 +1,221 @@
-'use client';
+import type { Metadata } from "next";
+import Link from "next/link";
+import ScrollFade from "../components/ScrollFade";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import ScrollFade from '../components/ScrollFade';
+export const metadata: Metadata = {
+  title: "Book a Consultation | LATOM Wellness",
+  description:
+    "Choose the type of consultation that fits what you need. Wellness education sessions available anywhere. Medical consultations available in licensed states.",
+};
 
 export default function BookPage() {
-  const router = useRouter();
-  const [submitted, setSubmitted] = useState(false);
-  const [acceptancesVerified, setAcceptancesVerified] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    state: '',
-    service: '',
-    preferredDate: '',
-    preferredTime: '',
-    goals: '',
-  });
-
-  // Verify both NDA and Consent acceptances before rendering
-  useEffect(() => {
-    const ndaAccepted = localStorage.getItem('latom_nda_accepted');
-    const consentAccepted = localStorage.getItem('latom_consent_accepted');
-
-    if (ndaAccepted && consentAccepted) {
-      setAcceptancesVerified(true);
-    } else {
-      // Redirect to NDA if not both accepted
-      router.push('/privacy/nda');
-    }
-  }, [router]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await fetch('/api/booking/request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        setSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          state: '',
-          service: '',
-          preferredDate: '',
-          preferredTime: '',
-          goals: '',
-        });
-        setTimeout(() => setSubmitted(false), 5000);
-      }
-    } catch (error) {
-      console.error('Booking error:', error);
-    }
-  };
-
-  // Don't render until acceptances are verified
-  if (!acceptancesVerified) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a] flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-gray-400">Verifying compliance documents...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-14 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,168,76,0.05)_0%,_transparent_70%)]" />
-
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-            Book Your Consultation
-          </h1>
-          <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10">
-            30-minute video call with Dr. Abdulhakim, MD — Anesthesiologist.
-            <br />
-            <span className="text-[#c9a84c]">No obligation. No pressure.</span>
-          </p>
-        </div>
-      </section>
-
-      {/* Cal.com Embed Section */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#0d0d1a]" />
-        <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 mb-12">
-            <h2 className="text-2xl font-bold text-white mb-4">Schedule Online</h2>
-            <p className="text-gray-400 mb-6">
-              Use our online calendar to book your preferred time. Confirmation will be sent to your email within 24 hours.
-            </p>
-
-            {/* Cal.com Embed */}
-            <div className="bg-[#0a0a0a] border border-[#c9a84c]/10 rounded overflow-hidden min-h-[800px]">
-              <iframe
-                src="https://cal.com/latom-wellness/consultation?embed=true"
-                style={{
-                  width: '100%',
-                  height: '800px',
-                  border: 'none',
-                  borderRadius: '0.5rem',
-                }}
-                frameBorder="0"
-                title="Book a consultation with LATOM Wellness"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Fallback Form */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d1a] to-[#0a0a0a]" />
-        <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-white mb-2">Request a Consultation</h2>
-            <p className="text-gray-400 mb-8">
-              Or fill out this form and we'll contact you within 24 hours to confirm your appointment.
-            </p>
-
-            {submitted ? (
-              <div className="bg-green-900/20 border border-green-600/30 rounded p-6 text-center">
-                <p className="text-green-400 font-semibold mb-2">✓ Request Received</p>
-                <p className="text-gray-300">
-                  We'll contact you within 24 hours to confirm your consultation. Check your email.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition"
-                      placeholder="you@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">State of Residence</label>
-                    <select
-                      name="state"
-                      value={formData.state}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition"
-                    >
-                      <option value="">Select state...</option>
-                      <option value="VA">Virginia</option>
-                      <option value="NC">North Carolina</option>
-                      <option value="SC">South Carolina</option>
-                      <option value="GA">Georgia</option>
-                      <option value="MD">Maryland</option>
-                      <option value="PA">Pennsylvania</option>
-                      <option value="CA">California</option>
-                      <option value="NY">New York</option>
-                      <option value="TX">Texas</option>
-                      <option value="FL">Florida</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Service Interested In</label>
-                  <select
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition"
-                  >
-                    <option value="">Select service...</option>
-                    <option value="weight-management">Weight Management</option>
-                    <option value="peptide-therapy">Peptide Therapy</option>
-                    <option value="hormone-optimization">Hormone Optimization</option>
-                    <option value="general-wellness">General Wellness Consultation</option>
-                  </select>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Preferred Date</label>
-                    <input
-                      type="date"
-                      name="preferredDate"
-                      value={formData.preferredDate}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Preferred Time</label>
-                    <select
-                      name="preferredTime"
-                      value={formData.preferredTime}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition"
-                    >
-                      <option value="">Select time...</option>
-                      <option value="morning">Morning (9 AM - 12 PM)</option>
-                      <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
-                      <option value="evening">Evening (5 PM - 8 PM)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Health Goals (optional)</label>
-                  <textarea
-                    name="goals"
-                    value={formData.goals}
-                    onChange={handleChange}
-                    maxLength={200}
-                    rows={3}
-                    className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#c9a84c]/30 rounded text-white focus:outline-none focus:border-[#c9a84c] transition resize-none"
-                    placeholder="What are your main health goals? (max 200 characters)"
-                  />
-                  <p className="text-xs text-gray-500 mt-2">{formData.goals.length}/200</p>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-colors duration-200"
-                >
-                  Request Consultation
-                </button>
-
-                <p className="text-xs text-gray-500 text-center">
-                  By requesting a consultation, you agree to our{' '}
-                  <a href="/privacy" className="text-[#c9a84c] hover:underline">
-                    privacy policy
-                  </a>
-                  .
-                </p>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#0d0d1a]" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade>
-            <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">Why Book With Us?</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div>
-                  <h4 className="text-[#c9a84c] font-semibold mb-2">Physician MD</h4>
-                  <p className="text-gray-400 text-sm">
-                    Physician consultations led by an anesthesiologist with 12+ years in healthcare.
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">
+              Book a Consultation
+            </h1>
+            <p className="text-gray-300 text-lg max-w-xl mx-auto">
+              Choose the type of session that fits what you need.
+            </p>
+          </ScrollFade>
+        </div>
+      </section>
+
+      {/* Two-card selector */}
+      <section className="relative py-12 overflow-hidden">
+        <div className="absolute inset-0 bg-[#0a0a0a]" />
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            {/* Card 1: Wellness Consultation */}
+            <ScrollFade>
+              <div className="flex flex-col h-full bg-[#111118] border border-[#c9a84c]/20 rounded-xl p-8">
+                {/* Badge */}
+                <div className="mb-4">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wide bg-green-700 text-white rounded-full uppercase">
+                    Available Anywhere
+                  </span>
+                </div>
+
+                {/* Title + description */}
+                <h2 className="font-serif text-2xl font-bold text-white mb-3">
+                  Wellness Consultation
+                </h2>
+                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                  General wellness education and health optimization guidance.
+                  Discussion of goals, lifestyle frameworks, lab category
+                  education, and supplement education. No prescriptions and no
+                  specific clinical recommendations. Available to clients in any
+                  state.
+                </p>
+
+                {/* What's included */}
+                <div className="mb-5">
+                  <p className="text-xs font-semibold text-[#c9a84c] uppercase tracking-wider mb-2">
+                    What&apos;s included
+                  </p>
+                  <ul className="space-y-1.5">
+                    {[
+                      "Health goals review and lifestyle framework discussion",
+                      "Lab category education (what panels mean, not clinical orders)",
+                      "Supplement and nutrition education",
+                      "Personalized resource list and follow-up guidance",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-gray-300">
+                        <span className="mt-0.5 text-green-500 flex-shrink-0">&#10003;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* What's NOT included */}
+                <div className="mb-6">
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                    Not included
+                  </p>
+                  <ul className="space-y-1.5">
+                    {[
+                      "Prescriptions or medication orders",
+                      "Specific lab orders or diagnostic interpretation",
+                      "Diagnosis of any condition",
+                      "Treatment of medical conditions",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-gray-500">
+                        <span className="mt-0.5 flex-shrink-0">&times;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Pricing */}
+                <div className="mb-6 p-4 bg-[#0a0a0a] border border-[#c9a84c]/10 rounded-lg">
+                  <p className="text-sm text-gray-400">
+                    Session fee set per consultation. Dr. Abdul will send an
+                    invoice via Helcim after booking.
                   </p>
                 </div>
-                <div>
-                  <h4 className="text-[#c9a84c] font-semibold mb-2">No Insurance Hassle</h4>
-                  <p className="text-gray-400 text-sm">
-                    Direct-pay practice. No insurance claims, no referral requirements, no bureaucracy.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-[#c9a84c] font-semibold mb-2">100% Confidential</h4>
-                  <p className="text-gray-400 text-sm">
-                    HIPAA-compliant. Your health information is secure and private.
-                  </p>
+
+                {/* CTA */}
+                <div className="mt-auto">
+                  <Link
+                    href="/book/wellness"
+                    className="block w-full text-center py-3 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-colors duration-200"
+                  >
+                    Book Wellness Consultation
+                  </Link>
                 </div>
               </div>
+            </ScrollFade>
+
+            {/* Card 2: Medical Consultation */}
+            <ScrollFade>
+              <div className="flex flex-col h-full bg-[#111118] border border-[#c9a84c]/20 rounded-xl p-8">
+                {/* Badge */}
+                <div className="mb-4">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wide bg-amber-700 text-white rounded-full uppercase">
+                    Licensed States Only
+                  </span>
+                </div>
+
+                {/* Title + description */}
+                <h2 className="font-serif text-2xl font-bold text-white mb-3">
+                  Medical Consultation
+                </h2>
+                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                  Clinical consultation with prescribing capability. Includes
+                  review of your specific labs, personalized recommendations,
+                  and prescriptions through US-licensed pharmacies as clinically
+                  appropriate.
+                </p>
+
+                {/* What's included */}
+                <div className="mb-5">
+                  <p className="text-xs font-semibold text-[#c9a84c] uppercase tracking-wider mb-2">
+                    What&apos;s included
+                  </p>
+                  <ul className="space-y-1.5">
+                    {[
+                      "Review of your specific lab results",
+                      "Personalized clinical recommendations",
+                      "Prescriptions through US-licensed pharmacies as appropriate",
+                      "Follow-up care plan",
+                      "Documentation in your EHR record",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-sm text-gray-300">
+                        <span className="mt-0.5 text-green-500 flex-shrink-0">&#10003;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* State restriction */}
+                <div className="mb-6 p-3 bg-amber-900/20 border border-amber-600/30 rounded-lg">
+                  <p className="text-xs text-amber-300">
+                    Currently available in Virginia, Texas, Florida, and Tennessee.
+                  </p>
+                </div>
+
+                {/* Pricing */}
+                <div className="mb-6 p-4 bg-[#0a0a0a] border border-[#c9a84c]/10 rounded-lg">
+                  <p className="text-sm text-gray-400">
+                    Session fee set per consultation. Dr. Abdul will send an
+                    invoice after booking.
+                  </p>
+                </div>
+
+                {/* CTA */}
+                <div className="mt-auto">
+                  <Link
+                    href="/book/medical"
+                    className="block w-full text-center py-3 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-colors duration-200"
+                  >
+                    Book Medical Consultation
+                  </Link>
+                </div>
+              </div>
+            </ScrollFade>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Explanatory block */}
+      <section className="relative py-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#0d0d1a]" />
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollFade>
+            <div className="text-center">
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Not sure which to choose? Wellness consultations cover general
+                health education and lifestyle guidance and are not medical care.
+                Medical consultations involve a clinical evaluation and may
+                include prescriptions, and are subject to state licensure.
+              </p>
             </div>
           </ScrollFade>
+        </div>
+      </section>
+
+      {/* Footer note */}
+      <section className="relative py-8 overflow-hidden">
+        <div className="absolute inset-0 bg-[#0d0d1a]" />
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs text-gray-600">
+            By proceeding, you acknowledge our{" "}
+            <Link href="/agreement" className="text-[#c9a84c] hover:underline">
+              Patient Service Agreement
+            </Link>
+            .
+          </p>
         </div>
       </section>
     </>

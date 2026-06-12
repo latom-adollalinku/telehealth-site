@@ -5,14 +5,15 @@
  * Uses a Google Service Account for server-to-server auth (edge-compatible).
  *
  * Required env vars:
- *   GOOGLE_SERVICE_ACCOUNT_KEY  — full JSON key from Google Cloud Console, base64-encoded
- *   GOOGLE_SHEETS_PAYMENT_LOG_ID — Sheet ID from the URL (the long string between /d/ and /edit)
+ *   GOOGLE_SERVICE_ACCOUNT_KEY  - full JSON key from Google Cloud Console, base64-encoded
+ *   GOOGLE_SHEETS_PAYMENT_LOG_ID - Sheet ID from the URL (the long string between /d/ and /edit)
  *
  * Sheet columns (auto-created header on first write if sheet is empty):
  *   Date | Patient Name | Email | Service | Amount | Payment Method | Booking ID | Status
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit } from '../../../lib/rateLimit';
 
 export const runtime = 'edge';
 
@@ -37,7 +38,7 @@ interface ServiceAccountKey {
 }
 
 // ---------------------------------------------------------------------------
-// JWT / token helpers (pure Web Crypto — edge-safe)
+// JWT / token helpers (pure Web Crypto - edge-safe)
 // ---------------------------------------------------------------------------
 
 /** Base64url-encode a Uint8Array */
@@ -147,12 +148,12 @@ async function ensureTabWithHeaders(sheetId: string, token: string): Promise<voi
 
   if (checkRes.ok) {
     const data = await checkRes.json() as { values?: string[][] };
-    // Tab exists and has data — nothing to do
+    // Tab exists and has data - nothing to do
     if (data.values && data.values.length > 0) return;
   }
 
   if (!checkRes.ok && checkRes.status !== 400) {
-    // 400 = range not found (tab missing) — fall through to create it
+    // 400 = range not found (tab missing) - fall through to create it
     const err = await checkRes.text();
     throw new Error(`Sheets check failed: ${err}`);
   }
@@ -210,6 +211,13 @@ async function appendRow(sheetId: string, token: string, row: string[]): Promise
 // ---------------------------------------------------------------------------
 
 export async function POST(req: NextRequest) {
+  const limit = rateLimit(req, { max: 10, windowMs: 60_000, bucket: 'sheets-log-payment' });
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    });
+  }
   try {
     // --- Parse and validate body ---
     const body = await req.json() as Partial<LogPaymentBody>;
@@ -233,7 +241,7 @@ export async function POST(req: NextRequest) {
     if (!serviceAccountRaw || !sheetId) {
       console.error('[log-payment] Missing env vars: GOOGLE_SERVICE_ACCOUNT_KEY and/or GOOGLE_SHEETS_PAYMENT_LOG_ID');
       return NextResponse.json(
-        { error: 'Sheets not configured — set GOOGLE_SERVICE_ACCOUNT_KEY and GOOGLE_SHEETS_PAYMENT_LOG_ID' },
+        { error: 'Sheets not configured - set GOOGLE_SERVICE_ACCOUNT_KEY and GOOGLE_SHEETS_PAYMENT_LOG_ID' },
         { status: 503 },
       );
     }

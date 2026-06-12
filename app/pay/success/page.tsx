@@ -7,13 +7,13 @@ import { useEffect, useState, Suspense } from 'react';
 const protocolNames: Record<string, string> = {
   cardiovascular: 'Cardiovascular Optimization Protocol',
   metabolic: 'Metabolic Enhancement Protocol',
-  'hormone-optimization': 'Hormone Optimization Protocol',
+  'hormone-optimization': 'Hormone Health Education',
   longevity: 'Longevity Protocol',
   'surgical-preop': 'Surgical Preoperative Optimization Protocol',
   cognitive: 'Cognitive & Study Protocol',
   sleep: 'Sleep & Recovery Protocol',
-  'trt-lipids': 'TRT Lipid Recovery Protocol',
-  'glp1-optimization': 'GLP-1 Optimization Protocol',
+  'trt-lipids': 'Cardiovascular and Lipid Health Education',
+  'glp1-optimization': 'Weight Management Optimization',
   'belly-fat': 'Belly Fat Reduction Protocol',
   'aging-parents': 'Aging Parents Essentials Protocol',
   'diabetic-neuropathy': 'Diabetic Neuropathy Recovery Protocol',
@@ -27,15 +27,61 @@ const protocolNames: Record<string, string> = {
 function SuccessContent() {
   const searchParams = useSearchParams();
   const protocolId = searchParams.get('protocol');
+  const bookingId = searchParams.get('booking');
   const [unlockedMessage, setUnlockedMessage] = useState(false);
+  const [verifyPending, setVerifyPending] = useState(false);
+  const [verifyFailed, setVerifyFailed] = useState(false);
 
   useEffect(() => {
-    if (protocolId && protocolNames[protocolId]) {
-      // Set localStorage to unlock protocol
-      localStorage.setItem(`latom_protocol_${protocolId}`, 'unlocked');
-      setUnlockedMessage(true);
+    if (!protocolId || !protocolNames[protocolId]) return;
+
+    // Helcim flow: booking id present — verify server-side before trusting
+    if (bookingId) {
+      setVerifyPending(true);
+      // Pull email from localStorage if we already have it, else rely on D1 lookup by bookingId.
+      // We query the verify endpoint with bookingId to let the server resolve email+protocolId.
+      fetch('/api/paywall/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bookingId, protocolId }),
+      })
+        .then((res) => res.json())
+        .then((data: { unlocked?: boolean; email?: string }) => {
+          if (data.unlocked === true) {
+            if (data.email) {
+              localStorage.setItem('latom_paid_email', data.email);
+            }
+            setUnlockedMessage(true);
+          } else {
+            setVerifyFailed(true);
+          }
+        })
+        .catch(() => setVerifyFailed(true))
+        .finally(() => setVerifyPending(false));
+      return;
     }
-  }, [protocolId]);
+
+    // Legacy flow (no booking param): verify using email already in localStorage
+    const email = localStorage.getItem('latom_paid_email');
+    if (email) {
+      setVerifyPending(true);
+      fetch('/api/paywall/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, protocolId }),
+      })
+        .then((res) => res.json())
+        .then((data: { unlocked?: boolean }) => {
+          if (data.unlocked === true) {
+            setUnlockedMessage(true);
+          } else {
+            setVerifyFailed(true);
+          }
+        })
+        .catch(() => setVerifyFailed(true))
+        .finally(() => setVerifyPending(false));
+    }
+  }, [protocolId, bookingId]);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a]" />
@@ -52,13 +98,24 @@ function SuccessContent() {
         </div>
 
         <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-          {unlockedMessage ? 'Protocol' : 'Payment'} <span className="text-green-400">{unlockedMessage ? 'Unlocked' : 'Received'}</span>
+          {unlockedMessage
+            ? <><span>Protocol</span> <span className="text-green-400">Unlocked</span></>
+            : verifyFailed
+              ? <><span>Verification</span> <span className="text-yellow-400">Pending</span></>
+              : verifyPending
+                ? <><span>Verifying</span> <span className="text-[#c9a84c]">Payment</span></>
+                : <><span>Payment</span> <span className="text-green-400">Received</span></>
+          }
         </h1>
 
         <p className="text-gray-300 text-lg sm:text-xl max-w-xl mx-auto mb-8">
           {unlockedMessage
-            ? `✨ Your access to ${protocolNames[protocolId!]} is now active!`
-            : 'Thank you! Your payment has been processed successfully.'}
+            ? `Your access to ${protocolNames[protocolId!]} is now active!`
+            : verifyFailed
+              ? 'Payment verification pending. Refresh in a few seconds, or call (307) 210-8604.'
+              : verifyPending
+                ? 'Confirming your payment with our server...'
+                : 'Thank you! Your payment has been processed successfully.'}
         </p>
 
         {/* Next Steps */}
@@ -85,7 +142,7 @@ function SuccessContent() {
               <div className="text-left">
                 <h3 className="text-white font-semibold mb-2">Schedule Your Consultation</h3>
                 <p className="text-gray-400 text-sm">
-                  Click the appointment link to select your preferred date and time for your video call with Dr. Abdulhakim.
+                  Click the appointment link to select your preferred date and time for your video call with Dr. Abdul.
                 </p>
               </div>
             </div>
@@ -109,7 +166,7 @@ function SuccessContent() {
               <div className="text-left">
                 <h3 className="text-white font-semibold mb-2">Attend Your Consultation</h3>
                 <p className="text-gray-400 text-sm">
-                  Join your video call at the scheduled time. Dr. Abdulhakim will review your health history, listen to your goals, and create a personalized plan.
+                  Join your video call at the scheduled time. Dr. Abdul will review your health history, listen to your goals, and create a personalized plan.
                 </p>
               </div>
             </div>

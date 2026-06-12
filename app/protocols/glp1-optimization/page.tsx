@@ -5,16 +5,16 @@ import ScrollFade from "../../components/ScrollFade";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
-  title: "GLP-1 Optimization Protocol | Mitochondrial Stack for Better Results",
+  title: "Weight Management Optimization | Metabolic Support Protocol",
   description:
-    "Evidence-based supplement stack for people on Ozempic, Wegovy, Mounjaro, or Zepbound who aren't seeing expected results. Mitochondrial support boosts GLP-1 efficacy by 20-40%.",
+    "Sustainable weight management education: mitochondrial support, muscle preservation, lifestyle multipliers, and evidence-based supplement strategies for lasting results.",
 };
 
 const morningStack = [
   { name: "CoQ10 / Ubiquinol", dose: "200 mg", target: "Mitochondrial ATP production, protects against GLP-1 fatigue" },
-  { name: "L-Carnitine Tartrate", dose: "2,000 mg", target: "Fat oxidation — critical during GLP-1 weight loss" },
+  { name: "L-Carnitine Tartrate", dose: "2,000 mg", target: "Fat oxidation - critical during GLP-1 weight loss" },
   { name: "Creatine Monohydrate", dose: "5 g", target: "Muscle preservation during calorie deficit" },
-  { name: "Whey Protein (if needed)", dose: "30 g", target: "Prevents muscle loss — biggest GLP-1 side effect" },
+  { name: "Whey Protein (if needed)", dose: "30 g", target: "Prevents muscle loss - biggest GLP-1 side effect" },
 ];
 
 const middayStack = [
@@ -25,7 +25,7 @@ const middayStack = [
 
 const eveningStack = [
   { name: "PQQ (Pyrroloquinoline Quinone)", dose: "20 mg", target: "Mitochondrial biogenesis" },
-  { name: "NMN or NR", dose: "500 mg", target: "NAD+ precursor — GLP-1 users show NAD+ depletion" },
+  { name: "NMN or NR", dose: "500 mg", target: "NAD+ precursor - GLP-1 users show NAD+ depletion" },
   { name: "Fiber (Psyllium)", dose: "10 g", target: "Manages GLP-1 GI side effects" },
   { name: "B-Complex", dose: "1 capsule", target: "Prevents GLP-1 associated B12/folate depletion" },
 ];
@@ -46,17 +46,17 @@ export default function GLP1OptimizationPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
             <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
-              GLP-1 Optimization
+              Sustainable weight management education
             </span>
           </div>
           <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-            GLP-1 Optimization
-            <span className="block gold-gradient">Mitochondrial Stack</span>
+            Weight Management
+            <span className="block gold-gradient">Optimization</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            On Ozempic, Wegovy, Mounjaro, or Zepbound but not seeing expected results?
-            Your mitochondria are the bottleneck. This stack boosts GLP-1 efficacy 20-40%
-            while preventing muscle loss and fatigue.
+            Weight loss plateaus are rarely about willpower. Mitochondrial depletion, muscle loss,
+            and micronutrient gaps are the real bottlenecks. This educational framework addresses all three
+            to support sustainable, composition-focused results.
           </p>
         </div>
       </section>
@@ -69,15 +69,15 @@ export default function GLP1OptimizationPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
                   <p className="text-green-400 font-semibold text-sm mb-1">Stalled Weight Loss</p>
-                  <p className="text-gray-400 text-sm">Lost weight initially then plateaued. Considering dose increase. Try this first.</p>
+                  <p className="text-gray-400 text-sm">Lost weight initially then plateaued. This framework addresses the metabolic factors most often overlooked.</p>
                 </div>
                 <div>
-                  <p className="text-amber-400 font-semibold text-sm mb-1">GLP-1 Fatigue</p>
-                  <p className="text-gray-400 text-sm">Tired, weak, losing muscle. This is mitochondrial depletion, not normal.</p>
+                  <p className="text-amber-400 font-semibold text-sm mb-1">Low Energy During Restriction</p>
+                  <p className="text-gray-400 text-sm">Tired, weak, and losing muscle despite a caloric deficit. Mitochondrial depletion is often the root cause.</p>
                 </div>
                 <div>
-                  <p className="text-amber-400 font-semibold text-sm mb-1">GI Side Effects</p>
-                  <p className="text-gray-400 text-sm">Nausea, constipation, food aversion making the protocol unsustainable.</p>
+                  <p className="text-amber-400 font-semibold text-sm mb-1">Digestive Discomfort</p>
+                  <p className="text-gray-400 text-sm">GI symptoms making consistent adherence difficult. Targeted fiber and mineral support can resolve this quickly.</p>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function GLP1OptimizationPage() {
           <ScrollFade>
             <div className="text-center mb-12">
               <h2 className="font-serif text-4xl font-bold text-white mb-4">Target Outcomes</h2>
-              <p className="text-gray-400">Results layered on top of your existing GLP-1 dose.</p>
+              <p className="text-gray-400">A structured approach to body composition improvement.</p>
             </div>
           </ScrollFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -110,7 +110,7 @@ export default function GLP1OptimizationPage() {
       </section>
 
       <Suspense fallback={null}>
-        <ProtocolPaywall protocolId="glp1-optimization" protocolName="GLP-1 Optimization" price="$10">
+        <ProtocolPaywall protocolId="glp1-optimization" protocolName="Weight Management Optimization" price="$10">
           <section className="py-24 bg-[#0d0d1a]/60">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <ScrollFade>
@@ -155,7 +155,7 @@ export default function GLP1OptimizationPage() {
                   <h3 className="font-serif text-2xl font-bold text-white mb-4">The Science: Why GLP-1 Results Stall</h3>
                   <p className="text-gray-400 text-sm mb-4">
                     GLP-1 agonists work by slowing gastric emptying and increasing insulin sensitivity.
-                    But rapid caloric restriction depletes mitochondrial cofactors — CoQ10, carnitine,
+                    But rapid caloric restriction depletes mitochondrial cofactors - CoQ10, carnitine,
                     NAD+, and B vitamins. When mitochondria are depleted, fat oxidation slows.
                     Your body responds to the GLP-1 signal but can&apos;t execute efficiently.
                   </p>
@@ -165,7 +165,7 @@ export default function GLP1OptimizationPage() {
                   </p>
                   <p className="text-gray-400 text-sm">
                     The protein + creatine layer is equally critical. GLP-1 users lose 25-40% of their weight
-                    as muscle mass — not fat. This protocol preserves lean mass while maximizing fat loss.
+                    as muscle mass - not fat. This protocol preserves lean mass while maximizing fat loss.
                   </p>
                 </div>
               </ScrollFade>
@@ -178,7 +178,7 @@ export default function GLP1OptimizationPage() {
                 <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
                   <h3 className="font-serif text-2xl font-bold text-white mb-4">Lifestyle Multipliers</h3>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li><strong className="text-[#c9a84c]">Protein at every meal:</strong> 30-50g minimum, especially breakfast. GLP-1 suppresses appetite — hit protein target first.</li>
+                    <li><strong className="text-[#c9a84c]">Protein at every meal:</strong> 30-50g minimum, especially breakfast. GLP-1 suppresses appetite - hit protein target first.</li>
                     <li><strong className="text-[#c9a84c]">Resistance training 3x/week:</strong> Non-negotiable. Muscle is the variable. Not optional on GLP-1.</li>
                     <li><strong className="text-[#c9a84c]">Walk 10K steps daily:</strong> Doubles fat oxidation vs. GLP-1 alone.</li>
                     <li><strong className="text-[#c9a84c]">Hydration + electrolytes:</strong> GLP-1 users are chronically dehydrated. 3L water + sodium.</li>
@@ -198,14 +198,14 @@ export default function GLP1OptimizationPage() {
                   </div>
                   <div className="divide-y divide-[#2a2a4e]">
                     {[
-                      { item: "CoQ10 / Ubiquinol", cost: "$20–30" },
-                      { item: "L-Carnitine Tartrate", cost: "$15–25" },
-                      { item: "Creatine Monohydrate", cost: "$12–18" },
-                      { item: "Berberine HCL", cost: "$15–25" },
-                      { item: "NMN or NR", cost: "$40–70" },
-                      { item: "PQQ", cost: "$20–30" },
-                      { item: "Alpha-Lipoic Acid", cost: "$10–20" },
-                      { item: "Magnesium + B-Complex + Fiber", cost: "$20–30" },
+                      { item: "CoQ10 / Ubiquinol", cost: "$20-30" },
+                      { item: "L-Carnitine Tartrate", cost: "$15-25" },
+                      { item: "Creatine Monohydrate", cost: "$12-18" },
+                      { item: "Berberine HCL", cost: "$15-25" },
+                      { item: "NMN or NR", cost: "$40-70" },
+                      { item: "PQQ", cost: "$20-30" },
+                      { item: "Alpha-Lipoic Acid", cost: "$10-20" },
+                      { item: "Magnesium + B-Complex + Fiber", cost: "$20-30" },
                     ].map((row, i) => (
                       <div key={i} className="flex items-center justify-between px-6 py-3">
                         <span className="text-gray-300 text-sm">{row.item}</span>
@@ -214,7 +214,7 @@ export default function GLP1OptimizationPage() {
                     ))}
                     <div className="flex items-center justify-between px-6 py-4 bg-[#0a0a0a]">
                       <span className="text-white font-semibold">Total Monthly Cost</span>
-                      <span className="font-serif text-2xl font-bold text-[#c9a84c]">$152–248</span>
+                      <span className="font-serif text-2xl font-bold text-[#c9a84c]">$152-248</span>
                     </div>
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function GLP1OptimizationPage() {
                 <h2 className="font-serif text-2xl font-bold text-white mb-4">GLP-1 Not Working?</h2>
                 <p className="text-gray-400 mb-6">Book a lab review. Your physician will evaluate dose, timing, and whether a different GLP-1 might work better for your metabolism.</p>
                 <Link href="/book" className="inline-block px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded hover:bg-[#e0c070] transition-colors">
-                  Book Lab Review — $49.99
+                  Book Lab Review - $49.99
                 </Link>
               </div>
             </div>

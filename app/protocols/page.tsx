@@ -38,7 +38,7 @@ const protocols = [
   {
     id: "hormone-optimization",
     href: "/protocols/hormone-optimization",
-    title: "Hormone Optimization",
+    title: "Hormone Health Education",
     subtitle: "Reproductive Health • Thyroid • Adrenal",
     description:
       "Evidence-based stack to support hormonal health and natural hormonal balance. Covers key reproductive and stress markers, aromatase support, and thyroid conversion.",
@@ -77,10 +77,10 @@ const protocols = [
   {
     id: "trt-lipids",
     href: "/protocols/trt-lipids",
-    title: "Hormone & Lipid Recovery",
+    title: "Cardiovascular and Lipid Health Education",
     subtitle: "HDL • ApoB • CV Protection",
     description:
-      "For men whose lipid markers worsened during hormonal therapy. Restore HDL, lower ApoB, protect cardiovascular health with evidence-based supplementation.",
+      "For men whose lipid markers have shifted. Restore HDL, lower ApoB, and protect cardiovascular health with evidence-based supplementation.",
     price: "$10",
     badge: "Cardiovascular Support",
     badgeColor: "bg-red-600",
@@ -223,12 +223,51 @@ const protocols = [
     title: "Surgical Preoperative",
     subtitle: "8-Week Preop Optimization",
     description:
-      "Comprehensive 8-week preop stack for metabolic, cardiovascular, respiratory, and wound healing optimization before surgery. Anesthesiologist-designed.",
+      "Comprehensive 8-week preop stack for metabolic, cardiovascular, respiratory, and wound healing optimization before surgery. Physician-designed.",
     price: "$49",
-    badge: "Anesthesiologist-Designed",
+    badge: "Physician-Designed",
     badgeColor: "bg-teal-600",
     markers: ["HbA1c", "CBC", "Coag", "Lipids", "Vit D"],
     duration: "8-week protocol",
+  },
+  {
+    id: "gi-health",
+    href: "/protocols/gi-health",
+    title: "GI Health and Gut Optimization",
+    subtitle: "Bloating - Food Sensitivities - Brain Fog",
+    description:
+      "Find the root cause of bloating, brain fog, food sensitivities, and chronic gut symptoms. GI-MAP, celiac screen, calprotectin, SIBO breath test, plus supplement protocol with DGL, NAC, zinc carnosine, L-glutamine, berberine.",
+    price: "$10",
+    badge: "Most Requested",
+    badgeColor: "bg-emerald-600",
+    markers: ["GI-MAP", "TTG-IgA", "Calprotectin", "SIBO"],
+    duration: "8-12 week protocol",
+  },
+  {
+    id: "insulin-resistance",
+    href: "/protocols/insulin-resistance",
+    title: "Insulin Resistance and Metabolic Reset",
+    subtitle: "Fasting Insulin - HbA1c - Weight Resistance",
+    description:
+      "Catch insulin resistance 10-20 years before HbA1c rises. Fiber strategies (glucomannan, psyllium), plant compounds (chlorogenic acid, yerba mate, berberine), natural metabolic secretagogues, and lifestyle. Physician consultation available when clinically appropriate.",
+    price: "$10",
+    badge: "Weight Management",
+    badgeColor: "bg-blue-600",
+    markers: ["Fasting Insulin", "HbA1c", "HOMA-IR", "ApoB"],
+    duration: "12-week protocol",
+  },
+  {
+    id: "cancer-screening-and-disease-prevention",
+    href: "/protocols/cancer-screening-and-disease-prevention",
+    title: "Comprehensive Screening and Disease Prevention",
+    subtitle: "Cancer Risk - Parasites - Mold - Heavy Metals - Lyme",
+    description:
+      "The screening labs standard care leaves out. Multi-cancer early detection, tumor markers, parasite testing, mycotoxin panels, heavy metals, Lyme and co-infections, autoimmune workup, hormone mapping, and hereditary risk testing.",
+    price: "$10",
+    badge: "Worried Well",
+    badgeColor: "bg-rose-600",
+    markers: ["Galleri", "GI-MAP", "RealTime Mycotoxin", "IGeneX Lyme"],
+    duration: "6-month workup",
   },
 ];
 
@@ -262,8 +301,8 @@ export default function ProtocolsPage() {
           <ScrollFade>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {[
-                { step: "01", title: "Get Your Labs", detail: "Order through GoodLabs, Rythm, or Quest. Or use labs from the past 90 days." },
-                { step: "02", title: "Purchase the Protocol", detail: "Instant access to the complete daily stack — dosing, timing, brands, safety." },
+                { step: "01", title: "Get Your Labs", detail: "Order through Fullscript, Rythm, or Quest. Or use labs from the past 90 days." },
+                { step: "02", title: "Purchase the Protocol", detail: "Instant access to the complete daily stack - dosing, timing, brands, safety." },
                 { step: "03", title: "Optional: Book Review", detail: "Add a 1:1 consultation to review your specific labs and customize the protocol." },
               ].map((item, i) => (
                 <div key={i} className="text-center">

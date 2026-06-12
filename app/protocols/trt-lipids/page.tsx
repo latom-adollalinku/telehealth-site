@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
-  title: "TRT Lipid Recovery Protocol | ApoB & HDL Optimization on Testosterone",
+  title: "Cardiovascular and Lipid Health Education | LATOM Wellness",
   description:
-    "Evidence-based protocol for men on TRT whose lipid panel worsened. Reduce ApoB, restore HDL, and protect cardiovascular health without stopping testosterone therapy.",
+    "Evidence-based education on cardiovascular and lipid health optimization. Understand ApoB, HDL, and key markers. Lifestyle and supplement strategies reviewed during consultation.",
 };
 
 const morningStack = [
-  { name: "Berberine HCL", dose: "500 mg", target: "Natural PCSK9 modulator — LDL reduction" },
+  { name: "Berberine HCL", dose: "500 mg", target: "Natural PCSK9 modulator - LDL reduction" },
   { name: "Omega-3 EPA/DHA", dose: "2,000 mg", target: "Triglyceride lowering, HDL support" },
   { name: "Vitamin C", dose: "1,000 mg", target: "Endothelial protection" },
   { name: "L-Carnitine", dose: "1,000 mg", target: "Improves HDL function, cardiac protection" },
@@ -26,18 +27,18 @@ const afternoonStack = [
 const eveningStack = [
   { name: "Berberine HCL", dose: "500 mg", target: "Overnight metabolic control" },
   { name: "CoQ10 / Ubiquinol", dose: "200 mg", target: "Cardiac protection (especially if on statin)" },
-  { name: "Niacin ER (titrated)", dose: "500–1,500 mg", target: "Raises HDL 15-30%, lowers Lp(a)" },
+  { name: "Niacin ER (titrated)", dose: "500-1,500 mg", target: "Raises HDL 15-30%, lowers Lp(a)" },
   { name: "Magnesium Glycinate", dose: "400 mg", target: "BP support + sleep" },
 ];
 
 const targets = [
   { marker: "ApoB", current: ">100 mg/dL", goal: "<80 mg/dL", realistic: "15-25% reduction", timeline: "12 weeks" },
-  { marker: "HDL", current: "Suppressed by TRT", goal: "+10-15 mg/dL", realistic: "Partial recovery", timeline: "8-12 weeks" },
+  { marker: "HDL", current: "Suboptimal", goal: "+10-15 mg/dL", realistic: "Meaningful recovery", timeline: "8-12 weeks" },
   { marker: "Triglycerides", current: "Elevated", goal: "<100 mg/dL", realistic: "20-30% drop", timeline: "6-8 weeks" },
   { marker: "hs-CRP", current: ">2.0 mg/L", goal: "<1.0 mg/L", realistic: "Omega-3 driven", timeline: "8 weeks" },
 ];
 
-export default function TRTLipidsProtocolPage() {
+export default function CardiovascularLipidEducationPage() {
   return (
     <>
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -46,16 +47,18 @@ export default function TRTLipidsProtocolPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
             <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
-              TRT Recovery Protocol
+              Education
             </span>
           </div>
           <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-            TRT Lipid
-            <span className="block gold-gradient">Recovery Protocol</span>
+            Cardiovascular and
+            <span className="block gold-gradient">Lipid Health Education</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Testosterone replacement improves energy, libido, and body composition. But it can
-            suppress HDL and elevate ApoB. This stack restores your lipid panel without stopping TRT.
+            Hormone optimization can affect lipid markers in ways most clinics do not monitor
+            closely. Understanding ApoB, HDL, and inflammatory signals helps you and your
+            physician make better decisions. Specific protocol discussions happen during
+            a consultation.
           </p>
         </div>
       </section>
@@ -64,19 +67,19 @@ export default function TRTLipidsProtocolPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade>
             <div className="bg-[#1a1a2e] border border-red-500/30 rounded-xl p-8">
-              <h2 className="font-serif text-2xl font-bold text-white mb-4">Who This Protocol Is For</h2>
+              <h2 className="font-serif text-2xl font-bold text-white mb-4">Who This Education Is For</h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
-                  <p className="text-red-400 font-semibold text-sm mb-1">HDL Crashed on TRT</p>
-                  <p className="text-gray-400 text-sm">HDL dropped 10-20 points after starting TRT. Most clinics don&apos;t address this.</p>
+                  <p className="text-red-400 font-semibold text-sm mb-1">HDL Below Target</p>
+                  <p className="text-gray-400 text-sm">HDL is suboptimal and your physician has not addressed lifestyle or supplement strategies.</p>
                 </div>
                 <div>
-                  <p className="text-red-400 font-semibold text-sm mb-1">ApoB &gt;100</p>
-                  <p className="text-gray-400 text-sm">Atherogenic particle count elevated post-TRT. Bigger risk than LDL alone.</p>
+                  <p className="text-red-400 font-semibold text-sm mb-1">ApoB Above 100</p>
+                  <p className="text-gray-400 text-sm">Atherogenic particle count is elevated. ApoB is a stronger cardiovascular predictor than LDL alone.</p>
                 </div>
                 <div>
-                  <p className="text-amber-400 font-semibold text-sm mb-1">Clinic Won&apos;t Track</p>
-                  <p className="text-gray-400 text-sm">Your TRT clinic only checks total T and E2. You need the full panel.</p>
+                  <p className="text-amber-400 font-semibold text-sm mb-1">Incomplete Lab Panel</p>
+                  <p className="text-gray-400 text-sm">Your provider checks basic labs but does not order ApoB, Lp(a), or hs-CRP. You need the full picture.</p>
                 </div>
               </div>
             </div>
@@ -89,7 +92,7 @@ export default function TRTLipidsProtocolPage() {
           <ScrollFade>
             <div className="text-center mb-12">
               <h2 className="font-serif text-4xl font-bold text-white mb-4">Target Outcomes</h2>
-              <p className="text-gray-400">Expected lipid recovery in 8-12 weeks without stopping TRT.</p>
+              <p className="text-gray-400">Expected lipid improvements in 8-12 weeks with consistent lifestyle and supplement implementation.</p>
             </div>
           </ScrollFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -156,12 +159,12 @@ export default function TRTLipidsProtocolPage() {
                   <p className="text-gray-400 text-sm mb-4">
                     Exogenous testosterone suppresses the liver&apos;s production of HDL particles. It also
                     increases hematocrit, which can raise blood viscosity and cardiovascular risk.
-                    Most TRT clinics track Total T and E2 — they do NOT track ApoB, Lp(a), or hs-CRP.
+                    Most TRT clinics track Total T and E2. They do NOT track ApoB, Lp(a), or hs-CRP.
                   </p>
                   <p className="text-gray-400 text-sm">
                     This protocol addresses the three specific lipid shifts that occur on TRT:
                     HDL suppression, ApoB elevation, and increased inflammatory signaling.
-                    You don&apos;t need to stop TRT — you need to compensate for its downstream effects.
+                    You don&apos;t need to stop TRT. You need to compensate for its downstream effects.
                   </p>
                 </div>
               </ScrollFade>
@@ -177,7 +180,7 @@ export default function TRTLipidsProtocolPage() {
                     <li><strong className="text-[#c9a84c]">Blood donation quarterly:</strong> Manages hematocrit if TRT pushes it above 52%. Non-negotiable for CV protection.</li>
                     <li><strong className="text-[#c9a84c]">Zone 2 cardio 3x/week:</strong> Single highest HDL-raising intervention. 45-60 min sessions.</li>
                     <li><strong className="text-[#c9a84c]">Limit saturated fat:</strong> Under 10% of calories. Trade butter/cheese for olive oil and nuts.</li>
-                    <li><strong className="text-[#c9a84c]">Track HRV:</strong> Whoop or Oura. TRT can affect sympathetic tone — early warning signal.</li>
+                    <li><strong className="text-[#c9a84c]">Track HRV:</strong> Whoop or Oura. TRT can affect sympathetic tone. Early warning signal.</li>
                     <li><strong className="text-[#c9a84c]">Keep TRT dose moderate:</strong> Supra-physiologic doses worsen lipids. Stay in upper-physiologic range (700-1000 ng/dL total T).</li>
                   </ul>
                 </div>
@@ -194,14 +197,14 @@ export default function TRTLipidsProtocolPage() {
                   </div>
                   <div className="divide-y divide-[#2a2a4e]">
                     {[
-                      { item: "Berberine HCL (1.5g)", cost: "$15–25" },
-                      { item: "Omega-3 EPA/DHA (2g)", cost: "$15–25" },
-                      { item: "Citrus Bergamot (500mg)", cost: "$15–25" },
-                      { item: "Aged Garlic Extract", cost: "$12–18" },
-                      { item: "L-Carnitine Tartrate", cost: "$12–18" },
-                      { item: "CoQ10 / Ubiquinol", cost: "$20–30" },
-                      { item: "Niacin ER (500–1500mg)", cost: "$10–15" },
-                      { item: "Vitamin C + Magnesium", cost: "$15–20" },
+                      { item: "Berberine HCL (1.5g)", cost: "$15-25" },
+                      { item: "Omega-3 EPA/DHA (2g)", cost: "$15-25" },
+                      { item: "Citrus Bergamot (500mg)", cost: "$15-25" },
+                      { item: "Aged Garlic Extract", cost: "$12-18" },
+                      { item: "L-Carnitine Tartrate", cost: "$12-18" },
+                      { item: "CoQ10 / Ubiquinol", cost: "$20-30" },
+                      { item: "Niacin ER (500-1500mg)", cost: "$10-15" },
+                      { item: "Vitamin C + Magnesium", cost: "$15-20" },
                     ].map((row, i) => (
                       <div key={i} className="flex items-center justify-between px-6 py-3">
                         <span className="text-gray-300 text-sm">{row.item}</span>
@@ -210,7 +213,7 @@ export default function TRTLipidsProtocolPage() {
                     ))}
                     <div className="flex items-center justify-between px-6 py-4 bg-[#0a0a0a]">
                       <span className="text-white font-semibold">Total Monthly Cost</span>
-                      <span className="font-serif text-2xl font-bold text-[#c9a84c]">$114–176</span>
+                      <span className="font-serif text-2xl font-bold text-[#c9a84c]">$114-176</span>
                     </div>
                   </div>
                 </div>
@@ -234,13 +237,24 @@ export default function TRTLipidsProtocolPage() {
             </div>
           </section>
 
+          <FullscriptCTA
+            highlights={[
+              "Omega-3 EPA/DHA (high-EPA)",
+              "CoQ10 / Ubiquinol",
+              "Bergamot extract",
+              "Plant sterols",
+              "Niacin (no-flush)",
+              "Vitamin D + K2 MK-7",
+            ]}
+          />
+
           <section className="py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 text-center">
                 <h2 className="font-serif text-2xl font-bold text-white mb-4">Want Your Labs Reviewed?</h2>
                 <p className="text-gray-400 mb-6">Upload your TRT panel + lipid panel for a physician review and personalized adjustments.</p>
                 <Link href="/book" className="inline-block px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded hover:bg-[#e0c070] transition-colors">
-                  Book Lab Review — $49.99
+                  Book Lab Review ($49.99)
                 </Link>
               </div>
             </div>

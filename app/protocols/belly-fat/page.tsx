@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -12,21 +13,21 @@ export const metadata: Metadata = {
 
 const morningStack = [
   { name: "Yohimbine HCl", dose: "5 mg fasted, pre-walk", target: "Blocks alpha-2 receptors that prevent belly fat burn" },
-  { name: "Caffeine", dose: "100-200 mg", target: "Stack with yohimbine — boosts fat oxidation 3x" },
+  { name: "Caffeine", dose: "100-200 mg", target: "Stack with yohimbine - boosts fat oxidation 3x" },
   { name: "L-Carnitine Tartrate", dose: "2,000 mg", target: "Shuttles fatty acids into mitochondria" },
   { name: "Green Tea Extract (EGCG)", dose: "500 mg", target: "Thermogenic, specifically targets visceral fat" },
 ];
 
 const afternoonStack = [
-  { name: "Berberine HCL", dose: "500 mg with meals", target: "Natural metformin — belly fat via insulin sensitivity" },
+  { name: "Berberine HCL", dose: "500 mg with meals", target: "Natural metformin - belly fat via insulin sensitivity" },
   { name: "Glucomannan", dose: "5 g before meals", target: "Satiety + glucose blunting" },
-  { name: "Ashwagandha (KSM-66)", dose: "600 mg", target: "Cortisol — the cortisol-belly-fat axis is real" },
+  { name: "Ashwagandha (KSM-66)", dose: "600 mg", target: "Cortisol - the cortisol-belly-fat axis is real" },
 ];
 
 const eveningStack = [
-  { name: "Magnesium Glycinate", dose: "400 mg", target: "Sleep quality drives belly fat — sleep below 7hrs increases visceral fat 50%" },
+  { name: "Magnesium Glycinate", dose: "400 mg", target: "Sleep quality drives belly fat - sleep below 7hrs increases visceral fat 50%" },
   { name: "Inositol", dose: "2,000 mg", target: "Insulin sensitivity overnight" },
-  { name: "Glycine", dose: "3,000 mg", target: "Sleep depth — cortisol recovery" },
+  { name: "Glycine", dose: "3,000 mg", target: "Sleep depth - cortisol recovery" },
 ];
 
 const targets = [
@@ -54,8 +55,8 @@ export default function BellyFatProtocolPage() {
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
             Visceral fat is metabolically active and drives every age-related disease.
-            This is the physician-designed stack — fasting, yohimbine, Zone 2, and insulin
-            control — for losing 4-6 inches off the waist in 12 weeks.
+            This is the physician-designed stack - fasting, yohimbine, Zone 2, and insulin
+            control - for losing 4-6 inches off the waist in 12 weeks.
           </p>
         </div>
       </section>
@@ -75,8 +76,8 @@ export default function BellyFatProtocolPage() {
                   <p className="text-gray-400 text-sm">Diet and cardio that worked in your 20s stopped working. Hormonal + mitochondrial.</p>
                 </div>
                 <div>
-                  <p className="text-orange-400 font-semibold text-sm mb-1">Not a GLP-1 Candidate</p>
-                  <p className="text-gray-400 text-sm">Don&apos;t want prescription medication. Want an Amazon-accessible evidence-based protocol.</p>
+                  <p className="text-orange-400 font-semibold text-sm mb-1">Prefer Non-Prescription</p>
+                  <p className="text-gray-400 text-sm">Don&apos;t want prescription medication. Want an evidence-based, accessible supplement and lifestyle protocol.</p>
                 </div>
               </div>
             </div>
@@ -150,26 +151,26 @@ export default function BellyFatProtocolPage() {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <ScrollFade>
                 <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
-                  <h3 className="font-serif text-2xl font-bold text-white mb-4">The Protocol — Daily Schedule</h3>
+                  <h3 className="font-serif text-2xl font-bold text-white mb-4">The Protocol - Daily Schedule</h3>
                   <ul className="space-y-4 text-gray-300 text-sm">
                     <li>
-                      <strong className="text-[#c9a84c] block mb-1">06:00 — Fasted Cardio</strong>
-                      Yohimbine 5mg + caffeine + L-carnitine. Wait 20 min. 30-45 min Zone 2 walk (can hold conversation). This is the belly-fat-specific window — alpha-2 receptors are blocked, fatty acids flow.
+                      <strong className="text-[#c9a84c] block mb-1">06:00 - Fasted Cardio</strong>
+                      Yohimbine 5mg + caffeine + L-carnitine. Wait 20 min. 30-45 min Zone 2 walk (can hold conversation). This is the belly-fat-specific window - alpha-2 receptors are blocked, fatty acids flow.
                     </li>
                     <li>
-                      <strong className="text-[#c9a84c] block mb-1">12:00 — First Meal (16:8)</strong>
+                      <strong className="text-[#c9a84c] block mb-1">12:00 - First Meal (16:8)</strong>
                       Protein-led meal. 40-50g protein. Fiber-rich vegetables. Moderate carbs. Berberine with the meal.
                     </li>
                     <li>
-                      <strong className="text-[#c9a84c] block mb-1">16:00 — Optional Strength Training</strong>
+                      <strong className="text-[#c9a84c] block mb-1">16:00 - Optional Strength Training</strong>
                       3x/week. Compound lifts. Muscle mass is the primary glucose disposal organ.
                     </li>
                     <li>
-                      <strong className="text-[#c9a84c] block mb-1">19:00 — Last Meal</strong>
+                      <strong className="text-[#c9a84c] block mb-1">19:00 - Last Meal</strong>
                       Close eating window by 20:00. Ashwagandha + glucomannan. Protein + fats, lighter carbs.
                     </li>
                     <li>
-                      <strong className="text-[#c9a84c] block mb-1">22:00 — Sleep Stack</strong>
+                      <strong className="text-[#c9a84c] block mb-1">22:00 - Sleep Stack</strong>
                       Magnesium + glycine + inositol. 7-9 hours. Non-negotiable.
                     </li>
                   </ul>
@@ -186,13 +187,13 @@ export default function BellyFatProtocolPage() {
                   <p className="text-gray-400 text-sm mb-4">
                     After 35, insulin resistance and cortisol drive belly fat. Calories matter, but the
                     <em> composition</em> and <em>timing</em> of calories matter more. The yohimbine-fasted-cardio
-                    window is specifically designed to unlock visceral fat via alpha-2 receptor blockade —
+                    window is specifically designed to unlock visceral fat via alpha-2 receptor blockade  - 
                     something you cannot achieve with cardio alone.
                   </p>
                   <p className="text-gray-400 text-sm">
                     Sleep below 7 hours increases visceral fat storage by ~50%. Cortisol dysregulation from
                     chronic stress does the same. The evening stack addresses both. This is why calorie-only
-                    approaches fail for people over 35 — you&apos;re fighting hormones, not thermodynamics.
+                    approaches fail for people over 35 - you&apos;re fighting hormones, not thermodynamics.
                   </p>
                 </div>
               </ScrollFade>
@@ -238,7 +239,7 @@ export default function BellyFatProtocolPage() {
                   <h3 className="text-amber-400 font-semibold mb-4">Safety Notes</h3>
                   <ul className="space-y-3 text-gray-400 text-sm">
                     <li><strong className="text-white">Yohimbine warning:</strong> Do NOT use if you have anxiety disorder, high blood pressure, heart disease, or take SSRIs/MAOIs. Start 2.5mg to test tolerance.</li>
-                    <li><strong className="text-white">Caffeine sensitivity:</strong> If caffeine makes you anxious, drop it — yohimbine works without it, just with less thermogenesis.</li>
+                    <li><strong className="text-white">Caffeine sensitivity:</strong> If caffeine makes you anxious, drop it - yohimbine works without it, just with less thermogenesis.</li>
                     <li><strong className="text-white">Berberine + diabetes meds:</strong> Hypoglycemia risk if on metformin/insulin. Monitor BG.</li>
                     <li><strong className="text-white">Glucomannan:</strong> Take with 8oz+ water. Stop 3-5 days pre-surgery (ileus risk).</li>
                     <li><strong className="text-white">Fasting caution:</strong> Not appropriate if history of eating disorder, pregnancy, or under 18.</li>
@@ -248,13 +249,24 @@ export default function BellyFatProtocolPage() {
             </div>
           </section>
 
+          <FullscriptCTA
+            highlights={[
+              "Berberine HCl",
+              "EGCG (green tea extract)",
+              "L-Carnitine tartrate",
+              "Chromium picolinate",
+              "Omega-3 EPA/DHA",
+              "Glucomannan (PGX-style)",
+            ]}
+          />
+
           <section className="py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 text-center">
                 <h2 className="font-serif text-2xl font-bold text-white mb-4">Want Personalized Dosing?</h2>
                 <p className="text-gray-400 mb-6">Book a lab review. We&apos;ll evaluate your metabolic markers and customize the stack around your specific insulin and cortisol profile.</p>
                 <Link href="/book" className="inline-block px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded hover:bg-[#e0c070] transition-colors">
-                  Book Lab Review — $49.99
+                  Book Lab Review - $49.99
                 </Link>
               </div>
             </div>

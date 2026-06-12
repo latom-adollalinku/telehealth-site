@@ -1,14 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit } from '../../../lib/rateLimit';
 
 export const runtime = 'edge';
 
-const UNLOCK_SECRET = process.env.PROTOCOL_UNLOCK_SECRET || 'default-secret-change-in-env';
+const UNLOCK_SECRET = process.env.PROTOCOL_UNLOCK_SECRET;
 
 export async function POST(req: NextRequest) {
+  const limit = rateLimit(req, { max: 10, windowMs: 60_000, bucket: 'admin-unlock' });
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    });
+  }
+  // Fail closed if env var is not configured. Never accept a literal fallback.
+  if (!UNLOCK_SECRET) {
+    return NextResponse.json(
+      { error: 'Server misconfiguration: PROTOCOL_UNLOCK_SECRET not set' },
+      { status: 503 }
+    );
+  }
   try {
     const { secret, protocolId, email, unlockToken } = await req.json();
 
-    // Verify secret
+    // Verify secret (constant-time would be ideal but Web Crypto in edge is overkill for this)
     if (secret !== UNLOCK_SECRET) {
       return NextResponse.json(
         { error: 'Unauthorized: Invalid secret' },

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -11,11 +12,11 @@ export const metadata: Metadata = {
 };
 
 const morningStack = [
-  { name: "Nattokinase", dose: "2,000–4,000 FU", target: "Lp(a) reduction + fibrinolysis", evidence: "Moderate — 10-15% Lp(a) reduction" },
-  { name: "Vitamin C", dose: "1,000 mg", target: "Pauling protocol — arterial wall integrity", evidence: "Theoretical + widely used in Lp(a) community" },
-  { name: "L-Lysine", dose: "1,000 mg", target: "Blocks Lp(a) binding to arterial walls", evidence: "Pauling protocol — low risk, cheap" },
-  { name: "Omega-3 (EPA/DHA)", dose: "2,000 mg", target: "Inflammation + triglycerides", evidence: "Strong — reduces CVD risk markers" },
-  { name: "Berberine", dose: "500 mg", target: "ApoB / LDL particle reduction", evidence: "Strong — 15-25% LDL reduction" },
+  { name: "Nattokinase", dose: "2,000–4,000 FU", target: "Lp(a) reduction + fibrinolysis", evidence: "Moderate - 10-15% Lp(a) reduction" },
+  { name: "Vitamin C", dose: "1,000 mg", target: "Pauling protocol - arterial wall integrity", evidence: "Theoretical + widely used in Lp(a) community" },
+  { name: "L-Lysine", dose: "1,000 mg", target: "Blocks Lp(a) binding to arterial walls", evidence: "Pauling protocol - low risk, cheap" },
+  { name: "Omega-3 (EPA/DHA)", dose: "2,000 mg", target: "Inflammation + triglycerides", evidence: "Strong - reduces CVD risk markers" },
+  { name: "Berberine", dose: "500 mg", target: "ApoB / LDL particle reduction", evidence: "Strong - 15-25% LDL reduction" },
 ];
 
 const afternoonStack = [
@@ -41,7 +42,7 @@ const targets = [
 export default function CardiovascularProtocolPage() {
   return (
     <>
-      {/* Hero — FREE */}
+      {/* Hero - FREE */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,168,76,0.05)_0%,_transparent_70%)]" />
@@ -57,12 +58,12 @@ export default function CardiovascularProtocolPage() {
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
             Evidence-based supplement stack for elevated Lp(a), ApoB, and hs-CRP.
-            Designed by an anesthesiologist for patients with genetic cardiovascular risk.
+            Physician-designed for patients with genetic cardiovascular risk.
           </p>
         </div>
       </section>
 
-      {/* Who This Is For — FREE */}
+      {/* Who This Is For - FREE */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade>
@@ -71,15 +72,15 @@ export default function CardiovascularProtocolPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
                   <p className="text-red-400 font-semibold text-sm mb-1">Elevated Lp(a)</p>
-                  <p className="text-gray-400 text-sm">&gt;75 nmol/L — genetic, independent cardiovascular risk factor. Diet and exercise alone won&apos;t fix it.</p>
+                  <p className="text-gray-400 text-sm">&gt;75 nmol/L - genetic, independent cardiovascular risk factor. Diet and exercise alone won&apos;t fix it.</p>
                 </div>
                 <div>
                   <p className="text-amber-400 font-semibold text-sm mb-1">High ApoB</p>
-                  <p className="text-gray-400 text-sm">&gt;100 mg/dL — elevated atherogenic particle count. More accurate than LDL alone.</p>
+                  <p className="text-gray-400 text-sm">&gt;100 mg/dL - elevated atherogenic particle count. More accurate than LDL alone.</p>
                 </div>
                 <div>
                   <p className="text-amber-400 font-semibold text-sm mb-1">Elevated hs-CRP</p>
-                  <p className="text-gray-400 text-sm">&gt;2.0 mg/L — systemic inflammation that compounds Lp(a) risk.</p>
+                  <p className="text-gray-400 text-sm">&gt;2.0 mg/L - systemic inflammation that compounds Lp(a) risk.</p>
                 </div>
               </div>
             </div>
@@ -87,7 +88,7 @@ export default function CardiovascularProtocolPage() {
         </div>
       </section>
 
-      {/* Targets — FREE */}
+      {/* Targets - FREE */}
       <section className="py-16 bg-[#0d0d1a]/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade>
@@ -112,10 +113,10 @@ export default function CardiovascularProtocolPage() {
         </div>
       </section>
 
-      {/* PAYWALL — everything below requires purchase */}
+      {/* PAYWALL - everything below requires purchase */}
       <Suspense fallback={null}>
         <ProtocolPaywall protocolId="cardiovascular" protocolName="Cardiovascular Protocol" price="$49">
-          {/* Daily Protocol — LOCKED */}
+          {/* Daily Protocol - LOCKED */}
           <section className="py-24 bg-[#0d0d1a]/60">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <ScrollFade>
@@ -154,7 +155,7 @@ export default function CardiovascularProtocolPage() {
             </div>
           </section>
 
-          {/* Pauling Protocol — LOCKED */}
+          {/* Pauling Protocol - LOCKED */}
           <section className="py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <ScrollFade>
@@ -183,7 +184,7 @@ export default function CardiovascularProtocolPage() {
             </div>
           </section>
 
-          {/* Monthly Cost — LOCKED */}
+          {/* Monthly Cost - LOCKED */}
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <ScrollFade>
@@ -218,7 +219,7 @@ export default function CardiovascularProtocolPage() {
             </div>
           </section>
 
-          {/* Safety Notes — LOCKED */}
+          {/* Safety Notes - LOCKED */}
           <section className="py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <ScrollFade>
@@ -227,7 +228,7 @@ export default function CardiovascularProtocolPage() {
                   <ul className="space-y-3 text-gray-400 text-sm">
                     <li><strong className="text-white">Niacin titration:</strong> Start at 500mg, increase 500mg every 2 weeks. Take with food at night. Monitor liver enzymes after 6-8 weeks.</li>
                     <li><strong className="text-white">Nattokinase:</strong> Stop 2 weeks before any surgery. Do not combine with blood thinners without physician approval.</li>
-                    <li><strong className="text-white">Berberine:</strong> May lower blood sugar — monitor if diabetic. Interacts with CYP-metabolized medications.</li>
+                    <li><strong className="text-white">Berberine:</strong> May lower blood sugar - monitor if diabetic. Interacts with CYP-metabolized medications.</li>
                     <li><strong className="text-white">Recheck labs:</strong> Full panel (Lp(a), ApoB, hs-CRP, lipids, liver) after 3-6 months.</li>
                   </ul>
                 </div>
@@ -235,7 +236,18 @@ export default function CardiovascularProtocolPage() {
             </div>
           </section>
 
-          {/* CTA — visible when unlocked */}
+          <FullscriptCTA
+            highlights={[
+              "Omega-3 EPA/DHA (high-EPA formula)",
+              "CoQ10 / Ubiquinol",
+              "Bergamot extract",
+              "Vitamin K2 MK-7",
+              "Niacin (no-flush)",
+              "Magnesium taurate",
+            ]}
+          />
+
+          {/* CTA - visible when unlocked */}
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 text-center">

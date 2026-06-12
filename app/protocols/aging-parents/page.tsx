@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -12,20 +13,20 @@ export const metadata: Metadata = {
 
 const morningStack = [
   { name: "B-Complex (Active Form)", dose: "1 capsule", target: "Replaces B1, B6, B9, B12 depleted by common drugs" },
-  { name: "Benfotiamine", dose: "300 mg", target: "Fat-soluble B1 — crosses into nerves (metformin depletion)" },
-  { name: "CoQ10 / Ubiquinol", dose: "200 mg", target: "Depleted by statins — muscle pain, fatigue" },
+  { name: "Benfotiamine", dose: "300 mg", target: "Fat-soluble B1 - crosses into nerves (metformin depletion)" },
+  { name: "CoQ10 / Ubiquinol", dose: "200 mg", target: "Depleted by statins - muscle pain, fatigue" },
   { name: "Vitamin D3 + K2", dose: "2,000 IU + 100 mcg", target: "Bone health, fall prevention, immune" },
 ];
 
 const middayStack = [
-  { name: "Magnesium Glycinate", dose: "400 mg", target: "Depleted by PPIs and diuretics — heart rhythm, sleep" },
+  { name: "Magnesium Glycinate", dose: "400 mg", target: "Depleted by PPIs and diuretics - heart rhythm, sleep" },
   { name: "Omega-3 EPA/DHA", dose: "2,000 mg", target: "Brain health, inflammation, triglycerides" },
-  { name: "Vitamin B12 (Methylcobalamin)", dose: "1,000 mcg sublingual", target: "Metformin depletes absorption — prevents dementia-like symptoms" },
+  { name: "Vitamin B12 (Methylcobalamin)", dose: "1,000 mcg sublingual", target: "Metformin depletes absorption - prevents dementia-like symptoms" },
 ];
 
 const eveningStack = [
   { name: "Magnesium Glycinate", dose: "200 mg", target: "Sleep quality, restless legs" },
-  { name: "Potassium Citrate", dose: "99 mg", target: "Depleted by diuretics — leg cramps, weakness" },
+  { name: "Potassium Citrate", dose: "99 mg", target: "Depleted by diuretics - leg cramps, weakness" },
   { name: "Probiotic (multi-strain)", dose: "20B+ CFU", target: "Gut health after years of antibiotics and acid blockers" },
 ];
 
@@ -156,7 +157,7 @@ export default function AgingParentsProtocolPage() {
                 <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
                   <h3 className="font-serif text-2xl font-bold text-white mb-4">Quality-of-Life Multipliers</h3>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li><strong className="text-[#c9a84c]">10-min walks after meals:</strong> Single best intervention for glucose, mood, and sleep. Even in a wheelchair — movement matters.</li>
+                    <li><strong className="text-[#c9a84c]">10-min walks after meals:</strong> Single best intervention for glucose, mood, and sleep. Even in a wheelchair - movement matters.</li>
                     <li><strong className="text-[#c9a84c]">Protein at every meal:</strong> 30g minimum. Elderly need more protein, not less. Sarcopenia is prevented, not reversed.</li>
                     <li><strong className="text-[#c9a84c]">Morning sunlight:</strong> 10 min outside before 10 AM. Helps regulate fragmented sleep.</li>
                     <li><strong className="text-[#c9a84c]">Hydration:</strong> Elderly have reduced thirst signals. 8 cups minimum. Dehydration mimics dementia.</li>
@@ -215,13 +216,24 @@ export default function AgingParentsProtocolPage() {
             </div>
           </section>
 
+          <FullscriptCTA
+            highlights={[
+              "Multivitamin (50+)",
+              "Omega-3 EPA/DHA",
+              "Vitamin D + K2 MK-7",
+              "CoQ10 / Ubiquinol",
+              "Curcumin (high-bioavailability)",
+              "Methyl B12 (sublingual)",
+            ]}
+          />
+
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 text-center">
                 <h2 className="font-serif text-2xl font-bold text-white mb-4">Want a Custom Plan for Your Parent?</h2>
                 <p className="text-gray-400 mb-6">Upload their medication list. Physician review of drug-nutrient interactions and customized stack.</p>
                 <Link href="/book" className="inline-block px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded hover:bg-[#e0c070] transition-colors">
-                  Book Lab Review — $49.99
+                  Book Lab Review - $49.99
                 </Link>
               </div>
             </div>

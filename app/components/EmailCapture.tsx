@@ -8,6 +8,10 @@ interface EmailCaptureProps {
   interest?: string;
   successMessage?: string;
   variant?: 'inline' | 'full';
+  /** Optional PDF download URL. When set, triggers download on successful submit. */
+  downloadUrl?: string;
+  /** Optional filename for the downloaded PDF */
+  downloadFilename?: string;
 }
 
 export default function EmailCapture({
@@ -16,6 +20,8 @@ export default function EmailCapture({
   interest = 'general',
   successMessage = "You're on the list. We'll be in touch soon.",
   variant = 'inline',
+  downloadUrl,
+  downloadFilename,
 }: EmailCaptureProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -37,17 +43,36 @@ export default function EmailCapture({
       page: typeof window !== 'undefined' ? window.location.pathname : '',
     };
 
-    // Store to localStorage
+    // Persist to the backend (Google Sheet + admin notification).
+    // Fire-and-forget: the visitor's download must never block on this.
+    fetch('/api/leads/capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...lead, source: 'email-capture' }),
+    }).catch(() => {
+      /* local fallback below still preserves the lead */
+    });
+
+    // Local fallback copy (recoverable via DevTools if the network call failed)
     const existing = JSON.parse(localStorage.getItem('latom_leads') || '[]');
     existing.push(lead);
     localStorage.setItem('latom_leads', JSON.stringify(existing));
 
-    // Log for debugging/monitoring
-    console.log('[LATOM Lead Captured]', lead);
-
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
+
+      // Trigger PDF download if downloadUrl is provided
+      if (downloadUrl && typeof window !== 'undefined') {
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        if (downloadFilename) link.download = downloadFilename;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     }, 600);
   };
 

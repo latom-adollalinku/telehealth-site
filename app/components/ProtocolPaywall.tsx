@@ -24,14 +24,40 @@ export default function ProtocolPaywall({ protocolId, protocolName, price, child
       return;
     }
 
-    const stored = localStorage.getItem(`latom_protocol_${protocolId}`);
-    if (stored === 'unlocked') {
-      setUnlocked(true);
+    const email = localStorage.getItem('latom_paid_email');
+    if (!email) {
+      setChecked(true);
+      return;
     }
-    setChecked(true);
+
+    fetch('/api/paywall/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, protocolId }),
+    })
+      .then((res) => res.json())
+      .then((data: { unlocked?: boolean }) => {
+        if (data.unlocked === true) {
+          setUnlocked(true);
+        }
+      })
+      .catch(() => {
+        // Network error: fail closed (show paywall)
+      })
+      .finally(() => {
+        setChecked(true);
+      });
   }, [protocolId, searchParams]);
 
-  if (!checked) return null;
+  if (!checked) {
+    return (
+      <section className="py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+          <div className="w-8 h-8 border-2 border-[#c9a84c]/40 border-t-[#c9a84c] rounded-full animate-spin" />
+        </div>
+      </section>
+    );
+  }
 
   if (unlocked) {
     return <>{children}</>;

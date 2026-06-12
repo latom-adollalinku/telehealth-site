@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * BookingsTable — client component
+ * BookingsTable - client component
  *
  * Renders the admin bookings table with three interactive actions per row:
  *   - Mark Paid            → POST /api/sheets/log-payment
@@ -35,7 +35,7 @@ interface Props {
 // ---------------------------------------------------------------------------
 
 function formatDateTime(iso: string): string {
-  if (!iso) return '—';
+  if (!iso) return ' - ';
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleString('en-US', {
@@ -172,7 +172,7 @@ export default function BookingsTable({ initialBookings, fetchError }: Props) {
       let invoiceFilename = rows[b.uid]?.invoiceFilename;
       if (!invoiceBase64) {
         const maybe = await handleGenerateInvoice(b);
-        if (!maybe) throw new Error('Invoice generation failed — cannot send email');
+        if (!maybe) throw new Error('Invoice generation failed - cannot send email');
         invoiceBase64 = maybe;
         invoiceFilename = `invoice-${b.bookingId}.pdf`;
       }
@@ -256,7 +256,7 @@ export default function BookingsTable({ initialBookings, fetchError }: Props) {
               <span className="text-gray-200 text-xs">{formatDateTime(b.startTime)}</span>
               <span className="text-white font-medium text-sm truncate">{b.attendeeName}</span>
               <span className="text-gray-400 text-xs truncate">{b.attendeeEmail}</span>
-              <span className="text-gray-400 text-xs">{b.attendeePhone || '—'}</span>
+              <span className="text-gray-400 text-xs">{b.attendeePhone || ' - '}</span>
               <span className="text-gray-300 text-xs truncate">{b.service}</span>
               <span>
                 {isPaid ? (

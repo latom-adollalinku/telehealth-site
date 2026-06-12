@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
-  title: "Hormone Optimization Protocol | TRT, HRT & DHEA Support",
+  title: "Hormone Health Education | LATOM Wellness",
   description:
-    "Evidence-based supplement protocol for testosterone, estrogen, thyroid, and adrenal optimization. Complements TRT/HRT or supports natural hormone production.",
+    "Evidence-based education on testosterone, thyroid, adrenal, and hormonal health. Learn which lab markers matter, what lifestyle factors drive change, and when a consultation is appropriate.",
 };
 
 const morningStack = [
@@ -24,9 +25,9 @@ const middayStack = [
 ];
 
 const eveningStack = [
-  { name: "DHEA (if DHEA-S low)", dose: "25–50 mg", target: "Adrenal support, testosterone/estrogen precursor" },
+  { name: "DHEA (if DHEA-S low)", dose: "25-50 mg", target: "Adrenal support, testosterone/estrogen precursor" },
   { name: "Ashwagandha (KSM-66)", dose: "300 mg", target: "Second dose for cortisol rhythm" },
-  { name: "Selenium", dose: "200 mcg", target: "Thyroid T4→T3 conversion" },
+  { name: "Selenium", dose: "200 mcg", target: "Thyroid T4 to T3 conversion" },
   { name: "Tyrosine", dose: "500 mg", target: "Thyroid hormone substrate" },
 ];
 
@@ -34,10 +35,10 @@ const targets = [
   { marker: "Total T", current: "<500 ng/dL", goal: "600-900 ng/dL", realistic: "50-150 increase", timeline: "8-12 weeks" },
   { marker: "Free T", current: "<70 pg/mL", goal: "90-180 pg/mL", realistic: "Meaningful increase", timeline: "8-12 weeks" },
   { marker: "DHEA-S", current: "<150 mcg/dL", goal: "200-400", realistic: "Restoration with DHEA supp", timeline: "8 weeks" },
-  { marker: "Free T3", current: "<3.0 pg/mL", goal: "3.2-4.2", realistic: "T4→T3 conversion support", timeline: "6-8 weeks" },
+  { marker: "Free T3", current: "<3.0 pg/mL", goal: "3.2-4.2", realistic: "T4 to T3 conversion support", timeline: "6-8 weeks" },
 ];
 
-export default function HormoneProtocolPage() {
+export default function HormoneHealthEducationPage() {
   return (
     <>
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -46,16 +47,16 @@ export default function HormoneProtocolPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
             <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
-              Physician-Designed Protocol
+              Education
             </span>
           </div>
           <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
             Hormone
-            <span className="block gold-gradient">Optimization Protocol</span>
+            <span className="block gold-gradient">Health Education</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Evidence-based stack to support testosterone, DHEA, thyroid, and cortisol balance.
-            Complements TRT/HRT or supports natural hormone production in sub-optimal ranges.
+            Evidence-based education on testosterone, DHEA, thyroid, and cortisol balance.
+            Understand the key lab markers, lifestyle drivers, and supplement foundations that support your hormonal health.
           </p>
         </div>
       </section>
@@ -64,19 +65,19 @@ export default function HormoneProtocolPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade>
             <div className="bg-[#1a1a2e] border border-purple-500/30 rounded-xl p-8">
-              <h2 className="font-serif text-2xl font-bold text-white mb-4">Who This Protocol Is For</h2>
+              <h2 className="font-serif text-2xl font-bold text-white mb-4">Who This Information Is For</h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
                   <p className="text-purple-400 font-semibold text-sm mb-1">Low-Normal Testosterone</p>
-                  <p className="text-gray-400 text-sm">Total T 300-500 ng/dL with symptoms. Not yet needing TRT but room to optimize.</p>
+                  <p className="text-gray-400 text-sm">Total T in the 300-500 ng/dL range with symptoms. Lifestyle and supplement strategies may move the needle meaningfully before other options are considered.</p>
                 </div>
                 <div>
                   <p className="text-purple-400 font-semibold text-sm mb-1">Low DHEA-S</p>
-                  <p className="text-gray-400 text-sm">Adrenal insufficiency, chronic stress, or HPA axis dysfunction.</p>
+                  <p className="text-gray-400 text-sm">Adrenal insufficiency, chronic stress, or HPA axis dysfunction affecting energy and resilience.</p>
                 </div>
                 <div>
-                  <p className="text-purple-400 font-semibold text-sm mb-1">Sub-Optimal Thyroid</p>
-                  <p className="text-gray-400 text-sm">Normal TSH but low Free T3 — poor conversion.</p>
+                  <p className="text-purple-400 font-semibold text-sm mb-1">Sub-Optimal Thyroid Conversion</p>
+                  <p className="text-gray-400 text-sm">Normal TSH but low Free T3 indicating poor T4-to-T3 conversion affecting energy and metabolism.</p>
                 </div>
               </div>
             </div>
@@ -88,7 +89,7 @@ export default function HormoneProtocolPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade>
             <div className="text-center mb-12">
-              <h2 className="font-serif text-4xl font-bold text-white mb-4">Target Outcomes</h2>
+              <h2 className="font-serif text-4xl font-bold text-white mb-4">Lab Markers Worth Tracking</h2>
             </div>
           </ScrollFade>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -154,8 +155,8 @@ export default function HormoneProtocolPage() {
                   <ul className="space-y-3 text-gray-300 text-sm">
                     <li><strong className="text-[#c9a84c]">Sleep 7-9 hrs:</strong> 80% of testosterone production happens during sleep. Non-negotiable.</li>
                     <li><strong className="text-[#c9a84c]">Resistance training 3-4x/week:</strong> Compound lifts (squat, deadlift, press) spike T acutely.</li>
-                    <li><strong className="text-[#c9a84c]">Lose visceral fat:</strong> Belly fat converts T → estrogen via aromatase. Body recomp moves hormones.</li>
-                    <li><strong className="text-[#c9a84c]">Morning sunlight:</strong> 10-15 min within 1 hour of waking — restores cortisol rhythm.</li>
+                    <li><strong className="text-[#c9a84c]">Lose visceral fat:</strong> Belly fat converts T to estrogen via aromatase. Body recomp moves hormones.</li>
+                    <li><strong className="text-[#c9a84c]">Morning sunlight:</strong> 10-15 min within 1 hour of waking. Restores cortisol rhythm.</li>
                     <li><strong className="text-[#c9a84c]">Limit alcohol:</strong> Alcohol acutely suppresses T for 24+ hours. Max 1-2 drinks/week for optimization.</li>
                   </ul>
                 </div>
@@ -172,15 +173,15 @@ export default function HormoneProtocolPage() {
                   </div>
                   <div className="divide-y divide-[#2a2a4e]">
                     {[
-                      { item: "Ashwagandha KSM-66", cost: "$15–25" },
-                      { item: "Tongkat Ali (standardized)", cost: "$20–35" },
-                      { item: "Vitamin D3 + K2", cost: "$10–15" },
-                      { item: "Zinc Picolinate", cost: "$8–12" },
-                      { item: "DHEA (if needed)", cost: "$8–15" },
-                      { item: "Boron", cost: "$8–12" },
-                      { item: "Magnesium Glycinate", cost: "$10–15" },
-                      { item: "Selenium + Tyrosine", cost: "$12–18" },
-                      { item: "Omega-3 EPA/DHA", cost: "$15–25" },
+                      { item: "Ashwagandha KSM-66", cost: "$15-25" },
+                      { item: "Tongkat Ali (standardized)", cost: "$20-35" },
+                      { item: "Vitamin D3 + K2", cost: "$10-15" },
+                      { item: "Zinc Picolinate", cost: "$8-12" },
+                      { item: "DHEA (if indicated)", cost: "$8-15" },
+                      { item: "Boron", cost: "$8-12" },
+                      { item: "Magnesium Glycinate", cost: "$10-15" },
+                      { item: "Selenium + Tyrosine", cost: "$12-18" },
+                      { item: "Omega-3 EPA/DHA", cost: "$15-25" },
                     ].map((row, i) => (
                       <div key={i} className="flex items-center justify-between px-6 py-3">
                         <span className="text-gray-300 text-sm">{row.item}</span>
@@ -189,7 +190,7 @@ export default function HormoneProtocolPage() {
                     ))}
                     <div className="flex items-center justify-between px-6 py-4 bg-[#0a0a0a]">
                       <span className="text-white font-semibold">Total Monthly Cost</span>
-                      <span className="font-serif text-2xl font-bold text-[#c9a84c]">$106–172</span>
+                      <span className="font-serif text-2xl font-bold text-[#c9a84c]">$106-172</span>
                     </div>
                   </div>
                 </div>
@@ -203,7 +204,7 @@ export default function HormoneProtocolPage() {
                 <div className="bg-[#1a1a2e] border border-amber-500/30 rounded-xl p-8">
                   <h3 className="text-amber-400 font-semibold mb-4">Safety Notes</h3>
                   <ul className="space-y-3 text-gray-400 text-sm">
-                    <li><strong className="text-white">DHEA caution:</strong> Only supplement if DHEA-S is confirmed low. Can aromatize to estrogen — monitor E2.</li>
+                    <li><strong className="text-white">DHEA caution:</strong> Only supplement if DHEA-S is confirmed low. Can aromatize to estrogen. Monitor E2.</li>
                     <li><strong className="text-white">Baseline labs first:</strong> Full hormone panel (Total/Free T, E2, DHEA-S, SHBG, Thyroid) before starting.</li>
                     <li><strong className="text-white">Not TRT:</strong> This protocol supports natural production. For Total T &lt;300 or severe symptoms, discuss TRT with physician.</li>
                     <li><strong className="text-white">Recheck labs:</strong> Full panel at 12 weeks to assess response.</li>
@@ -212,6 +213,17 @@ export default function HormoneProtocolPage() {
               </ScrollFade>
             </div>
           </section>
+
+          <FullscriptCTA
+            highlights={[
+              "DHEA (micronized)",
+              "DIM (diindolylmethane)",
+              "Calcium D-glucarate",
+              "Magnesium glycinate",
+              "Vitamin D + K2 MK-7",
+              "Zinc picolinate",
+            ]}
+          />
 
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

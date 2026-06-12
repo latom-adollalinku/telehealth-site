@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * /admin/payments — Telehealth Payment Tracker
+ * /admin/payments - Telehealth Payment Tracker
  *
  * Lists pending payment confirmations from patients.
  * When admin checks "Mark as Paid", it calls POST /api/sheets/log-payment
@@ -33,7 +33,7 @@ interface PendingPayment {
 }
 
 // ---------------------------------------------------------------------------
-// Seed data — replace with real DB fetch when available
+// Seed data - replace with real DB fetch when available
 // ---------------------------------------------------------------------------
 
 const SEED_PAYMENTS: PendingPayment[] = [
@@ -207,7 +207,7 @@ export default function AdminPaymentsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white">Payment Tracker</h1>
-            <p className="text-gray-400 text-sm mt-1">LATOM Wellness — Admin Dashboard</p>
+            <p className="text-gray-400 text-sm mt-1">LATOM Wellness - Admin Dashboard</p>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-xs text-gray-500 bg-[#1a1a2e] px-3 py-1 rounded-full border border-[#c9a84c]/20">

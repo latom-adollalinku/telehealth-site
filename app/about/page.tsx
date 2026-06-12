@@ -3,28 +3,21 @@ import Link from "next/link";
 import ScrollFade from "../components/ScrollFade";
 
 export const metadata: Metadata = {
-  title: "About Dr. Abdi Abdulhakim, MD — LATOM Wellness",
+  title: "About Dr. Abdul, MD - LATOM Wellness",
   description:
-    "Dr. Abdi Abdulhakim is an anesthesiologist who founded LATOM Wellness to deliver evidence-based longevity medicine directly to patients.",
+    "Dr. Abdul founded LATOM Wellness to deliver evidence-based longevity medicine directly to patients.",
 };
-
-const credentials = [
-  "MD — Medical Doctor",
-  "Anesthesiologist",
-  "Advanced Training in Pain Medicine & Pharmacology",
-  "Licensed in Virginia",
-];
 
 const approach = [
   {
     title: "Physician-First",
     detail:
-      "Every patient is seen by Dr. Abdulhakim directly. No PA mid-levels making clinical decisions without oversight.",
+      "Every patient is seen by Dr. Abdul directly. No PA mid-levels making clinical decisions without oversight.",
   },
   {
     title: "Evidence-Based",
     detail:
-      "Every protocol is grounded in peer-reviewed clinical literature. We do not chase trends — we follow data.",
+      "Every protocol is grounded in peer-reviewed clinical literature. We do not chase trends, we follow data.",
   },
   {
     title: "Individualized",
@@ -35,6 +28,39 @@ const approach = [
     title: "Transparent",
     detail:
       "Clear pricing, no hidden fees, and honest expectations. If a treatment is not right for you, we will tell you.",
+  },
+];
+
+const concerns = [
+  {
+    title: "Worried about cancer",
+    detail:
+      "Family history of cancer. A symptom you cannot shake. The annual physical that does not include the labs you actually want. We coordinate standard screening (colonoscopy, mammogram, PSA), order tumor markers and risk markers, and connect you with multi-cancer early detection options when appropriate.",
+  },
+  {
+    title: "Persistent gut symptoms",
+    detail:
+      "Bloating, brain fog, fatigue, food sensitivities that nobody has explained. We run comprehensive stool panels (GI-MAP, parasitology), celiac and inflammatory markers, and SIBO testing. Then we build a protocol around what we actually find.",
+  },
+  {
+    title: "Suspected mold exposure",
+    detail:
+      "Lived or worked in a water-damaged building. Symptoms that mainstream medicine cannot place. We order urinary mycotoxin panels and organic acids testing through our partner labs and walk you through environmental remediation when indicated.",
+  },
+  {
+    title: "Heavy metal concerns",
+    detail:
+      "Years of fish consumption, amalgam fillings, occupational exposure, or old plumbing. We order hair mineral analysis, blood metals, and provoked urine testing when warranted and refer for chelation protocols when indicated.",
+  },
+  {
+    title: "Possible Lyme or tick-borne illness",
+    detail:
+      "A tick bite years ago that was never tested. Chronic joint pain and fatigue that nobody can explain. Standard Lyme testing is often inadequate. We order IGeneX testing for Lyme and co-infections (Bartonella, Babesia, others) when clinical suspicion is real.",
+  },
+  {
+    title: "Hormones and energy",
+    detail:
+      "Tired all the time. Brain fog. Weight gain despite the same diet. Low libido. Mood changes. We run comprehensive hormone panels (DUTCH, sensitive sex hormones, full thyroid) and build a protocol with lifestyle, supplements, and prescription support when needed.",
   },
 ];
 
@@ -53,11 +79,8 @@ export default function AboutPage() {
             </span>
           </div>
           <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-            Dr. Abdi Abdulhakim, MD
+            Dr. Abdul, MD
           </h1>
-          <p className="text-[#c9a84c] text-lg font-medium mb-4">
-            Anesthesiologist &bull; Richmond, Virginia
-          </p>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
             Founder of LATOM Wellness. Built to make physician-supervised longevity medicine accessible to everyone who deserves it.
           </p>
@@ -78,7 +101,7 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-4 text-gray-300 text-base leading-relaxed">
                   <p>
-                    Practicing anesthesiology, Dr. Abdulhakim saw a consistent pattern:
+                    Dr. Abdul saw a consistent pattern in clinical practice:
                     patients struggling with weight, hormonal imbalance, and declining energy who were
                     offered nothing beyond generic advice and referrals.
                   </p>
@@ -101,22 +124,6 @@ export default function AboutPage() {
 
             <ScrollFade delay={150}>
               <div>
-                <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-4">
-                  Credentials
-                </p>
-                <div className="p-6 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl mb-6">
-                  <ul className="space-y-3">
-                    {credentials.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                        <svg className="w-4 h-4 text-[#c9a84c] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
                 <div className="p-6 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl">
                   <h3 className="text-white font-semibold mb-4">Contact</h3>
                   <ul className="space-y-3">
@@ -129,18 +136,41 @@ export default function AboutPage() {
                         info@latomwellness.com
                       </a>
                     </li>
-                    <li className="flex gap-3 text-sm text-gray-300">
-                      <span className="text-[#c9a84c] font-medium">Location</span>
-                      Richmond, Virginia
-                    </li>
-                    <li className="flex gap-3 text-sm text-gray-300">
-                      <span className="text-[#c9a84c] font-medium">Serving</span>
-                      Patients in licensed states (VA + others)
-                    </li>
                   </ul>
                 </div>
               </div>
             </ScrollFade>
+          </div>
+        </div>
+      </section>
+
+      {/* Concerns We Hear */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollFade>
+            <div className="text-center mb-16">
+              <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-3">
+                Why People Come to Us
+              </p>
+              <h2 className="font-serif text-4xl font-bold text-white">
+                The concerns standard care often dismisses
+              </h2>
+              <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+                Most patients arrive with a specific worry, not a diagnosis. We take those concerns seriously and order the labs that actually answer them.
+              </p>
+            </div>
+          </ScrollFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {concerns.map((item, i) => (
+              <ScrollFade key={i} delay={i * 70}>
+                <div className="p-7 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl h-full">
+                  <div className="w-2 h-2 rounded-full bg-[#c9a84c] mb-4" />
+                  <h3 className="font-serif text-xl font-bold text-white mb-3">{item.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{item.detail}</p>
+                </div>
+              </ScrollFade>
+            ))}
           </div>
         </div>
       </section>
@@ -180,7 +210,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <ScrollFade>
             <h2 className="font-serif text-3xl font-bold text-white mb-4">
-              Ready to Work with Dr. Abdulhakim?
+              Ready to Work with Dr. Abdul?
             </h2>
             <p className="text-gray-400 mb-8">
               Book a free 30-minute consultation. No commitment, no pressure.

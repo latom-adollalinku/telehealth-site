@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -13,14 +14,14 @@ export const metadata: Metadata = {
 const preWindDownStack = [
   { name: "L-Theanine", dose: "200 mg", target: "Alpha-wave promotion, pre-sleep calm" },
   { name: "Ashwagandha (KSM-66)", dose: "300 mg", target: "Evening cortisol reduction" },
-  { name: "Apigenin", dose: "50 mg", target: "GABA-A receptor modulation — 'chamomile active'" },
+  { name: "Apigenin", dose: "50 mg", target: "GABA-A receptor modulation - 'chamomile active'" },
 ];
 
 const preBedStack = [
   { name: "Magnesium Glycinate", dose: "400 mg", target: "Muscle relaxation, GABA support" },
-  { name: "Magnesium L-Threonate", dose: "2,000 mg (144 mg elemental)", target: "Brain magnesium — sleep architecture" },
-  { name: "Glycine", dose: "3,000 mg", target: "Core body temp drop — deeper sleep onset" },
-  { name: "Melatonin (low dose)", dose: "0.3–1 mg", target: "Circadian signal — NOT a sedative" },
+  { name: "Magnesium L-Threonate", dose: "2,000 mg (144 mg elemental)", target: "Brain magnesium - sleep architecture" },
+  { name: "Glycine", dose: "3,000 mg", target: "Core body temp drop - deeper sleep onset" },
+  { name: "Melatonin (low dose)", dose: "0.3–1 mg", target: "Circadian signal - NOT a sedative" },
   { name: "Tart Cherry Extract", dose: "500 mg", target: "Natural melatonin + anti-inflammatory" },
 ];
 
@@ -32,7 +33,7 @@ const middleOfNightStack = [
 const peptides = [
   { name: "DSIP (Delta Sleep Inducing Peptide)", dose: "100–200 mcg SC before bed", target: "Increases slow-wave sleep, reduces nighttime cortisol", notes: "Nonapeptide with direct sleep-promoting action. Most researched sleep peptide. 5 nights/week max." },
   { name: "Epithalamin / Epitalon", dose: "5–10 mg cycle", target: "Melatonin restoration, circadian repair", notes: "Khavinson pineal peptide. Typically cycled 2-3x yearly (10-20 day courses)." },
-  { name: "Pinealon", dose: "100–200 mcg/day", target: "Pineal gland support, sleep-wake rhythm", notes: "Short peptide — 10-day cycles, 2-3x yearly. Pairs with Epitalon." },
+  { name: "Pinealon", dose: "100–200 mcg/day", target: "Pineal gland support, sleep-wake rhythm", notes: "Short peptide - 10-day cycles, 2-3x yearly. Pairs with Epitalon." },
   { name: "Selank (low dose evening)", dose: "100–250 mcg intranasal", target: "Reduces rumination / racing mind at bedtime", notes: "Only use if anxiety blocks sleep onset. Non-sedating." },
 ];
 
@@ -199,7 +200,7 @@ export default function SleepProtocolPage() {
                   <ul className="space-y-3 text-gray-300 text-sm">
                     <li><strong className="text-[#c9a84c]">Consistent wake time:</strong> Same time every day, including weekends. Anchors your circadian rhythm.</li>
                     <li><strong className="text-[#c9a84c]">Morning sunlight:</strong> 10-15 min within 30 min of waking. Sets melatonin clock for 16 hours later.</li>
-                    <li><strong className="text-[#c9a84c]">Last caffeine by noon:</strong> 6-hour half-life — 3 PM coffee is still active at 9 PM.</li>
+                    <li><strong className="text-[#c9a84c]">Last caffeine by noon:</strong> 6-hour half-life - 3 PM coffee is still active at 9 PM.</li>
                     <li><strong className="text-[#c9a84c]">Cool bedroom:</strong> 65-68°F ideal. Core body temp must drop to initiate deep sleep.</li>
                     <li><strong className="text-[#c9a84c]">Blackout curtains + no screens 60 min pre-bed:</strong> Even dim light suppresses melatonin 50%.</li>
                     <li><strong className="text-[#c9a84c]">No alcohol within 3 hours of bed:</strong> Destroys REM sleep. Single biggest modifiable factor.</li>
@@ -272,8 +273,8 @@ export default function SleepProtocolPage() {
                 <div className="bg-[#1a1a2e] border border-amber-500/30 rounded-xl p-8">
                   <h3 className="text-amber-400 font-semibold mb-4">Safety Notes</h3>
                   <ul className="space-y-3 text-gray-400 text-sm">
-                    <li><strong className="text-white">Melatonin dosing:</strong> Low dose (0.3-1 mg) — NOT the 3-10 mg OTC pills. Higher doses desensitize receptors and cause morning grogginess.</li>
-                    <li><strong className="text-white">Ashwagandha + thyroid:</strong> Can affect thyroid hormone levels — monitor TSH if hypothyroid.</li>
+                    <li><strong className="text-white">Melatonin dosing:</strong> Low dose (0.3-1 mg) - NOT the 3-10 mg OTC pills. Higher doses desensitize receptors and cause morning grogginess.</li>
+                    <li><strong className="text-white">Ashwagandha + thyroid:</strong> Can affect thyroid hormone levels - monitor TSH if hypothyroid.</li>
                     <li><strong className="text-white">DSIP prescription:</strong> Requires physician consultation. Not for use in pregnancy, bleeding disorders, or acute illness.</li>
                     <li><strong className="text-white">Sleep apnea screen first:</strong> If symptoms (loud snoring, witnessed pauses, daytime sleepiness), get a home sleep test. Supplements will not fix apnea.</li>
                     <li><strong className="text-white">Rebound insomnia:</strong> Do not stop melatonin abruptly after &gt;2 weeks. Taper down by 50% over 1 week.</li>
@@ -282,6 +283,17 @@ export default function SleepProtocolPage() {
               </ScrollFade>
             </div>
           </section>
+
+          <FullscriptCTA
+            highlights={[
+              "Magnesium glycinate",
+              "L-theanine",
+              "Low-dose melatonin (0.3-1 mg)",
+              "Apigenin",
+              "Glycine",
+              "Ashwagandha (KSM-66)",
+            ]}
+          />
 
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

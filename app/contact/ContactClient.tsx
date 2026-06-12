@@ -6,11 +6,11 @@ import ScrollFade from "../components/ScrollFade";
 
 const interestOptions = [
   "Select your interest...",
-  "Weight Loss (GLP-1s)",
-  "Peptide Therapy",
-  "Hormone Optimization (TRT/HRT)",
-  "Longevity / NAD+",
-  "Not sure — need guidance",
+  "Weight Management",
+  "Recovery & Performance",
+  "Hormone Health Education",
+  "Longevity & Healthy Aging",
+  "Not sure - need guidance",
   "Other",
 ];
 
@@ -132,9 +132,9 @@ export default function ContactClient() {
                         />
                       </svg>
                       <div>
-                        <div className="text-gray-500 text-xs mb-1">Location</div>
+                        <div className="text-gray-500 text-xs mb-1">Service</div>
                         <div className="text-gray-300 text-sm">
-                          Richmond, Virginia (telehealth)
+                          Telehealth consultation
                         </div>
                       </div>
                     </div>
@@ -149,7 +149,7 @@ export default function ContactClient() {
                     {[
                       "We review your inquiry within 24 hours",
                       "A team member reaches out to schedule your free video consultation",
-                      "You meet with Dr. Abdulhakim to discuss your goals",
+                      "You meet with Dr. Abdul to discuss your goals",
                       "If appropriate, we design a protocol and get you started",
                     ].map((step, i) => (
                       <li key={i} className="flex gap-3 text-sm text-gray-400">
@@ -164,9 +164,9 @@ export default function ContactClient() {
                   <h3 className="font-semibold text-white mb-3">Our Programs</h3>
                   <div className="space-y-2">
                     {[
-                      { href: "/services#weight-management", label: "Weight Management — from $299/mo" },
-                      { href: "/services#peptide-therapy", label: "Peptide Therapy — from $199/mo" },
-                      { href: "/services#hormone-optimization", label: "Hormone Optimization — from $349/mo" },
+                      { href: "/services#weight-management", label: "Weight Management" },
+                      { href: "/services#recovery-performance", label: "Recovery and Performance" },
+                      { href: "/services#hormone-health", label: "Hormone Health Education" },
                     ].map((item, i) => (
                       <Link
                         key={i}
@@ -207,7 +207,7 @@ export default function ContactClient() {
                     Request Received
                   </h3>
                   <p className="text-gray-400 mb-6">
-                    Dr. Abdulhakim&apos;s team will reach out within 24 hours to schedule your free consultation.
+                    Dr. Abdul&apos;s team will reach out within 24 hours to schedule your free consultation.
                   </p>
                   <button
                     onClick={() => {
@@ -231,7 +231,7 @@ export default function ContactClient() {
                     Request Free Consultation
                   </h2>
                   <p className="text-gray-400 text-sm mb-8">
-                    No commitment required. This is an inquiry form — not medical advice.
+                    No commitment required. This is an inquiry form - not medical advice.
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-5">

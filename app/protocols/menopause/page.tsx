@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
-  title: "Perimenopause & Menopause Protocol | HRT-Ready Supplement Stack",
+  title: "Perimenopause & Menopause Protocol | Evidence-Based Supplement Stack",
   description:
-    "Evidence-based supplement protocol for perimenopause and menopause. Supports HRT or stands alone. Addresses hot flashes, sleep, mood, bone density, and cognition.",
+    "Evidence-based supplement protocol for perimenopause and menopause. Stands alone or complements hormone therapy. Addresses hot flashes, sleep, mood, bone density, and cognition.",
 };
 
 const morningStack = [
   { name: "Vitamin D3 + K2", dose: "5,000 IU + 100 mcg", target: "Bone density, mood, immune" },
-  { name: "Calcium (if low dietary)", dose: "500 mg", target: "Paired with D3/K2 — bone health" },
+  { name: "Calcium (if low dietary)", dose: "500 mg", target: "Paired with D3/K2 - bone health" },
   { name: "Omega-3 EPA/DHA", dose: "2,000 mg", target: "Brain, heart, joint health" },
   { name: "Magnesium Glycinate", dose: "400 mg", target: "Hot flash reduction, sleep support" },
 ];
@@ -25,7 +26,7 @@ const middayStack = [
 ];
 
 const eveningStack = [
-  { name: "Magnesium Glycinate", dose: "400 mg", target: "Second dose — sleep quality" },
+  { name: "Magnesium Glycinate", dose: "400 mg", target: "Second dose - sleep quality" },
   { name: "Ashwagandha (KSM-66)", dose: "600 mg", target: "Cortisol modulation, sleep" },
   { name: "Melatonin (low-dose)", dose: "0.3-1 mg", target: "Sleep onset, declines in menopause" },
   { name: "Collagen Peptides", dose: "10-20 g", target: "Skin, hair, joint health" },
@@ -55,8 +56,8 @@ export default function MenopauseProtocolPage() {
             <span className="block gold-gradient">Protocol</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Evidence-based stack for hot flashes, sleep, mood, and bone health. Works alongside HRT
-            or as a first step for women not ready for hormone therapy.
+            Evidence-based stack for hot flashes, sleep, mood, and bone health. Works as a first step
+            or complements physician-discussed hormone therapy.
           </p>
         </div>
       </section>
@@ -76,8 +77,8 @@ export default function MenopauseProtocolPage() {
                   <p className="text-gray-400 text-sm">12 months no period. Hot flashes, vaginal dryness, bone loss concerns.</p>
                 </div>
                 <div>
-                  <p className="text-pink-400 font-semibold text-sm mb-1">Not Ready for HRT</p>
-                  <p className="text-gray-400 text-sm">Want to try supplement-only approach first, or HRT contraindicated.</p>
+                  <p className="text-pink-400 font-semibold text-sm mb-1">Supplement-First Approach</p>
+                  <p className="text-gray-400 text-sm">Want to try supplement-only approach first, or hormone therapy not currently appropriate.</p>
                 </div>
               </div>
             </div>
@@ -153,7 +154,7 @@ export default function MenopauseProtocolPage() {
                 <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
                   <h3 className="font-serif text-2xl font-bold text-white mb-4">Lifestyle Multipliers</h3>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li><strong className="text-[#c9a84c]">Resistance training 3x/week:</strong> Preserves muscle and bone — the two things menopause destroys fastest.</li>
+                    <li><strong className="text-[#c9a84c]">Resistance training 3x/week:</strong> Preserves muscle and bone - the two things menopause destroys fastest.</li>
                     <li><strong className="text-[#c9a84c]">Cool bedroom:</strong> 65-68°F. Most effective hot flash intervention is temperature, not supplements.</li>
                     <li><strong className="text-[#c9a84c]">Protein 1g per lb body weight:</strong> Counters menopause-related muscle loss.</li>
                     <li><strong className="text-[#c9a84c]">Limit alcohol:</strong> Worsens hot flashes, bone loss, sleep. Single biggest modifiable factor.</li>
@@ -206,7 +207,7 @@ export default function MenopauseProtocolPage() {
                     <li><strong className="text-white">Black cohosh + liver:</strong> Rare liver injury reports. Avoid if liver disease. Do not use &gt;6 months without break.</li>
                     <li><strong className="text-white">DIM + hormone-sensitive cancer:</strong> Discuss with oncologist if history of breast/uterine cancer.</li>
                     <li><strong className="text-white">Maca + thyroid:</strong> Contains goitrogens. Cook first. Avoid if hypothyroid.</li>
-                    <li><strong className="text-white">HRT consideration:</strong> If severe symptoms, HRT may be more effective. This protocol complements but doesn&apos;t replace hormone therapy when indicated.</li>
+                    <li><strong className="text-white">HRT consideration:</strong> If severe symptoms, HRT may be more effective. This protocol complements but doesn&apos;t replace HRT when indicated.</li>
                     <li><strong className="text-white">Bone density scan:</strong> Get DEXA at menopause onset and every 2 years. Supplements help; can&apos;t replace monitoring.</li>
                   </ul>
                 </div>
@@ -214,10 +215,21 @@ export default function MenopauseProtocolPage() {
             </div>
           </section>
 
+          <FullscriptCTA
+            highlights={[
+              "DIM (diindolylmethane)",
+              "Magnesium glycinate",
+              "Black cohosh (standardized)",
+              "Vitamin D + K2 MK-7",
+              "Calcium D-glucarate",
+              "Maca root (gelatinized)",
+            ]}
+          />
+
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 text-center">
-                <h2 className="font-serif text-2xl font-bold text-white mb-4">Want HRT Evaluation?</h2>
+                <h2 className="font-serif text-2xl font-bold text-white mb-4">Want an HRT Evaluation?</h2>
                 <p className="text-gray-400 mb-6">Book a consultation to discuss whether HRT is right for you alongside this supplement protocol.</p>
                 <Link href="/book" className="inline-block px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded hover:bg-[#e0c070] transition-colors">
                   Book Consultation

@@ -23,6 +23,24 @@ export default function TermsPage() {
       <div className="space-y-8">
         <section>
           <h2 className="font-serif text-xl font-bold text-white mb-3">
+            Proprietary Content
+          </h2>
+          <p className="text-gray-400 text-sm leading-relaxed">
+            All medical protocol content, dosing tables, peptide databases, lab
+            interpretation templates, and wellness frameworks on this site are
+            proprietary and copyrighted by LATOM Wellness, PLLC. No license is
+            granted to reproduce, distribute, or use this content for AI training
+            or any commercial purpose. For full copyright, DMCA, and trademark
+            information, see our{" "}
+            <Link href="/legal" className="text-[#c9a84c] hover:underline">
+              Legal &amp; Copyright
+            </Link>{" "}
+            page.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-xl font-bold text-white mb-3">
             Agreement to Terms
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed">
@@ -37,8 +55,8 @@ export default function TermsPage() {
             Educational Content Only
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed">
-            All content on this site — including articles, guides, compound
-            profiles, and tax strategy information — is provided for educational
+            All content on this site - including articles, guides, compound
+            profiles, and tax strategy information - is provided for educational
             purposes only. It does not constitute medical, legal, financial, or
             tax advice. Results described are individual examples and not
             guaranteed.
@@ -51,7 +69,7 @@ export default function TermsPage() {
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed">
             Accessing or submitting information on this site does not create a
-            patient-physician relationship with Dr. Abdi Abdulhakim or any
+            patient-physician relationship with Dr. Abdul or any
             affiliated provider. A formal patient-physician relationship is only
             established through explicit written consent after proper intake
             procedures.
@@ -76,7 +94,7 @@ export default function TermsPage() {
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed">
             LATOM Medical & Wellness, Adolla Link Management LLC, and Dr.
-            Abdi Abdulhakim are not liable for any direct, indirect,
+            Abdul are not liable for any direct, indirect,
             incidental, or consequential damages resulting from use of
             information on this site or decisions made based on content herein.
           </p>

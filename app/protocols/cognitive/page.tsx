@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
+import FullscriptCTA from "../../components/FullscriptCTA";
 
 export const metadata: Metadata = {
   title: "Cognitive & Study Protocol | Nootropic Stack for Focus and Memory",
@@ -11,30 +12,65 @@ export const metadata: Metadata = {
 };
 
 const morningStack = [
-  { name: "Alpha-GPC", dose: "300–600 mg", target: "Acetylcholine precursor — learning & memory" },
-  { name: "Lion's Mane Extract", dose: "1,000 mg (30% beta-glucan)", target: "NGF / BDNF — neurogenesis" },
+  { name: "Alpha-GPC", dose: "300–600 mg", target: "Acetylcholine precursor - learning & memory" },
+  { name: "Lion's Mane Extract", dose: "1,000 mg (30% beta-glucan)", target: "NGF / BDNF - neurogenesis" },
   { name: "Rhodiola Rosea", dose: "200–400 mg (3% rosavins)", target: "Stress adaptation, mental fatigue" },
-  { name: "L-Tyrosine", dose: "500–1,000 mg", target: "Dopamine precursor — focus, motivation" },
+  { name: "L-Tyrosine", dose: "500–1,000 mg", target: "Dopamine precursor - focus, motivation" },
   { name: "Creatine Monohydrate", dose: "5 g", target: "Cognitive performance, especially under stress" },
 ];
 
 const studySessionStack = [
-  { name: "L-Theanine + Caffeine", dose: "200 mg + 100 mg", target: "Focused calm — 2:1 ratio sweet spot" },
+  { name: "L-Theanine + Caffeine", dose: "200 mg + 100 mg", target: "Focused calm - 2:1 ratio sweet spot" },
   { name: "Bacopa Monnieri", dose: "300 mg (55% bacosides)", target: "Memory consolidation (12-week ramp)" },
   { name: "Phosphatidylserine", dose: "100 mg", target: "Cortisol modulation under mental stress" },
 ];
 
 const eveningStack = [
-  { name: "Magnesium L-Threonate", dose: "2,000 mg (144 mg elemental Mg)", target: "Brain magnesium — synaptic density" },
+  { name: "Magnesium L-Threonate", dose: "2,000 mg (144 mg elemental Mg)", target: "Brain magnesium - synaptic density" },
   { name: "Choline (CDP-Choline)", dose: "250 mg", target: "Acetylcholine replenishment" },
   { name: "Ashwagandha (KSM-66)", dose: "300 mg", target: "Evening cortisol balance" },
 ];
 
 const peptides = [
-  { name: "Semax", dose: "250–600 mcg intranasal", target: "Focus, attention, BDNF upregulation", notes: "Russian nootropic peptide. Strong evidence for ADHD-like focus enhancement. 1-2x/day." },
-  { name: "Selank", dose: "250–600 mcg intranasal", target: "Anxiolytic, reduces brain fog", notes: "Paired well with Semax. Non-sedating anxiety reduction. 1-2x/day." },
-  { name: "Dihexa", dose: "8–45 mg oral", target: "Neural connectivity, HGF mimetic", notes: "Most potent known neurogenesis compound. Use in cycles (4-6 weeks on, 2 weeks off)." },
-  { name: "Pinealon", dose: "100–200 mcg/day (oral or injection)", target: "Pineal regulation, circadian repair", notes: "Short peptide from Khavinson group. Supports sleep-wake cognition linkage." },
+  { name: "Semax", dose: "300–600 mcg intranasal AM", target: "Focus, attention, BDNF upregulation", notes: "Russian nootropic peptide. Strong evidence for ADHD-like focus enhancement. 1-2x/day. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Selank", dose: "250–500 mcg intranasal", target: "Anxiolytic, reduces brain fog", notes: "Paired well with Semax for focus + anxiolysis. Non-sedating anxiety reduction. 1-2x/day. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Dihexa", dose: "8–25 mg/day", target: "Neural connectivity, HGF mimetic", notes: "Most potent known neurogenesis compound. Use in cycles (4-6 weeks on, 2 weeks off). Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Cerebrolysin", dose: "5–30 mL IM, course-based", target: "Neuroprotection, NGF/BDNF upregulation", notes: "Hydrolyzed porcine brain peptide fraction. Administered as IM or IV courses (typically 10-20 injections). Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Pinealon", dose: "1–3 mg sublingual", target: "Pineal regulation, circadian repair", notes: "Short peptide from Khavinson group. Supports sleep-wake cognition linkage. 10-day cycles 2-3x yearly. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+];
+
+type NootropicEntry = { name: string; dose: string; mechanism: string; notes: string };
+
+const racetams: NootropicEntry[] = [
+  { name: "Piracetam", dose: "1200–4800 mg/day (split doses)", mechanism: "Cholinergic modulation, baseline racetam - reference compound for the class", notes: "Requires adequate choline source (Alpha-GPC or Citicoline). Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Aniracetam", dose: "750–1500 mg/day", mechanism: "Anxiolytic + cognitive enhancement, fat-soluble - take with meals", notes: "AMPA modulation + D2/D4 agonism. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Oxiracetam", dose: "1200–2400 mg/day", mechanism: "Mild stimulant + memory enhancement, AMPA/NMDA modulator", notes: "More stimulating than piracetam. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Phenylpiracetam", dose: "100–300 mg intermittent use only", mechanism: "Stimulant racetam - dopamine/norepinephrine reuptake inhibition", notes: "Banned in athletic competition (WADA). Rapid tolerance; use no more than 2-3x/week. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "4F-Phenylpiracetam (Fonturacetam)", dose: "50–150 mg intermittent use only", mechanism: "Stronger phenylpiracetam derivative - stimulant + cognitive", notes: "Faster onset and greater potency than phenylpiracetam. Intermittent use only to preserve efficacy. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Fasoracetam", dose: "10–30 mg/day", mechanism: "GABAergic modulation, anxiolytic racetam", notes: "Upregulates GABA-B receptors. May blunt effects of other racetams if stacked. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Coluracetam", dose: "3–30 mg/day", mechanism: "HACU (high-affinity choline uptake) enhancer - visual and sensory sharpening", notes: "Distinct visual quality enhancement reported by users. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "PRL-8-53", dose: "5–20 mg intermittent use only", mechanism: "Memory consolidation - strong verbal recall in controlled studies", notes: "Limited human data; used intermittently pre-study. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+];
+
+const eugeroics: NootropicEntry[] = [
+  { name: "Modafinil", dose: "100–200 mg AM", mechanism: "Wakefulness agent - dopamine/norepinephrine/histamine modulation", notes: "Schedule IV controlled substance. Requires Rx + DEA-registered prescriber. Half-life 12-15 hr; do not take after noon. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Armodafinil", dose: "75–150 mg AM", mechanism: "R-enantiomer of modafinil - longer half-life, sustained wakefulness", notes: "Schedule IV controlled substance. Longer active duration than modafinil. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Adrafinil", dose: "300–600 mg", mechanism: "Modafinil prodrug - hepatically converted, not scheduled in US", notes: "Liver enzyme monitoring recommended with regular use. 3-4x lower molar potency than modafinil. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+];
+
+const cholinergics: NootropicEntry[] = [
+  { name: "Alpha-GPC", dose: "300–600 mg", mechanism: "Acetylcholine precursor - crosses blood-brain barrier efficiently", notes: "Essential pairing with racetams to prevent choline depletion headaches. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Citicoline (CDP-Choline)", dose: "250–500 mg", mechanism: "Dual-action: choline + cytidine (converts to uridine) - brain membrane support", notes: "Better tolerated than Alpha-GPC in some users. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Centrophenoxine", dose: "250–500 mg", mechanism: "DMAE-derived cholinergic + antioxidant - lipofuscin clearance", notes: "May have anti-aging neuroprotective properties. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+];
+
+const otherNootropics: NootropicEntry[] = [
+  { name: "Noopept", dose: "10–30 mg/day", mechanism: "Peptide-derived dipeptide - NGF/BDNF upregulation, AMPA modulation", notes: "1000x more potent than piracetam by weight. Cycle 56 days on, 4 weeks off. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Sunifiram", dose: "5–10 mg intermittent use only", mechanism: "AMPAkine - dramatically potentiates AMPA receptor signaling", notes: "Very potent; minimal human safety data. Intermittent only. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Tianeptine Sodium", dose: "12.5 mg TID (3x/day)", mechanism: "Mood stabilization + cognitive enhancement via glutamate/opioid modulation", notes: "ADDICTION RISK: Do not escalate dose. Not for use in patients with opioid use history. Scheduled in some states. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "NSI-189", dose: "40–80 mg/day", mechanism: "Neurogenesis in hippocampus - BDNF-mediated, anti-depressant action", notes: "Experimental compound. Human trial data limited. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Ibutamoren (MK-677)", dose: "10–25 mg PM", mechanism: "GH secretagogue - indirect cognitive benefit via sleep quality and IGF-1", notes: "Increases GH and IGF-1; take at night. Not a SARM despite common misclassification. Water retention common. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
+  { name: "Methylene Blue", dose: "0.5–4 mg/kg", mechanism: "Mitochondrial electron carrier - enhances ATP production and memory consolidation", notes: "MAO inhibitor: contraindicated with SSRIs, SNRIs, triptans, stimulants. Use pharmaceutical-grade USP only. Discuss dosing with prescribing physician. Individual response varies; titrate carefully." },
 ];
 
 const targets = [
@@ -75,11 +111,11 @@ export default function CognitiveProtocolPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
                   <p className="text-blue-400 font-semibold text-sm mb-1">Students & Exam Prep</p>
-                  <p className="text-gray-400 text-sm">Board exams, EA exam, bar exam, MCAT — anyone needing sustained cognitive load over months.</p>
+                  <p className="text-gray-400 text-sm">Board exams, EA exam, bar exam, MCAT - anyone needing sustained cognitive load over months.</p>
                 </div>
                 <div>
                   <p className="text-blue-400 font-semibold text-sm mb-1">High-Performance Professionals</p>
-                  <p className="text-gray-400 text-sm">Physicians, executives, engineers — complex decisions, deep work, context switching.</p>
+                  <p className="text-gray-400 text-sm">Physicians, executives, engineers - complex decisions, deep work, context switching.</p>
                 </div>
                 <div>
                   <p className="text-blue-400 font-semibold text-sm mb-1">Age-Related Decline</p>
@@ -190,16 +226,111 @@ export default function CognitiveProtocolPage() {
           </section>
 
           <section className="py-16 bg-[#0d0d1a]/60">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <ScrollFade>
+                <div className="text-center mb-12">
+                  <h2 className="font-serif text-4xl font-bold text-white mb-4">Advanced Nootropics</h2>
+                  <p className="text-gray-400 max-w-2xl mx-auto">Discuss with Physician before use. All compounds below require individual assessment, contraindication review, and titration guidance.</p>
+                </div>
+              </ScrollFade>
+
+              <ScrollFade delay={50}>
+                <div className="bg-[#1a1a2e] border border-purple-500/30 rounded-xl p-8 mb-8">
+                  <h3 className="font-serif text-2xl font-bold text-white mb-2">Racetam Family</h3>
+                  <p className="text-purple-400 text-sm mb-6">Cholinergic modulation class. All racetams require co-administration with a choline source (Alpha-GPC or Citicoline).</p>
+                  <div className="space-y-4">
+                    {racetams.map((c, i) => (
+                      <div key={i} className="bg-[#0a0a0a] border border-[#2a2a4e] rounded-lg p-5">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <p className="text-white font-semibold">{c.name}</p>
+                            <p className="text-gray-500 text-xs">{c.mechanism}</p>
+                          </div>
+                          <span className="text-[#c9a84c] font-mono text-sm flex-shrink-0 ml-4">{c.dose}</span>
+                        </div>
+                        <p className="text-gray-400 text-sm">{c.notes}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollFade>
+
+              <ScrollFade delay={75}>
+                <div className="bg-[#1a1a2e] border border-yellow-500/30 rounded-xl p-8 mb-8">
+                  <h3 className="font-serif text-2xl font-bold text-white mb-2">Eugeroics (Wakefulness)</h3>
+                  <p className="text-yellow-400 text-sm mb-6">Prescription-only class. Modafinil and armodafinil are Schedule IV controlled substances requiring DEA-registered prescriber.</p>
+                  <div className="space-y-4">
+                    {eugeroics.map((c, i) => (
+                      <div key={i} className="bg-[#0a0a0a] border border-[#2a2a4e] rounded-lg p-5">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <p className="text-white font-semibold">{c.name}</p>
+                            <p className="text-gray-500 text-xs">{c.mechanism}</p>
+                          </div>
+                          <span className="text-[#c9a84c] font-mono text-sm flex-shrink-0 ml-4">{c.dose}</span>
+                        </div>
+                        <p className="text-gray-400 text-sm">{c.notes}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollFade>
+
+              <ScrollFade delay={100}>
+                <div className="bg-[#1a1a2e] border border-teal-500/30 rounded-xl p-8 mb-8">
+                  <h3 className="font-serif text-2xl font-bold text-white mb-2">Cholinergic Cofactors</h3>
+                  <p className="text-teal-400 text-sm mb-6">Must pair with racetams. Also useful standalone for memory and acetylcholine support.</p>
+                  <div className="space-y-4">
+                    {cholinergics.map((c, i) => (
+                      <div key={i} className="bg-[#0a0a0a] border border-[#2a2a4e] rounded-lg p-5">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <p className="text-white font-semibold">{c.name}</p>
+                            <p className="text-gray-500 text-xs">{c.mechanism}</p>
+                          </div>
+                          <span className="text-[#c9a84c] font-mono text-sm flex-shrink-0 ml-4">{c.dose}</span>
+                        </div>
+                        <p className="text-gray-400 text-sm">{c.notes}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollFade>
+
+              <ScrollFade delay={125}>
+                <div className="bg-[#1a1a2e] border border-rose-500/30 rounded-xl p-8 mb-8">
+                  <h3 className="font-serif text-2xl font-bold text-white mb-2">Other Advanced Compounds</h3>
+                  <p className="text-rose-400 text-sm mb-6">Varied mechanisms. Several carry significant cautions - read notes carefully before considering.</p>
+                  <div className="space-y-4">
+                    {otherNootropics.map((c, i) => (
+                      <div key={i} className="bg-[#0a0a0a] border border-[#2a2a4e] rounded-lg p-5">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <p className="text-white font-semibold">{c.name}</p>
+                            <p className="text-gray-500 text-xs">{c.mechanism}</p>
+                          </div>
+                          <span className="text-[#c9a84c] font-mono text-sm flex-shrink-0 ml-4">{c.dose}</span>
+                        </div>
+                        <p className="text-gray-400 text-sm">{c.notes}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollFade>
+            </div>
+          </section>
+
+          <section className="py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <ScrollFade>
                 <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-xl p-8">
                   <h3 className="font-serif text-2xl font-bold text-white mb-4">Protocol Cycling Strategy</h3>
                   <ul className="space-y-3 text-gray-300 text-sm">
                     <li><strong className="text-[#c9a84c]">OTC Foundation (daily, indefinitely):</strong> Alpha-GPC, Magnesium L-Threonate, Omega-3, Creatine.</li>
-                    <li><strong className="text-[#c9a84c]">Adaptogen Rotation (8 weeks on, 2 weeks off):</strong> Rhodiola, Ashwagandha, Bacopa — prevents tolerance.</li>
-                    <li><strong className="text-[#c9a84c]">Peptide Cycling:</strong> Semax/Selank — 4 weeks on, 1-2 weeks off. Dihexa — 4-6 weeks on, 2 weeks off.</li>
+                    <li><strong className="text-[#c9a84c]">Adaptogen Rotation (8 weeks on, 2 weeks off):</strong> Rhodiola, Ashwagandha, Bacopa - prevents tolerance.</li>
+                    <li><strong className="text-[#c9a84c]">Peptide Cycling:</strong> Semax/Selank - 4 weeks on, 1-2 weeks off. Dihexa - 4-6 weeks on, 2 weeks off.</li>
                     <li><strong className="text-[#c9a84c]">Stimulant Discipline:</strong> Caffeine ≤200 mg, L-theanine mandatory. No stimulants after 2 PM.</li>
-                    <li><strong className="text-[#c9a84c]">Bacopa ramp:</strong> Effects require 8-12 weeks of consistent use — do not stop early.</li>
+                    <li><strong className="text-[#c9a84c]">Bacopa ramp:</strong> Effects require 8-12 weeks of consistent use - do not stop early.</li>
                   </ul>
                 </div>
               </ScrollFade>
@@ -218,7 +349,7 @@ export default function CognitiveProtocolPage() {
                     <li><strong className="text-[#c9a84c]">Deep work blocks:</strong> 90-minute focus sessions, then 15-min recovery. Never violate.</li>
                     <li><strong className="text-[#c9a84c]">Sleep 7-9 hrs:</strong> Memory consolidation is 100% sleep-dependent. No exceptions.</li>
                     <li><strong className="text-[#c9a84c]">Cardio 3x/week:</strong> BDNF spikes 2-3x after Zone 2 cardio. Stack with nootropics pre-workout.</li>
-                    <li><strong className="text-[#c9a84c]">Spaced repetition:</strong> Anki or similar — active recall beats re-reading 10:1.</li>
+                    <li><strong className="text-[#c9a84c]">Spaced repetition:</strong> Anki or similar - active recall beats re-reading 10:1.</li>
                     <li><strong className="text-[#c9a84c]">Block social media during study:</strong> Cold Turkey, Opal, or Freedom. Dopamine hijacking kills focus.</li>
                   </ul>
                 </div>
@@ -272,13 +403,24 @@ export default function CognitiveProtocolPage() {
                     <li><strong className="text-white">Peptide prescriptions:</strong> All peptides require a physician consultation. These are not over-the-counter.</li>
                     <li><strong className="text-white">Drug interactions:</strong> Rhodiola + SSRIs = serotonin syndrome risk. Ashwagandha + thyroid meds = dose adjustment needed.</li>
                     <li><strong className="text-white">Stimulant stacking:</strong> Do not combine L-Tyrosine with ADHD stimulants (Adderall, Vyvanse) without physician approval.</li>
-                    <li><strong className="text-white">Alpha-GPC in young healthy adults:</strong> Emerging cardiovascular signal in heart failure patients — discuss if CV history.</li>
-                    <li><strong className="text-white">Bacopa side effects:</strong> GI upset common — take with food.</li>
+                    <li><strong className="text-white">Alpha-GPC in young healthy adults:</strong> Emerging cardiovascular signal in heart failure patients - discuss if CV history.</li>
+                    <li><strong className="text-white">Bacopa side effects:</strong> GI upset common - take with food.</li>
                   </ul>
                 </div>
               </ScrollFade>
             </div>
           </section>
+
+          <FullscriptCTA
+            highlights={[
+              "Lion's mane extract (30% beta-glucan)",
+              "Citicoline / Alpha-GPC",
+              "Bacopa monnieri standardized",
+              "Methylfolate (5-MTHF) + Methyl B12",
+              "Omega-3 EPA/DHA (high-EPA formula)",
+              "L-theanine + caffeine combo packs",
+            ]}
+          />
 
           <section className="py-16 bg-[#0d0d1a]/60">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -6,10 +6,10 @@
  * email to the patient) via Resend.
  *
  * Required env vars:
- *   GOOGLE_SERVICE_ACCOUNT_KEY    — full JSON key from Google Cloud Console, base64-encoded
- *   GOOGLE_SHEETS_INTAKE_LOG_ID   — Sheet ID for the intake log (falls back to PAYMENT_LOG_ID)
- *   RESEND_API_KEY                — Resend API key for sending email
- *   NOTIFICATION_EMAIL            — admin notification email (default: info@latomwellness.com)
+ *   GOOGLE_SERVICE_ACCOUNT_KEY    - full JSON key from Google Cloud Console, base64-encoded
+ *   GOOGLE_SHEETS_INTAKE_LOG_ID   - Sheet ID for the intake log (falls back to PAYMENT_LOG_ID)
+ *   RESEND_API_KEY                - Resend API key for sending email
+ *   NOTIFICATION_EMAIL            - admin notification email (default: info@latomwellness.com)
  *
  * Sheet columns (auto-created header on first write if sheet is empty):
  *   Date | Service | Patient Name | Email | Phone | Responses (JSON)
@@ -17,6 +17,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { rateLimit } from '../../../lib/rateLimit';
 
 export const runtime = 'edge';
 
@@ -38,7 +39,7 @@ interface ServiceAccountKey {
 }
 
 // ---------------------------------------------------------------------------
-// JWT / token helpers (pure Web Crypto — edge-safe)
+// JWT / token helpers (pure Web Crypto - edge-safe)
 // ---------------------------------------------------------------------------
 
 function b64url(buf: ArrayBuffer): string {
@@ -183,8 +184,8 @@ async function appendRow(sheetId: string, token: string, row: string[]): Promise
 
 const SERVICE_LABELS: Record<string, string> = {
   'weight-management': 'Weight Management',
-  'peptide-therapy': 'Peptide Therapy',
-  'hormone-optimization': 'Hormone Optimization',
+  'peptide-therapy': 'Recovery and Performance',
+  'hormone-optimization': 'Hormone Health Education',
   'surgical-preop': 'Surgical Preoperative Optimization',
   'general-wellness': 'General Wellness Consultation',
 };
@@ -228,7 +229,7 @@ function buildAdminEmail(
     .map(([key, value]) => `${humanizeKey(key)}: ${formatValue(value)}`)
     .join('\n');
 
-  const subject = `New Patient Intake — ${serviceLabel} — ${patientName}`;
+  const subject = `New Patient Intake - ${serviceLabel} - ${patientName}`;
 
   const html = `<!DOCTYPE html>
 <html>
@@ -264,13 +265,13 @@ function buildAdminEmail(
     </div>
 
     <div style="padding: 16px 28px; background-color: #0d0d1a; border-top: 1px solid rgba(201,168,76,0.2); color: #888; font-size: 12px; text-align: center;">
-      LATOM Wellness — Patient Intake Form
+      LATOM Wellness - Patient Intake Form
     </div>
   </div>
 </body>
 </html>`;
 
-  const text = `New Patient Intake — ${serviceLabel}
+  const text = `New Patient Intake - ${serviceLabel}
 
 Name:  ${patientName}
 Email: ${patientEmail}
@@ -287,7 +288,7 @@ function buildPatientConfirmEmail(
   serviceLabel: string,
   patientName: string,
 ): { subject: string; html: string; text: string } {
-  const subject = `We received your intake form — LATOM Wellness`;
+  const subject = `We received your intake form - LATOM Wellness`;
 
   const html = `<!DOCTYPE html>
 <html>
@@ -300,13 +301,13 @@ function buildPatientConfirmEmail(
 
     <div style="padding: 28px; color: #e5e5e5; line-height: 1.6;">
       <p style="margin: 0 0 14px;">We received your <strong style="color:#c9a84c;">${serviceLabel}</strong> intake form.</p>
-      <p style="margin: 0 0 14px;">Dr. Abdulhakim will review your responses before your consultation so your time together is focused on what matters most to you.</p>
+      <p style="margin: 0 0 14px;">Dr. Abdul will review your responses before your consultation so your time together is focused on what matters most to you.</p>
       <p style="margin: 0 0 14px;">If you haven't already booked a consultation, you can do so at <a href="https://latomwellness.com/book" style="color:#c9a84c;">latomwellness.com/book</a>.</p>
       <p style="margin: 18px 0 0; color: #aaaaaa; font-size: 13px;">Questions? Reply to this email and we'll get back to you within 24 hours.</p>
     </div>
 
     <div style="padding: 16px 28px; background-color: #0d0d1a; border-top: 1px solid rgba(201,168,76,0.2); color: #888; font-size: 12px; text-align: center;">
-      LATOM Wellness &bull; Dr. Abdi Abdulhakim, MD
+      LATOM Wellness &bull; Dr. Abdul, MD
     </div>
   </div>
 </body>
@@ -314,13 +315,13 @@ function buildPatientConfirmEmail(
 
   const text = `Thank you, ${patientName}
 
-We received your ${serviceLabel} intake form. Dr. Abdulhakim will review your responses before your consultation.
+We received your ${serviceLabel} intake form. Dr. Abdul will review your responses before your consultation.
 
 If you haven't already booked, visit https://latomwellness.com/book
 
 Questions? Reply to this email.
 
-— LATOM Wellness
+ -  LATOM Wellness
 `;
 
   return { subject, html, text };
@@ -331,6 +332,13 @@ Questions? Reply to this email.
 // ---------------------------------------------------------------------------
 
 export async function POST(req: NextRequest) {
+  const limit = rateLimit(req, { max: 10, windowMs: 60_000, bucket: 'sheets-log-intake' });
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    });
+  }
   try {
     const body = await req.json() as Partial<LogIntakeBody>;
     const { service, patientName, patientEmail, patientPhone, formResponses } = body;
@@ -344,7 +352,7 @@ export async function POST(req: NextRequest) {
 
     const serviceLabel = SERVICE_LABELS[service] ?? service;
 
-    // --- Google Sheets (optional — log failure but don't block email) ---
+    // --- Google Sheets (optional - log failure but don't block email) ---
     let sheetLogged = false;
     let sheetError: string | null = null;
     try {
@@ -431,7 +439,7 @@ export async function POST(req: NextRequest) {
     if (!sheetLogged && !emailSent) {
       return NextResponse.json(
         {
-          error: 'Failed to log intake — both Sheets and Email failed',
+          error: 'Failed to log intake - both Sheets and Email failed',
           sheetError,
           emailError,
         },

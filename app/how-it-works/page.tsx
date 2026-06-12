@@ -3,7 +3,7 @@ import Link from "next/link";
 import ScrollFade from "../components/ScrollFade";
 
 export const metadata: Metadata = {
-  title: "How It Works — Your Path to Better Health",
+  title: "How It Works - Your Path to Better Health",
   description:
     "Start with a free consultation. Get your labs done. Receive a custom physician protocol. Medications shipped directly. Here is exactly how LATOM Wellness works.",
 };
@@ -20,14 +20,14 @@ const steps = [
     number: "02",
     title: "Lab Work & Assessment",
     description:
-      "We order comprehensive bloodwork based on your program — metabolic panel, hormone levels, thyroid, CBC, and more. You can use a lab near you.",
+      "We order comprehensive bloodwork based on your program - metabolic panel, hormone levels, thyroid, CBC, and more. You can use a lab near you.",
     detail: "Results are reviewed by your physician within 48 hours. Lab panels are included in most programs, or we can work with recent labs you already have.",
   },
   {
     number: "03",
     title: "Custom Protocol",
     description:
-      "Your physician designs a personalized treatment plan — specific medications, doses, titration schedule, and lifestyle recommendations.",
+      "Your physician designs a personalized treatment plan - specific medications, doses, titration schedule, and lifestyle recommendations.",
     detail: "No cookie-cutter protocols. Your plan is built around your labs, history, and goals. You receive a full written protocol with injection instructions.",
   },
   {
@@ -48,12 +48,12 @@ const faqs = [
   {
     question: "Do I need lab work?",
     answer:
-      "Yes. We require baseline bloodwork before starting most programs — this is for your safety and to establish a baseline we can compare against over time. Follow-up labs are included in select plans. We can work with labs you've had in the past 90 days if they're comprehensive enough.",
+      "Yes. We require baseline bloodwork before starting most programs - this is for your safety and to establish a baseline we can compare against over time. Follow-up labs are included in select plans. We can work with labs you've had in the past 90 days if they're comprehensive enough.",
   },
   {
     question: "How often do I see the doctor?",
     answer:
-      "Monthly video check-ins are included in all programs. These are real physician appointments — not a nurse or PA. You'll review how you're feeling, adjust doses if needed, and discuss any questions. Between appointments, you can message the practice directly.",
+      "Monthly video check-ins are included in all programs. These are real physician appointments - not a nurse or PA. You'll review how you're feeling, adjust doses if needed, and discuss any questions. Between appointments, you can message the practice directly.",
   },
   {
     question: "What if I have side effects?",

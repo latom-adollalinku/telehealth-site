@@ -4,84 +4,87 @@ import ScrollFade from "./components/ScrollFade";
 import EmailCapture from "./components/EmailCapture";
 
 export const metadata: Metadata = {
-  title: "LATOM Wellness | Medical-Grade Wellness, Delivered",
+  title: "LATOM Wellness | The Labs Your Annual Physical Doesn't Order",
   description:
-    "Physician-supervised wellness consultation, longevity guidance, and lab interpretation. Evidence-based programs from a physician MD.",
+    "Personalized lab review and longevity consultation. Comprehensive panels at up to 60% off retail. Evidence-based supplement protocols. Cash-pay, no insurance hassle.",
 };
 
-const services = [
+const labCategories = [
   {
-    href: "/services#labs-membership",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      </svg>
-    ),
-    label: "LATOM Labs Membership",
+    title: "Metabolic Health",
     description:
-      "Every protocol, monthly drops, lab interpretation templates, and private community. No prescription — just physician-curated guidance.",
-    price: "$29/month — cancel anytime",
-    badge: "Best Value",
+      "Fasting insulin, HbA1c, advanced lipid panel with ApoB and Lp(a), high-sensitivity CRP. Catch insulin resistance and cardiovascular risk before they become disease.",
   },
   {
-    href: "/services#weight-management",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
-    label: "Weight Management",
+    title: "Gut Health",
     description:
-      "Physician-supervised weight management consultation with ongoing monitoring. Lose weight safely and keep it off.",
-    price: "Starting at $299/month",
-    badge: "Most Popular",
+      "Comprehensive stool analysis, celiac screen, calprotectin, food sensitivity panels. Pinpoint the root cause of bloating, brain fog, and fatigue.",
   },
   {
-    href: "/services#longevity-consultation",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-      </svg>
-    ),
-    label: "Longevity Consultation",
+    title: "Hormone Health Education",
     description:
-      "Physician-curated longevity protocols with custom plans designed around your health goals and lab results.",
-    price: "Starting at $199/month",
-    badge: "Physician-Designed",
+      "Full sex hormone panel including sensitive estradiol assay, DHEA-S, comprehensive thyroid (not just TSH), cortisol patterns. For men and women.",
   },
   {
-    href: "/services#hormone-consultation",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-      </svg>
-    ),
-    label: "Hormonal Health Consultation",
+    title: "Longevity and Cardiovascular Risk",
     description:
-      "Comprehensive hormonal health consultation with lab review and ongoing physician supervision.",
-    price: "Starting at $349/month",
-    badge: "Full Lab Panel",
+      "Lp(a), ApoB, NMR LipoProfile, homocysteine, Lp-PLA2. The risk markers that predict disease decades before symptoms.",
   },
   {
-    href: "/surgical-preop",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-      </svg>
-    ),
-    label: "Surgical Preop Optimization",
+    title: "Energy and Fatigue",
     description:
-      "8-week evidence-based protocol to optimize metabolic, cardiovascular, and respiratory health before surgery.",
-    price: "Starting at $249",
-    badge: "Anesthesiologist-Designed",
+      "B12, ferritin, methylmalonic acid, full thyroid, cortisol pattern, mitochondrial markers. Find what is actually draining your energy.",
+  },
+  {
+    title: "Brain and Cognitive Function",
+    description:
+      "Homocysteine, B vitamins, omega-3 index, inflammatory markers. For sharper thinking now and brain protection long-term.",
+  },
+];
+
+const howItWorks = [
+  {
+    step: "1",
+    title: "Book your consultation",
+    detail: "30-minute video visit. Cash pay through Helcim. Choose your slot at checkout.",
+  },
+  {
+    step: "2",
+    title: "Get your labs",
+    detail:
+      "We order the panels that actually matter. Up to 60% off retail through our partner laboratory network.",
+  },
+  {
+    step: "3",
+    title: "Build your plan",
+    detail:
+      "Personalized supplement protocol via Fullscript, lifestyle plan, and follow-up schedule. Ongoing access through your patient portal.",
   },
 ];
 
 const stats = [
   { value: "30+", label: "evidence-based wellness protocols" },
-  { value: "FDA", label: "approved medications when appropriate" },
+  { value: "60%", label: "average savings on lab panels" },
   { value: "100%", label: "physician supervised" },
   { value: "24hr", label: "physician response time" },
+];
+
+const whyDifferent = [
+  {
+    title: "Physician-led, not algorithm-led",
+    detail:
+      "Every consultation is with Dr. Abdul, MD. Not a nurse practitioner reading from a script. Not an AI chatbot. Real physician judgment on your numbers.",
+  },
+  {
+    title: "Cash pay, transparent pricing",
+    detail:
+      "No insurance hoops. No surprise bills. Consultations are clearly priced. Labs are wholesale. Supplements are direct-ship through our dispensary at practitioner-only pricing.",
+  },
+  {
+    title: "Built for optimization, not just disease care",
+    detail:
+      "We are not here to wait until you are sick. We work with you on prevention, optimization, longevity. The kind of medicine your primary care doctor does not have 15 minutes to do.",
+  },
 ];
 
 export default function HomePage() {
@@ -105,34 +108,38 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
             <div className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
             <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
-              Physician &bull; Now Accepting Patients
+              Now Accepting Patients
             </span>
           </div>
 
           <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Medical-Grade Wellness,
-            <span className="block gold-gradient mt-1">Delivered.</span>
+            Get the labs your
+            <span className="block gold-gradient mt-1">annual physical doesn't order.</span>
           </h1>
 
           <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Physician-supervised wellness consultation, longevity guidance, and lab interpretation.
-            Evidence-based programs from a physician MD — delivered digitally.
+            Personalized lab review and longevity consultation. Comprehensive panels at up to 60% off retail.
+            Evidence-based supplement protocols. Cash-pay, no insurance hassle.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
             <Link
               href="/book"
               className="px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-all duration-200 text-sm sm:text-base"
             >
-              Start Free Consultation
+              Book a Consultation
             </Link>
             <Link
-              href="/how-it-works"
+              href="#lead-magnet"
               className="px-8 py-4 border border-[#c9a84c]/40 text-[#c9a84c] font-semibold rounded tracking-wide hover:border-[#c9a84c] hover:bg-[#c9a84c]/5 transition-all duration-200 text-sm sm:text-base"
             >
-              How It Works
+              Free Guide: 5 Labs to Track
             </Link>
           </div>
+
+          <p className="text-gray-500 text-xs tracking-wide">
+            Cash pay. HIPAA secure. Direct physician access.
+          </p>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
@@ -158,61 +165,97 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services */}
+      {/* How It Works */}
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollFade>
           <div className="text-center mb-16">
             <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-3">
-              Our Programs
+              How It Works
             </p>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white">
-              Treatments We Offer
+              Three steps to a personalized longevity plan
             </h2>
-            <p className="text-gray-400 mt-4 max-w-xl mx-auto">
-              Every protocol is physician-designed, evidence-based, and individually supervised.
-            </p>
           </div>
         </ScrollFade>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((service, i) => (
+          {howItWorks.map((item, i) => (
             <ScrollFade key={i} delay={i * 100}>
-              <div className="relative group h-full">
-                <div className="absolute -top-3 left-6 z-10">
-                  <span className="px-3 py-1 bg-[#c9a84c] text-black text-xs font-bold rounded-full tracking-wide">
-                    {service.badge}
-                  </span>
+              <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-all duration-300">
+                <div className="w-12 h-12 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/40 flex items-center justify-center mb-5">
+                  <span className="text-[#c9a84c] font-serif font-bold text-xl">{item.step}</span>
                 </div>
+                <h3 className="font-serif text-2xl font-bold text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {item.detail}
+                </p>
+              </div>
+            </ScrollFade>
+          ))}
+        </div>
+      </section>
 
-                <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 hover:shadow-[0_0_30px_rgba(201,168,76,0.08)] transition-all duration-300 flex flex-col">
-                  <div className="text-[#c9a84c] mb-5">{service.icon}</div>
-                  <h3 className="font-serif text-2xl font-bold text-white mb-3">
-                    {service.label}
+      {/* Lab Categories */}
+      <section className="py-24 bg-[#0d0d1a]/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollFade>
+            <div className="text-center mb-16">
+              <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-3">
+                What We Test For
+              </p>
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white">
+                The labs that show what standard care misses
+              </h2>
+              <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+                We order the panels most physicians do not. Each consultation includes lab recommendations
+                tailored to your goals and history.
+              </p>
+            </div>
+          </ScrollFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {labCategories.map((cat, i) => (
+              <ScrollFade key={i} delay={i * 80}>
+                <div className="h-full p-7 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-all duration-300">
+                  <h3 className="font-serif text-xl font-bold text-white mb-3">
+                    {cat.title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed flex-1 mb-4">
-                    {service.description}
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {cat.description}
                   </p>
-                  <p className="text-[#c9a84c] font-semibold text-sm mb-6">
-                    {service.price}
-                  </p>
-                  <div className="flex gap-4">
-                    <Link
-                      href={service.href}
-                      className="inline-flex items-center gap-2 text-[#c9a84c] text-sm font-semibold hover:gap-3 transition-all duration-200"
-                    >
-                      Learn More
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                    <Link
-                      href="/book"
-                      className="inline-flex items-center gap-2 text-white text-sm font-semibold px-3 py-1 bg-[#c9a84c]/20 border border-[#c9a84c]/40 rounded hover:bg-[#c9a84c]/30 transition-all duration-200"
-                    >
-                      Book
-                    </Link>
-                  </div>
                 </div>
+              </ScrollFade>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why LATOM */}
+      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollFade>
+          <div className="text-center mb-16">
+            <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-3">
+              Why Patients Choose LATOM
+            </p>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white">
+              Medicine first. Always.
+            </h2>
+          </div>
+        </ScrollFade>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {whyDifferent.map((item, i) => (
+            <ScrollFade key={i} delay={i * 100}>
+              <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl">
+                <div className="w-2 h-2 rounded-full bg-[#c9a84c] mb-5" />
+                <h3 className="font-serif text-2xl font-bold text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {item.detail}
+                </p>
               </div>
             </ScrollFade>
           ))}
@@ -229,19 +272,19 @@ export default function HomePage() {
                   About Your Physician
                 </p>
                 <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
-                  Medicine First.
-                  <span className="block text-[#c9a84c]">Always.</span>
+                  Direct physician care.
+                  <span className="block text-[#c9a84c]">No middlemen.</span>
                 </h2>
                 <p className="text-gray-300 text-base leading-relaxed mb-6">
-                  Dr. Abdi Abdulhakim is an anesthesiologist who built LATOM Wellness
-                  to bring evidence-based longevity medicine directly to patients. Every protocol is
-                  physician-designed, evidence-based, and individually supervised.
+                  Dr. Abdul, MD, built LATOM Wellness to bring evidence-based longevity medicine
+                  directly to patients. Every protocol is physician-designed, evidence-based,
+                  and individually supervised.
                 </p>
                 <Link
                   href="/about"
                   className="inline-flex items-center gap-2 px-6 py-3 border border-[#c9a84c]/40 text-[#c9a84c] font-semibold rounded hover:border-[#c9a84c] hover:bg-[#c9a84c]/5 transition-all duration-200 text-sm"
                 >
-                  Meet Dr. Abdulhakim
+                  Meet Dr. Abdul
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -253,20 +296,20 @@ export default function HomePage() {
               <div className="space-y-4">
                 {[
                   {
-                    title: "MD, Anesthesiologist",
-                    detail: "Direct physician-led care, no PA mid-levels",
+                    title: "Direct physician-led care",
+                    detail: "Every consultation is with Dr. Abdul, MD. No PA mid-levels.",
                   },
                   {
-                    title: "Evidence-Based Protocols Only",
-                    detail: "Every treatment backed by clinical research and peer-reviewed literature",
+                    title: "Evidence-based protocols only",
+                    detail: "Every treatment backed by clinical research and peer-reviewed literature.",
                   },
                   {
-                    title: "FDA-Approved Medications",
-                    detail: "Brand-name prescriptions filled at licensed US pharmacies",
+                    title: "Physician-supervised programs",
+                    detail: "Every program is supervised by Dr. Abdul, MD. Clinical decisions are made individually, not algorithmically.",
                   },
                   {
-                    title: "Ongoing Physician Supervision",
-                    detail: "Monthly check-ins, lab reviews, and 24/7 access for questions",
+                    title: "Ongoing physician supervision",
+                    detail: "Monthly check-ins, lab reviews, and 24-hour response time for questions.",
                   },
                 ].map((item, i) => (
                   <div
@@ -288,30 +331,62 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24">
+      {/* Lead Magnet Capture */}
+      <section id="lead-magnet" className="py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollFade>
             <div className="p-12 bg-gradient-to-br from-[#1a1a2e] to-[#13132a] border border-[#c9a84c]/20 rounded-2xl">
               <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-4">
-                Get Started
+                Free Download
               </p>
               <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">
-                Start Your Free Consultation
+                The 5 Labs Every High-Performing Adult Should Track
               </h2>
-              <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto">
-                Tell us your goals. A physician will review your case and reach out within 24 hours.
+              <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                Most doctors order four labs at your annual physical. There are at least five you
+                should know about. Download the free guide and learn what to ask for, why each one
+                matters, and how to get them at a fraction of retail cost.
               </p>
               <div className="max-w-md mx-auto">
                 <EmailCapture
-                  placeholder="Enter your email to get started"
-                  buttonText="Start Free Consultation"
-                  interest="homepage-cta"
-                  successMessage="Got it. Dr. Abdulhakim's team will reach out within 24 hours."
+                  placeholder="Your email"
+                  buttonText="Send me the guide"
+                  interest="lead-magnet-5-labs"
+                  successMessage="Your download is starting. Check your downloads folder."
+                  downloadUrl="/protocols/5-labs-every-high-performing-adult-should-track.pdf"
+                  downloadFilename="LATOM-5-Labs-Every-High-Performing-Adult-Should-Track.pdf"
                 />
               </div>
               <p className="mt-4 text-gray-600 text-xs">
-                No obligation. HSA/FSA eligible. Not available in all states.
+                We respect your inbox. Unsubscribe any time.
+              </p>
+            </div>
+          </ScrollFade>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 bg-[#0d0d1a]/60 border-t border-[#c9a84c]/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <ScrollFade>
+            <div className="p-12">
+              <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-4">
+                Get Started
+              </p>
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">
+                Ready for a real conversation about your health?
+              </h2>
+              <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto">
+                Book a 30-minute video consultation. Cash pay. No insurance. No insurance hoops.
+              </p>
+              <Link
+                href="/book"
+                className="inline-block px-10 py-4 bg-[#c9a84c] text-black font-bold rounded tracking-wide hover:bg-[#e0c070] transition-colors"
+              >
+                Book a Consultation
+              </Link>
+              <p className="mt-4 text-gray-600 text-xs">
+                Currently accepting Virginia patients. Multi-state expansion in progress.
               </p>
             </div>
           </ScrollFade>

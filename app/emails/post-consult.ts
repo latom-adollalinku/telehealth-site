@@ -40,7 +40,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
     `
     : `
       <h3 style="color:#c9a84c; margin-top: 24px; font-size: 16px;">Next Steps</h3>
-      <p style="color:#e5e5e5; line-height: 1.6;">Dr. Abdulhakim will follow up with any prescribed protocols, pharmacy orders, or lab work separately. If you have questions, reply to this email or call (307) 210-8604.</p>
+      <p style="color:#e5e5e5; line-height: 1.6;">Dr. Abdul will follow up with any prescribed protocols, pharmacy orders, or lab work separately. If you have questions, reply to this email or call (307) 210-8604.</p>
     `;
 
   const invoiceBlock = invoiceAttached
@@ -51,7 +51,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
     `
     : '';
 
-  const subject = `Thank You — Your LATOM Wellness Consultation`;
+  const subject = `Thank You - Your LATOM Wellness Consultation`;
 
   const html = `<!DOCTYPE html>
 <html>
@@ -68,7 +68,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
           <tr>
             <td style="padding: 32px; border-bottom: 2px solid #c9a84c;">
               <h1 style="margin:0; color:#c9a84c; font-size: 24px; letter-spacing: 1px;">LATOM Wellness</h1>
-              <p style="margin: 4px 0 0 0; color:#999999; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Dr. Abdi Abdulhakim, MD</p>
+              <p style="margin: 4px 0 0 0; color:#999999; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Dr. Abdul, MD</p>
             </td>
           </tr>
           <tr>
@@ -107,7 +107,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
 </html>`;
 
   const text = [
-    `LATOM Wellness — Dr. Abdi Abdulhakim, MD`,
+    `LATOM Wellness - Dr. Abdul, MD`,
     ``,
     `Hi ${patientName},`,
     ``,
@@ -121,7 +121,7 @@ export function renderPostConsultEmail(data: PostConsultData): {
     `Next Steps:`,
     nextSteps
       ? nextSteps
-      : `Dr. Abdulhakim will follow up with any prescribed protocols, pharmacy orders, or lab work separately.`,
+      : `Dr. Abdul will follow up with any prescribed protocols, pharmacy orders, or lab work separately.`,
     ``,
     `Questions? Reply to this email or call (307) 210-8604.`,
     ``,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import ScrollFade from "../../components/ScrollFade";
+import FullscriptCTA from "../../components/FullscriptCTA";
 import ProtocolPaywall from "../../components/ProtocolPaywall";
 
 export const metadata: Metadata = {
@@ -11,18 +12,18 @@ export const metadata: Metadata = {
 };
 
 const morningRoutine = [
-  { name: "Gentle Cleanser", dose: "—", target: "Non-foaming, pH balanced (CeraVe, Vanicream)" },
+  { name: "Gentle Cleanser", dose: " - ", target: "Non-foaming, pH balanced (CeraVe, Vanicream)" },
   { name: "Vitamin C Serum (L-Ascorbic Acid)", dose: "10-20%", target: "Antioxidant, brightens, prevents damage (SkinCeuticals CE Ferulic or Maelove)" },
   { name: "Niacinamide Serum", dose: "5-10%", target: "Reduces redness, pore size, oil production (The Ordinary)" },
-  { name: "Moisturizer", dose: "—", target: "Ceramide-based (CeraVe AM)" },
+  { name: "Moisturizer", dose: " - ", target: "Ceramide-based (CeraVe AM)" },
   { name: "SPF 50 (mineral or chemical)", dose: "Full coverage", target: "Non-negotiable. Single most important step." },
 ];
 
 const eveningRoutine = [
-  { name: "Cleanser (double cleanse if sunscreen)", dose: "—", target: "Remove SPF and oil buildup" },
+  { name: "Cleanser (double cleanse if sunscreen)", dose: " - ", target: "Remove SPF and oil buildup" },
   { name: "Retinol or Tretinoin", dose: "0.3% → 0.5% → 1%", target: "Gold standard anti-aging. Prescription tret > OTC retinol" },
-  { name: "Moisturizer", dose: "—", target: "Repair barrier. CeraVe PM or La Roche-Posay." },
-  { name: "Optional: Peptide serum", dose: "—", target: "Matrixyl, copper peptides (controversial evidence)" },
+  { name: "Moisturizer", dose: " - ", target: "Repair barrier. CeraVe PM or La Roche-Posay." },
+  { name: "Optional: Peptide serum", dose: " - ", target: "Matrixyl, copper peptides (controversial evidence)" },
 ];
 
 const weeklyAdditions = [
@@ -55,7 +56,7 @@ export default function SkincareProtocolPage() {
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
             Skincare industry is $100B of mostly noise. Only 4 ingredients have strong RCT
-            evidence. This is the evidence-only routine — no marketing, no $400 serums.
+            evidence. This is the evidence-only routine - no marketing, no $400 serums.
           </p>
         </div>
       </section>
@@ -174,11 +175,11 @@ export default function SkincareProtocolPage() {
                     Retinol irritation is the #1 reason people quit. Ramp slowly.
                   </p>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li><strong className="text-[#c9a84c]">Weeks 1-2:</strong> Retinol 0.3% — 2x/week, pea-sized amount, on moisturized skin</li>
+                    <li><strong className="text-[#c9a84c]">Weeks 1-2:</strong> Retinol 0.3% - 2x/week, pea-sized amount, on moisturized skin</li>
                     <li><strong className="text-[#c9a84c]">Weeks 3-4:</strong> Increase to 3x/week</li>
                     <li><strong className="text-[#c9a84c]">Weeks 5-8:</strong> Every other night</li>
                     <li><strong className="text-[#c9a84c]">Weeks 9+:</strong> Nightly if tolerating. Can increase to 0.5% or 1%.</li>
-                    <li><strong className="text-[#c9a84c]">Prescription upgrade:</strong> Tretinoin 0.025%-0.1% — stronger and better studied. Requires physician.</li>
+                    <li><strong className="text-[#c9a84c]">Prescription upgrade:</strong> Tretinoin 0.025%-0.1% - stronger and better studied. Requires physician.</li>
                   </ul>
                 </div>
               </ScrollFade>
@@ -207,7 +208,7 @@ export default function SkincareProtocolPage() {
                       </div>
                     ))}
                     <div className="flex items-center justify-between px-6 py-4 bg-[#0a0a0a]">
-                      <span className="text-white font-semibold">Total — Entire 3-Month Routine</span>
+                      <span className="text-white font-semibold">Total - Entire 3-Month Routine</span>
                       <span className="font-serif text-2xl font-bold text-[#c9a84c]">~$102</span>
                     </div>
                   </div>
@@ -223,7 +224,7 @@ export default function SkincareProtocolPage() {
                   <h3 className="text-amber-400 font-semibold mb-4">Safety Notes</h3>
                   <ul className="space-y-3 text-gray-400 text-sm">
                     <li><strong className="text-white">Don&apos;t combine same night:</strong> Vitamin C + Retinol. Or Retinol + AHA/BHA. Alternate nights.</li>
-                    <li><strong className="text-white">Retinol + sun:</strong> Retinol thins the outer skin layer — always wear SPF the next day.</li>
+                    <li><strong className="text-white">Retinol + sun:</strong> Retinol thins the outer skin layer - always wear SPF the next day.</li>
                     <li><strong className="text-white">Pregnancy/nursing:</strong> No retinol or tretinoin. Stick to Vitamin C and SPF.</li>
                     <li><strong className="text-white">Sensitive skin:</strong> Start with retinol 0.1% or skip retinol and use peptides instead.</li>
                     <li><strong className="text-white">Everything else is optional:</strong> You can get 80% of benefits from these 4 ingredients. Don&apos;t fall for $400 serums.</li>
@@ -232,6 +233,17 @@ export default function SkincareProtocolPage() {
               </ScrollFade>
             </div>
           </section>
+          <FullscriptCTA
+            highlights={[
+              "Collagen peptides (Type I + III)",
+              "Vitamin C (liposomal)",
+              "Astaxanthin",
+              "Hyaluronic acid",
+              "Omega-3 EPA/DHA",
+              "Zinc picolinate",
+            ]}
+          />
+
         </ProtocolPaywall>
       </Suspense>
     </>

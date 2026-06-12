@@ -22,12 +22,6 @@ export default function Footer() {
               >
                 info@latomwellness.com
               </a>
-              <a
-                href="tel:3072108604"
-                className="hover:text-[#c9a84c] transition-colors"
-              >
-                (307) 210-8604
-              </a>
             </div>
           </div>
 
@@ -43,7 +37,7 @@ export default function Footer() {
                 { href: '/services#hormone-consultation', label: 'Hormonal Health Consultation' },
                 { href: '/how-it-works', label: 'How It Works' },
                 { href: '/calculator', label: 'Dosing Guide' },
-                { href: '/about', label: 'About Dr. Abdulhakim' },
+                { href: '/about', label: 'About Dr. Abdul' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -66,6 +60,7 @@ export default function Footer() {
               {[
                 { href: '/privacy', label: 'Privacy Policy' },
                 { href: '/terms', label: 'Terms of Service' },
+                { href: '/legal', label: 'Legal & Copyright' },
                 { href: '/contact', label: 'Contact' },
               ].map((link) => (
                 <li key={link.href}>
@@ -88,12 +83,17 @@ export default function Footer() {
             physician-led telehealth consultation practice. All clinical programs are physician-supervised.
             When prescriptions are clinically appropriate, they are dispensed by licensed US pharmacies.
             This service is available only to patients in states where
-            Dr. Abdulhakim is licensed. Not a substitute for in-person emergency care.
+            Dr. Abdul is licensed. Not a substitute for in-person emergency care.
             Results described are individual and not guaranteed. This site does not provide
-            emergency medical services — if you are experiencing a medical emergency, call 911.
+            emergency medical services - if you are experiencing a medical emergency, call 911.
           </p>
           <p className="mt-4 text-gray-600 text-xs">
-            &copy; {new Date().getFullYear()} LATOM Wellness / Telehealth PLLC. All rights reserved.
+            &copy; 2026 LATOM Wellness, PLLC. All Rights Reserved.{" "}
+            Proprietary protocols. No AI training license granted.{" "}
+            <Link href="/legal" className="hover:text-[#c9a84c] transition-colors underline underline-offset-2">
+              See /legal
+            </Link>
+            .
           </p>
         </div>
       </div>

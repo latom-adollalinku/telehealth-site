@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { rateLimit } from '../../../lib/rateLimit';
 
 export const runtime = 'edge';
 
@@ -8,13 +9,34 @@ function hex(r: number, g: number, b: number) {
   return rgb(r / 255, g / 255, b / 255);
 }
 
-const GOLD = hex(201, 168, 76);    // #c9a84c — brand gold
+const GOLD = hex(201, 168, 76);    // #c9a84c - brand gold
 const DARK = hex(26, 26, 26);      // near-black
 const MID  = hex(80, 80, 80);      // secondary text
 const LIGHT = hex(245, 245, 245);  // row bg
 const WHITE = rgb(1, 1, 1);
 
 export async function POST(req: NextRequest) {
+  const limit = rateLimit(req, { max: 10, windowMs: 60_000, bucket: 'admin-generate-invoice' });
+  if (!limit.ok) {
+    return new Response(JSON.stringify({ error: 'Too many requests' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    });
+  }
+  // Admin auth: this route generates PDFs containing patient PII.
+  const adminToken = process.env.ADMIN_SECRET_TOKEN;
+  if (!adminToken) {
+    return NextResponse.json(
+      { error: 'Server misconfiguration: ADMIN_SECRET_TOKEN not set' },
+      { status: 503 },
+    );
+  }
+  const provided =
+    req.headers.get('x-admin-token') ||
+    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
+  if (provided !== adminToken) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   try {
     const body = await req.json();
 
@@ -125,8 +147,7 @@ export async function POST(req: NextRequest) {
     // ── From section (right column) ──────────────────────────────────────────
     page.drawText('FROM', { x: width / 2, y: billTop, size: 8, font: fontBold, color: GOLD });
     page.drawText('LATOM Wellness', { x: width / 2, y: billTop - 16, size: 11, font: fontBold, color: DARK });
-    page.drawText('Dr. Abdi Abdulhakim, MD', { x: width / 2, y: billTop - 31, size: 9, font: fontRegular, color: MID });
-    page.drawText('Anesthesiologist', { x: width / 2, y: billTop - 46, size: 9, font: fontRegular, color: MID });
+    page.drawText('Dr. Abdul, MD', { x: width / 2, y: billTop - 31, size: 9, font: fontRegular, color: MID });
 
     // ── Service table ─────────────────────────────────────────────────────────
     const tableTop = billTop - 85;
@@ -141,7 +162,7 @@ export async function POST(req: NextRequest) {
     const rowY = tableTop - 28;
     page.drawRectangle({ x: 36, y: rowY - 6, width: width - 72, height: 22, color: LIGHT });
 
-    page.drawText('Consultation with Dr. Abdulhakim, MD', {
+    page.drawText('Consultation with Dr. Abdul, MD', {
       x: 44, y: rowY + 3, size: 9, font: fontRegular, color: DARK,
     });
     page.drawText('30 minutes', {
