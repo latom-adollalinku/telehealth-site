@@ -20,6 +20,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { rateLimit } from '../../../lib/rateLimit';
+import { getDB } from '../../../lib/db';
 
 export const runtime = 'edge';
 
@@ -211,7 +212,35 @@ export async function POST(req: NextRequest) {
   const source = (body.source || 'email-capture').trim().slice(0, 80);
   const date = new Date().toISOString();
 
-  const results = { sheet: false, email: false };
+  const results = { d1: false, sheet: false, email: false };
+
+  // 0. Persist to D1 (visible in /admin/leads, no external service needed)
+  try {
+    const db = getDB();
+    await db
+      .prepare(
+        `CREATE TABLE IF NOT EXISTS leads (
+           id INTEGER PRIMARY KEY AUTOINCREMENT,
+           created_at TEXT NOT NULL,
+           name TEXT,
+           email TEXT NOT NULL,
+           phone TEXT,
+           interest TEXT,
+           page TEXT,
+           source TEXT
+         )`,
+      )
+      .run();
+    await db
+      .prepare(
+        'INSERT INTO leads (created_at, name, email, phone, interest, page, source) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      )
+      .bind(date, name, email, phone, interest, page, source)
+      .run();
+    results.d1 = true;
+  } catch (err) {
+    console.error('[leads/capture] D1 insert failed:', err);
+  }
 
   // 1. Append to the Leads sheet
   try {

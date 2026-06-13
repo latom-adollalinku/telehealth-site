@@ -13,7 +13,7 @@ export default function AdminLoginPage() {
   useEffect(() => {
     const stored = sessionStorage.getItem('latom_admin_token');
     if (stored) {
-      router.push('/admin/bookings');
+      router.push('/admin');
     }
   }, [router]);
 
@@ -29,7 +29,7 @@ export default function AdminLoginPage() {
 
       if (res.ok) {
         sessionStorage.setItem('latom_admin_token', token);
-        router.push('/admin/bookings');
+        router.push('/admin');
       } else if (res.status === 401) {
         setError('Invalid token. Try again.');
       } else {
