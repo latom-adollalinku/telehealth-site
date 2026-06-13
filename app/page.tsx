@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ScrollFade from "./components/ScrollFade";
+import { HeroReveal, StaggerGroup, StaggerItem, HoverCard } from "./components/Motion";
 import EmailCapture from "./components/EmailCapture";
 
 export const metadata: Metadata = {
@@ -105,41 +106,51 @@ export default function HomePage() {
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
-            <div className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
-            <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
-              Now Accepting Patients
-            </span>
-          </div>
+          <HeroReveal delay={0}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
+              <div className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
+              <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
+                Now Accepting Patients
+              </span>
+            </div>
+          </HeroReveal>
 
-          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Get the labs your
-            <span className="block gold-gradient mt-1">annual physical doesn't order.</span>
-          </h1>
+          <HeroReveal delay={0.1}>
+            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+              Get the labs your
+              <span className="block gold-gradient mt-1">annual physical doesn't order.</span>
+            </h1>
+          </HeroReveal>
 
-          <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Personalized lab review and longevity consultation. Comprehensive panels at up to 60% off retail.
-            Evidence-based supplement protocols. Cash-pay, no insurance hassle.
-          </p>
+          <HeroReveal delay={0.2}>
+            <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+              Personalized lab review and longevity consultation. Comprehensive panels at up to 60% off retail.
+              Evidence-based supplement protocols. Cash-pay, no insurance hassle.
+            </p>
+          </HeroReveal>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-            <Link
-              href="/book"
-              className="px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-all duration-200 text-sm sm:text-base"
-            >
-              Book a Consultation
-            </Link>
-            <Link
-              href="#lead-magnet"
-              className="px-8 py-4 border border-[#c9a84c]/40 text-[#c9a84c] font-semibold rounded tracking-wide hover:border-[#c9a84c] hover:bg-[#c9a84c]/5 transition-all duration-200 text-sm sm:text-base"
-            >
-              Free Guide: 5 Labs to Track
-            </Link>
-          </div>
+          <HeroReveal delay={0.3}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+              <Link
+                href="/book"
+                className="px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#c9a84c]/20 transition-all duration-200 text-sm sm:text-base"
+              >
+                Book a Consultation
+              </Link>
+              <Link
+                href="#lead-magnet"
+                className="px-8 py-4 border border-[#c9a84c]/40 text-[#c9a84c] font-semibold rounded tracking-wide hover:border-[#c9a84c] hover:bg-[#c9a84c]/5 hover:-translate-y-0.5 transition-all duration-200 text-sm sm:text-base"
+              >
+                Free Guide: 5 Labs to Track
+              </Link>
+            </div>
+          </HeroReveal>
 
-          <p className="text-gray-500 text-xs tracking-wide">
-            Cash pay. HIPAA secure. Direct physician access.
-          </p>
+          <HeroReveal delay={0.4}>
+            <p className="text-gray-500 text-xs tracking-wide">
+              Cash pay. HIPAA secure. Direct physician access.
+            </p>
+          </HeroReveal>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
@@ -178,23 +189,25 @@ export default function HomePage() {
           </div>
         </ScrollFade>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {howItWorks.map((item, i) => (
-            <ScrollFade key={i} delay={i * 100}>
-              <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/40 flex items-center justify-center mb-5">
-                  <span className="text-[#c9a84c] font-serif font-bold text-xl">{item.step}</span>
+            <StaggerItem key={i} className="h-full">
+              <HoverCard className="h-full">
+                <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-colors duration-300">
+                  <div className="w-12 h-12 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/40 flex items-center justify-center mb-5">
+                    <span className="text-[#c9a84c] font-serif font-bold text-xl">{item.step}</span>
+                  </div>
+                  <h3 className="font-serif text-2xl font-bold text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {item.detail}
+                  </p>
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-white mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {item.detail}
-                </p>
-              </div>
-            </ScrollFade>
+              </HoverCard>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       {/* Lab Categories */}
@@ -215,20 +228,22 @@ export default function HomePage() {
             </div>
           </ScrollFade>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {labCategories.map((cat, i) => (
-              <ScrollFade key={i} delay={i * 80}>
-                <div className="h-full p-7 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-all duration-300">
-                  <h3 className="font-serif text-xl font-bold text-white mb-3">
-                    {cat.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {cat.description}
-                  </p>
-                </div>
-              </ScrollFade>
+              <StaggerItem key={i} className="h-full">
+                <HoverCard className="h-full">
+                  <div className="h-full p-7 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-colors duration-300">
+                    <h3 className="font-serif text-xl font-bold text-white mb-3">
+                      {cat.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {cat.description}
+                    </p>
+                  </div>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
@@ -245,21 +260,23 @@ export default function HomePage() {
           </div>
         </ScrollFade>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {whyDifferent.map((item, i) => (
-            <ScrollFade key={i} delay={i * 100}>
-              <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl">
-                <div className="w-2 h-2 rounded-full bg-[#c9a84c] mb-5" />
-                <h3 className="font-serif text-2xl font-bold text-white mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {item.detail}
-                </p>
-              </div>
-            </ScrollFade>
+            <StaggerItem key={i} className="h-full">
+              <HoverCard className="h-full">
+                <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/30 transition-colors duration-300">
+                  <div className="w-2 h-2 rounded-full bg-[#c9a84c] mb-5" />
+                  <h3 className="font-serif text-2xl font-bold text-white mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {item.detail}
+                  </p>
+                </div>
+              </HoverCard>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       {/* About teaser */}

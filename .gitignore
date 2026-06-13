@@ -38,3 +38,4 @@ secrets/
 *.tsbuildinfo
 next-env.d.ts
 .wrangler/
+.gstack/

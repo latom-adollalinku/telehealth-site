@@ -12,6 +12,7 @@
     "@calcom/atoms": "^2.5.0",
     "@cloudflare/next-on-pages": "^1.13.16",
     "@next/font": "^14.2.15",
+    "framer-motion": "^11.18.2",
     "next": "^15.5.2",
     "pdf-lib": "^1.17.1",
     "react": "^18",
