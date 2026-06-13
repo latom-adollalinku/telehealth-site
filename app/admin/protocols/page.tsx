@@ -115,7 +115,7 @@ export default function AdminProtocols() {
                     </td>
                     <td className="px-4 py-3 text-right">
                       <Link
-                        href={p.href}
+                        href={`${p.href}?preview=owner`}
                         target="_blank"
                         className="text-xs text-gray-400 border border-gray-700 rounded px-2 py-1 hover:text-white hover:border-gray-500"
                       >
