@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ScrollFade from "./components/ScrollFade";
-import { HeroReveal, StaggerGroup, StaggerItem, HoverCard } from "./components/Motion";
+import { HeroReveal, StaggerGroup, StaggerItem } from "./components/Motion";
 import EmailCapture from "./components/EmailCapture";
 
 export const metadata: Metadata = {
@@ -176,104 +176,105 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* How It Works - connected process, left-aligned, ghost numerals */}
+      <section className="py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollFade>
-          <div className="text-center mb-16">
+          <div className="mb-20 max-w-2xl">
             <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-3">
               How It Works
             </p>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight">
               Three steps to a personalized longevity plan
             </h2>
           </div>
         </ScrollFade>
 
-        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-14">
           {howItWorks.map((item, i) => (
-            <StaggerItem key={i} className="h-full">
-              <HoverCard className="h-full">
-                <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-colors duration-300">
-                  <div className="w-12 h-12 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/40 flex items-center justify-center mb-5">
-                    <span className="text-[#c9a84c] font-serif font-bold text-xl">{item.step}</span>
-                  </div>
-                  <h3 className="font-serif text-2xl font-bold text-white mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {item.detail}
-                  </p>
+            <StaggerItem key={i}>
+              <div className="relative">
+                {i < howItWorks.length - 1 && (
+                  <div className="hidden md:block absolute top-9 left-20 right-[-2.5rem] h-px bg-gradient-to-r from-[#c9a84c]/30 to-transparent" />
+                )}
+                <div className="font-serif text-7xl font-bold text-[#c9a84c]/20 leading-none mb-5 tabular-nums">
+                  0{item.step}
                 </div>
-              </HoverCard>
+                <h3 className="font-serif text-2xl font-bold text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+                  {item.detail}
+                </p>
+              </div>
             </StaggerItem>
           ))}
         </StaggerGroup>
       </section>
 
-      {/* Lab Categories */}
-      <section className="py-24 bg-[#0d0d1a]/60">
+      {/* Lab Categories - editorial index, numbered rows, hairline rules */}
+      <section className="py-28 bg-[#0d0d1a]/60 border-y border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade>
-            <div className="text-center mb-16">
+            <div className="mb-16 max-w-2xl">
               <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-3">
                 What We Test For
               </p>
-              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white">
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight">
                 The labs that show what standard care misses
               </h2>
-              <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+              <p className="text-gray-400 mt-4">
                 We order the panels most physicians do not. Each consultation includes lab recommendations
                 tailored to your goals and history.
               </p>
             </div>
           </ScrollFade>
 
-          <StaggerGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerGroup className="border-t border-white/10">
             {labCategories.map((cat, i) => (
-              <StaggerItem key={i} className="h-full">
-                <HoverCard className="h-full">
-                  <div className="h-full p-7 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/40 transition-colors duration-300">
-                    <h3 className="font-serif text-xl font-bold text-white mb-3">
+              <StaggerItem key={i}>
+                <div className="group grid grid-cols-[2.5rem_1fr] md:grid-cols-[4rem_1fr] gap-x-4 md:gap-x-8 py-7 border-b border-white/10 hover:bg-white/[0.015] transition-colors">
+                  <div className="font-serif text-2xl md:text-3xl text-[#c9a84c]/50 group-hover:text-[#c9a84c] transition-colors tabular-nums pt-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="md:flex md:items-baseline md:gap-12">
+                    <h3 className="font-serif text-xl md:text-2xl font-bold text-white mb-2 md:mb-0 md:w-72 md:flex-shrink-0">
                       {cat.title}
                     </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className="text-gray-400 text-sm leading-relaxed md:flex-1">
                       {cat.description}
                     </p>
                   </div>
-                </HoverCard>
+                </div>
               </StaggerItem>
             ))}
           </StaggerGroup>
         </div>
       </section>
 
-      {/* Why LATOM */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Why LATOM - big editorial statements, two-column rows */}
+      <section className="py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollFade>
-          <div className="text-center mb-16">
+          <div className="mb-16 max-w-2xl">
             <p className="text-[#c9a84c] text-sm tracking-widest uppercase font-medium mb-3">
               Why Patients Choose LATOM
             </p>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight">
               Medicine first. Always.
             </h2>
           </div>
         </ScrollFade>
 
-        <StaggerGroup className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <StaggerGroup>
           {whyDifferent.map((item, i) => (
-            <StaggerItem key={i} className="h-full">
-              <HoverCard className="h-full">
-                <div className="h-full p-8 bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl hover:border-[#c9a84c]/30 transition-colors duration-300">
-                  <div className="w-2 h-2 rounded-full bg-[#c9a84c] mb-5" />
-                  <h3 className="font-serif text-2xl font-bold text-white mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {item.detail}
-                  </p>
-                </div>
-              </HoverCard>
+            <StaggerItem key={i}>
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-3 md:gap-16 py-10 border-t border-white/10 last:border-b">
+                <h3 className="font-serif text-2xl md:text-3xl font-bold text-white leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-base leading-relaxed md:pt-2">
+                  {item.detail}
+                </p>
+              </div>
             </StaggerItem>
           ))}
         </StaggerGroup>
