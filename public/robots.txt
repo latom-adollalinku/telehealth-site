@@ -1,20 +1,30 @@
 # LATOM Wellness, PLLC — All proprietary protocols are copyright protected. Unauthorized scraping prohibited. See /legal.
 
-# Allow mainstream search engines
+# Allow mainstream search engines (except protocols)
 User-agent: Googlebot
 Allow: /
+Disallow: /protocols
+Disallow: /protocols/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /protocols
+Disallow: /protocols/
 
 User-agent: DuckDuckBot
 Allow: /
+Disallow: /protocols
+Disallow: /protocols/
 
 User-agent: Slurp
 Allow: /
+Disallow: /protocols
+Disallow: /protocols/
 
 User-agent: Yandex
 Allow: /
+Disallow: /protocols
+Disallow: /protocols/
 
 # Block AI training bots
 User-agent: GPTBot
@@ -152,8 +162,10 @@ Disallow: /
 User-agent: Discordbot
 Disallow: /
 
-# Default: allow all other crawlers
+# Default: allow all other crawlers (except protocols)
 User-agent: *
 Allow: /
+Disallow: /protocols
+Disallow: /protocols/
 
 Sitemap: https://latomwellness.com/sitemap.xml
