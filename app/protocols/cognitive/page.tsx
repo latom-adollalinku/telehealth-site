@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Cognitive & Study Protocol | Nootropic Stack for Focus and Memory",
   description:
     "Evidence-based cognitive enhancement stack. OTC nootropics (L-theanine, Rhodiola, Bacopa, Lion's Mane) plus physician-prescribed peptides (Dihexa, Semax, Selank, Pinealon).",
+  robots: { index: false, follow: false }
 };
 
 const morningStack = [

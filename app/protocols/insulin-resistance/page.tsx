@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Insulin Resistance and Metabolic Reset Protocol | LATOM Wellness",
   description:
     "Catch insulin resistance 10-20 years before HbA1c rises. Fiber strategies, plant compounds, natural insulin-sensitivity strategies, lifestyle, plus prescription options discussed during consultation when appropriate.",
+  robots: { index: false, follow: false }
 };
 
 const previewSummary = {

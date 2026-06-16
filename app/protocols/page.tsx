@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Physician-Designed Protocols | Evidence-Based Supplement Stacks",
   description:
     "Evidence-based supplement protocols designed by a physician. Cardiovascular, metabolic, hormone, longevity, and surgical preop optimization.",
+  robots: { index: false, follow: false },
 };
 
 import { protocols } from "../lib/protocolCatalog";

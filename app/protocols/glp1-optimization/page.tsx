@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Weight Management Optimization | Metabolic Support Protocol",
   description:
     "Sustainable weight management education: mitochondrial support, muscle preservation, lifestyle multipliers, and evidence-based supplement strategies for lasting results.",
+  robots: { index: false, follow: false }
 };
 
 const morningStack = [

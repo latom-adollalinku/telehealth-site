@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Metabolic Optimization Protocol | HbA1c & Insulin Resistance",
   description:
     "Evidence-based supplement protocol for pre-diabetes, elevated HbA1c, insulin resistance, and weight management. Physician-designed stack with berberine, inositol, and lifestyle integration.",
+  robots: { index: false, follow: false }
 };
 
 const morningStack = [

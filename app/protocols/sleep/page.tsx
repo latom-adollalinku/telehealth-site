@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Sleep & Recovery Protocol | DSIP, Melatonin & Deep Sleep Stack",
   description:
     "Evidence-based sleep optimization protocol. OTC stack (magnesium, glycine, apigenin, ashwagandha) plus physician-prescribed peptides (DSIP, Epithalamin).",
+  robots: { index: false, follow: false }
 };
 
 const preWindDownStack = [

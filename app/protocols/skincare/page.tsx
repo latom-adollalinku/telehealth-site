@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Skincare Basics Protocol | Evidence-Based 4-Ingredient Stack",
   description:
     "The only 4 skincare ingredients with strong RCT evidence: Retinol, Niacinamide, Vitamin C, SPF. Physician-designed routine for men and women 30+.",
+  robots: { index: false, follow: false }
 };
 
 const morningRoutine = [
