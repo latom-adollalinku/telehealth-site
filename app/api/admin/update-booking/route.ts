@@ -18,7 +18,7 @@
  * Rate limit: 30 req/min per IP (bucket: admin-update-booking)
  *
  * Env:
- *   ADMIN_SECRET_TOKEN — required
+ *   ADMIN_SECRET_TOKEN - required
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -45,8 +45,7 @@ function requireAdmin(req: NextRequest): NextResponse | null {
   }
   const provided =
     req.headers.get('x-admin-token') ||
-    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '') ||
-    new URL(req.url).searchParams.get('token');
+    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
   if (provided !== expected) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }

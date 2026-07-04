@@ -25,6 +25,18 @@ export async function POST(req: NextRequest) {
       headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
     });
   }
+  // Admin-triggered email to an arbitrary recipient: must not be publicly
+  // callable (open-relay abuse of the practice's Resend account).
+  const expected = process.env.ADMIN_SECRET_TOKEN;
+  if (!expected) {
+    return NextResponse.json({ error: 'Server misconfiguration: ADMIN_SECRET_TOKEN not set' }, { status: 503 });
+  }
+  const provided =
+    req.headers.get('x-admin-token') ||
+    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
+  if (provided !== expected) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   try {
     const body = (await req.json()) as Partial<BookingConfirmedPayload>;
     const {

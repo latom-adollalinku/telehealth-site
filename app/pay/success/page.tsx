@@ -35,7 +35,7 @@ function SuccessContent() {
   useEffect(() => {
     if (!protocolId || !protocolNames[protocolId]) return;
 
-    // Helcim flow: booking id present — verify server-side before trusting
+    // Helcim flow: booking id present - verify server-side before trusting
     if (bookingId) {
       setVerifyPending(true);
       // Pull email from localStorage if we already have it, else rely on D1 lookup by bookingId.

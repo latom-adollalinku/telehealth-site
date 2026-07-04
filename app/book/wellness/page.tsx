@@ -100,7 +100,7 @@ export default function WellnessBookPage() {
 
   return (
     <>
-      {/* Section 1 — Hero */}
+      {/* Section 1 - Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,168,76,0.05)_0%,_transparent_70%)]" />
@@ -116,7 +116,7 @@ export default function WellnessBookPage() {
         </div>
       </section>
 
-      {/* Section 2 — Wellness Engagement Acknowledgment */}
+      {/* Section 2 - Wellness Engagement Acknowledgment */}
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#0d0d1a]" />
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -206,13 +206,13 @@ export default function WellnessBookPage() {
         </div>
       </section>
 
-      {/* Section 3 — Booking Form / Section 4 — Confirmation */}
+      {/* Section 3 - Booking Form / Section 4 - Confirmation */}
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d1a] to-[#0a0a0a]" />
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollFade delay={200}>
             {submitted ? (
-              /* Section 4 — Confirmation */
+              /* Section 4 - Confirmation */
               <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 text-center">
                 <div className="w-12 h-12 bg-[#c9a84c]/10 border border-[#c9a84c]/30 rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg
@@ -245,7 +245,7 @@ export default function WellnessBookPage() {
                 </button>
               </div>
             ) : (
-              /* Section 3 — Booking Form */
+              /* Section 3 - Booking Form */
               <div
                 className={`bg-[#1a1a2e] border rounded-lg p-8 transition-colors duration-300 ${
                   acknowledged

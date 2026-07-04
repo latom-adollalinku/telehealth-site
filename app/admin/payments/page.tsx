@@ -14,6 +14,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -101,9 +102,18 @@ function savePayments(payments: PendingPayment[]): void {
 // ---------------------------------------------------------------------------
 
 export default function AdminPaymentsPage() {
+  const router = useRouter();
   const [payments, setPayments] = useState<PendingPayment[]>([]);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const [filterStatus, setFilterStatus] = useState<'all' | 'pending' | 'paid'>('all');
+
+  // Same session gate as the other admin pages
+  useEffect(() => {
+    const stored = sessionStorage.getItem('latom_admin_token');
+    if (!stored) {
+      router.push('/admin/login');
+    }
+  }, [router]);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -135,7 +145,10 @@ export default function AdminPaymentsPage() {
     try {
       const res = await fetch('/api/sheets/log-payment', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-token': sessionStorage.getItem('latom_admin_token') ?? '',
+        },
         body: JSON.stringify({
           bookingId: payment.bookingId,
           patientName: payment.patientName,

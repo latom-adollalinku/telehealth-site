@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
       String(paymentMethod || 'Unknown');
     const accountInfo =
       paymentMethod === 'card' ? 'Helcim dashboard' :
-      paymentMethod === 'zelle' ? `${process.env.ZELLE_EMAIL || 'pay@latomwellness.com'}` :
-      paymentMethod === 'venmo' ? `@${process.env.VENMO_USERNAME || 'latom-wellness'}` :
+      paymentMethod === 'zelle' ? `${process.env.NEXT_PUBLIC_ZELLE_EMAIL || process.env.ZELLE_EMAIL || 'pay@latomwellness.com'}` :
+      paymentMethod === 'venmo' ? `@${process.env.NEXT_PUBLIC_VENMO_USERNAME || process.env.VENMO_USERNAME || 'latom-wellness'}` :
       'manual review';
 
     const protocolSection = isProtocolPayment

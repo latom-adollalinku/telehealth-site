@@ -96,6 +96,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         paymentType: 'purchase',
         amount,
         currency: 'USD',
+        // Stamped onto the resulting card transaction so the webhook can
+        // resolve it back to this booking (see /api/payment/webhook fallback).
+        invoiceNumber: String(bookingId),
       }),
     });
 

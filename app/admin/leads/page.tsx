@@ -121,15 +121,15 @@ export default function AdminLeads() {
                         minute: '2-digit',
                       })}
                     </td>
-                    <td className="px-4 py-3 text-white">{l.name || '—'}</td>
+                    <td className="px-4 py-3 text-white">{l.name || '-'}</td>
                     <td className="px-4 py-3">
                       <a href={`mailto:${l.email}`} className="text-[#c9a84c] hover:underline">
                         {l.email}
                       </a>
                     </td>
-                    <td className="px-4 py-3 text-gray-300">{l.phone || '—'}</td>
-                    <td className="px-4 py-3 text-gray-300">{l.interest || '—'}</td>
-                    <td className="px-4 py-3 text-gray-500 text-xs">{l.source || '—'}</td>
+                    <td className="px-4 py-3 text-gray-300">{l.phone || '-'}</td>
+                    <td className="px-4 py-3 text-gray-300">{l.interest || '-'}</td>
+                    <td className="px-4 py-3 text-gray-500 text-xs">{l.source || '-'}</td>
                   </tr>
                 ))}
               </tbody>

@@ -4,13 +4,13 @@
  * Auth-gated endpoint that returns recent D1 bookings.
  *
  * Query params:
- *   ?status=pending  — filter by payment_status (optional)
- *   ?limit=100       — default 100, max 500 (optional)
+ *   ?status=pending  - filter by payment_status (optional)
+ *   ?limit=100       - default 100, max 500 (optional)
  *
  * Response: { bookings: BookingRow[], count: number }
  *
  * Env:
- *   ADMIN_SECRET_TOKEN — required
+ *   ADMIN_SECRET_TOKEN - required
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -28,8 +28,7 @@ function requireAdmin(req: NextRequest): NextResponse | null {
   }
   const provided =
     req.headers.get('x-admin-token') ||
-    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '') ||
-    new URL(req.url).searchParams.get('token');
+    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
   if (provided !== expected) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }

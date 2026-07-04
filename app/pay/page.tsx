@@ -150,7 +150,31 @@ function PayPageContent() {
             const successUrl = isProtocolPayment
               ? `/pay/success?protocol=${protocolId}&booking=${bookingId}`
               : `/pay/success?booking=${bookingId}`;
-            router.push(successUrl);
+
+            // Extract the Helcim transaction id from the success payload and
+            // let the server verify + mark the booking paid before redirecting.
+            // Server re-checks everything against the Helcim API, so a bad or
+            // missing id here just falls back to the webhook path.
+            let transactionId: string | undefined;
+            try {
+              const raw = event.data.eventMessage;
+              const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+              const tx = parsed?.data?.data ?? parsed?.data ?? parsed;
+              transactionId = tx?.transactionId ?? tx?.cardTransactionId ?? tx?.id;
+            } catch {}
+
+            const finish = () => router.push(successUrl);
+            if (transactionId) {
+              fetch('/api/helcim/confirm', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ bookingId, transactionId: String(transactionId) }),
+              })
+                .catch(() => {})
+                .finally(finish);
+            } else {
+              finish();
+            }
           } else if (event.data.eventStatus === 'ABORTED') {
             setSubmitError('Payment was declined. Try a different card or call (307) 210-8604.');
             setSubmitting(false);
@@ -162,7 +186,7 @@ function PayPageContent() {
 
         window.addEventListener('message', messageHandler);
         window.appendHelcimPayIframe!(checkoutToken, true);
-        // Do not setSubmitting(false) here — the message handler resolves the state.
+        // Do not setSubmitting(false) here - the message handler resolves the state.
         return;
       }
     } catch {

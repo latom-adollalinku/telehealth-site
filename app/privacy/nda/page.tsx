@@ -19,7 +19,7 @@ export default function NDAPage() {
         </h1>
         <p className="text-gray-400 leading-relaxed mb-10">
           To protect your privacy, our confidentiality and non-disclosure terms
-          are reviewed and signed securely inside the patient portal — after you
+          are reviewed and signed securely inside the patient portal after you
           book your consultation. You will receive portal access immediately
           upon booking.
         </p>

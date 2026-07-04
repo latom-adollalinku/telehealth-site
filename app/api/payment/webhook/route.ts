@@ -81,20 +81,52 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({ error: 'Missing transaction id in payload' }, { status: 400 });
   }
 
-  // --- Look up booking by helcim_transaction_id or notes ---
-  const db = getDB();
-  const row = await db
-    .prepare('SELECT id FROM bookings WHERE helcim_transaction_id = ? OR notes LIKE ? LIMIT 1')
-    .bind(id, `%${id}%`)
-    .first<{ id: number }>();
+  try {
+    // --- Look up booking by helcim_transaction_id or notes ---
+    const db = getDB();
+    const row = await db
+      .prepare('SELECT id FROM bookings WHERE helcim_transaction_id = ? OR notes LIKE ? LIMIT 1')
+      .bind(id, `%${id}%`)
+      .first<{ id: number }>();
 
-  if (!row) {
-    console.error('Helcim webhook for unknown transaction:', id);
-    return Response.json({ received: true, action: 'not_found' }, { status: 200 });
+    let bookingId = row?.id ?? null;
+
+    // --- Fallback: resolve via Helcim Card Transaction API. The webhook
+    //     payload only carries the transaction id; the transaction record
+    //     carries the invoiceNumber we stamped at checkout (= booking id). ---
+    if (bookingId === null) {
+      const apiKey = (process.env.HELCIM_API_KEY ?? '').trim();
+      if (apiKey) {
+        const txRes = await fetch(
+          `https://api.helcim.com/v2/card-transactions/${encodeURIComponent(id)}`,
+          { headers: { 'api-token': apiKey, accept: 'application/json' } },
+        );
+        if (txRes.ok) {
+          const tx = (await txRes.json()) as { invoiceNumber?: string; status?: string };
+          const invoiceId = Number(tx.invoiceNumber);
+          const approved = String(tx.status ?? '').toUpperCase() === 'APPROVED';
+          if (approved && Number.isInteger(invoiceId) && invoiceId > 0) {
+            const byInvoice = await db
+              .prepare('SELECT id FROM bookings WHERE id = ? LIMIT 1')
+              .bind(invoiceId)
+              .first<{ id: number }>();
+            bookingId = byInvoice?.id ?? null;
+          }
+        }
+      }
+    }
+
+    if (bookingId === null) {
+      console.error('Helcim webhook for unknown transaction:', id);
+      return Response.json({ received: true, action: 'not_found' }, { status: 200 });
+    }
+
+    await updateBookingStatus(bookingId, { payment_status: 'paid', helcim_transaction_id: id });
+
+    return Response.json({ success: true, bookingId }, { status: 200 });
+  } catch (err) {
+    // 500 so Helcim retries the delivery rather than dropping the event.
+    console.error('Helcim webhook processing failed:', err);
+    return Response.json({ error: 'Webhook processing failed' }, { status: 500 });
   }
-
-  const bookingId = row.id;
-  await updateBookingStatus(bookingId, { payment_status: 'paid', helcim_transaction_id: id });
-
-  return Response.json({ success: true, bookingId }, { status: 200 });
 }

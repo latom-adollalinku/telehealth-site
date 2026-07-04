@@ -22,8 +22,7 @@ function requireAdmin(req: NextRequest): NextResponse | null {
   }
   const provided =
     req.headers.get('x-admin-token') ||
-    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '') ||
-    new URL(req.url).searchParams.get('token');
+    req.headers.get('authorization')?.replace(/^Bearer\s+/i, '');
   if (provided !== expected) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }

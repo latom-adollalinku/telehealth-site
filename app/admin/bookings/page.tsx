@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { Fragment, useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 // ---------------------------------------------------------------------------
@@ -56,7 +56,7 @@ function formatDate(ts: number): string {
 }
 
 function fmtAmount(cents: number | null): string {
-  if (cents === null || cents === undefined) return '—';
+  if (cents === null || cents === undefined) return '-';
   return '$' + (cents / 100).toFixed(2);
 }
 
@@ -373,9 +373,8 @@ export default function AdminBookingsPage() {
                 </thead>
                 <tbody>
                   {bookings.map((b) => (
-                    <>
+                    <Fragment key={b.id}>
                       <tr
-                        key={b.id}
                         className="border-b border-gray-900 hover:bg-gray-900 transition-colors"
                       >
                         <td className="py-3 pr-4 text-gray-400 whitespace-nowrap">
@@ -395,7 +394,7 @@ export default function AdminBookingsPage() {
                             <p className="text-gray-600 text-xs mt-0.5">{b.protocol_id}</p>
                           )}
                         </td>
-                        <td className="py-3 pr-4 text-gray-500">{b.patient_state ?? '—'}</td>
+                        <td className="py-3 pr-4 text-gray-500">{b.patient_state ?? '-'}</td>
                         <td className="py-3 pr-4 text-gray-300">{fmtAmount(b.amount_cents)}</td>
                         <td className="py-3 pr-4">
                           <StatusBadge status={b.payment_status} />
@@ -453,7 +452,7 @@ export default function AdminBookingsPage() {
                           </td>
                         </tr>
                       )}
-                    </>
+                    </Fragment>
                   ))}
                 </tbody>
               </table>
