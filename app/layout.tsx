@@ -4,85 +4,91 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: {
-    default: "LATOM Wellness | Physician-Led Telehealth Consultation",
-    template: "%s | LATOM Wellness",
-  },
-  description:
-    "Physician-led telehealth consultation, longevity guidance, and laboratory interpretation services. Membership-based digital wellness.",
-  keywords: [
-    "telehealth weight management",
-    "weight loss physician",
-    "physician telehealth consultation",
-    "wellness consultation",
-    "hormonal health consultation",
-    "longevity medicine",
-    "lab interpretation",
-    "digital wellness membership",
-  ],
-  authors: [{ name: "Dr. Abdul, MD" }],
-  creator: "LATOM Wellness",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://latomwellness.com",
-    siteName: "LATOM Wellness",
-    title: "LATOM Wellness | Physician-Led Telehealth Consultation",
-    description:
-      "Physician-led telehealth consultation, longevity guidance, and laboratory interpretation services.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "LATOM Wellness",
-    description:
-      "Physician-supervised wellness consultation, longevity guidance, and lab interpretation services.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+ title: {
+ default: "LATOM Wellness | Physician-Led Telehealth Consultation",
+ template: "%s | LATOM Wellness",
+ },
+ description:
+ "Physician-led telehealth consultation, longevity guidance, and laboratory interpretation services. Membership-based digital wellness.",
+ keywords: [
+ "telehealth weight management",
+ "weight loss physician",
+ "physician telehealth consultation",
+ "wellness consultation",
+ "hormonal health consultation",
+ "longevity medicine",
+ "lab interpretation",
+ "digital wellness membership",
+ ],
+ authors: [{ name: "Dr. Abdul, MD" }],
+ creator: "LATOM Wellness",
+ openGraph: {
+ type: "website",
+ locale: "en_US",
+ url: "https://latomwellness.com",
+ siteName: "LATOM Wellness",
+ title: "LATOM Wellness | Physician-Led Telehealth Consultation",
+ description:
+ "Physician-led telehealth consultation, longevity guidance, and laboratory interpretation services.",
+ },
+ twitter: {
+ card: "summary_large_image",
+ title: "LATOM Wellness",
+ description:
+ "Physician-supervised wellness consultation, longevity guidance, and lab interpretation services.",
+ },
+ robots: {
+ index: true,
+ follow: true,
+ },
 };
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "MedicalOrganization",
-  name: "LATOM Wellness",
-  description:
-    "Physician-led telehealth consultation practice offering wellness consultation, longevity guidance, and lab interpretation services. Led by Dr. Abdul, MD.",
-  url: "https://latomwellness.com",
-  email: "info@latomwellness.com",
-  founder: {
-    "@type": "Person",
-    name: "Dr. Abdul",
-    jobTitle: "Physician",
-  },
-  serviceType: [
-    "Weight Management Consultation",
-    "Longevity Consultation",
-    "Hormonal Health Consultation",
-    "Lab Interpretation Services",
-    "Digital Wellness Membership",
-  ],
+ "@context": "https://schema.org",
+ "@type": "MedicalOrganization",
+ name: "LATOM Wellness",
+ description:
+ "Physician-led telehealth consultation practice offering wellness consultation, longevity guidance, and lab interpretation services. Led by Dr. Abdul, MD.",
+ url: "https://latomwellness.com",
+ email: "info@latomwellness.com",
+ founder: {
+ "@type": "Person",
+ name: "Dr. Abdul",
+ jobTitle: "Physician",
+ },
+ serviceType: [
+ "Weight Management Consultation",
+ "Longevity Consultation",
+ "Hormonal Health Consultation",
+ "Lab Interpretation Services",
+ "Digital Wellness Membership",
+ ],
 };
 
 export default function RootLayout({
-  children,
+ children,
 }: Readonly<{
-  children: React.ReactNode;
+ children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </head>
-      <body className="bg-[#0a0a0a] text-white antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+ return (
+ <html lang="en" suppressHydrationWarning>
+ <head>
+ <script
+ type="application/ld+json"
+ dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+ />
+ {/* Set theme before paint to avoid flash */}
+ <script
+ dangerouslySetInnerHTML={{
+ __html: `(function(){try{var t=localStorage.getItem('latom-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`,
+ }}
+ />
+ </head>
+ <body className="bg-bg text-ink antialiased">
+ <Navbar />
+ <main>{children}</main>
+ <Footer />
+ </body>
+ </html>
+ );
 }

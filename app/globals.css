@@ -2,87 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap');
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --gold: #c9a84c;
-  --gold-light: #e0c070;
-  --gold-dark: #9a7a30;
-  --card-dark: #1a1a2e;
+/* ============================================================
+   LATOM WELLNESS — Clinical Editorial design system
+   Light + dark via [data-theme]. No gradients, glows, or blur.
+   ============================================================ */
+
+:root,
+[data-theme='light'] {
+  --bg: #faf9f6;          /* off-white paper */
+  --surface: #ffffff;     /* cards / panels */
+  --surface-2: #f3f1ea;   /* subtle fill */
+  --text: #14171a;        /* near-black ink */
+  --muted: #5b6166;       /* secondary text */
+  --faint: #878d88;       /* tertiary */
+  --line: #e4e2db;        /* hairline rules */
+  --accent: #1f5c4d;      /* forest green */
+  --accent-hover: #17493c;
+  --accent-soft: #eaf1ee; /* accent tint bg */
+  --on-accent: #ffffff;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+[data-theme='dark'] {
+  --bg: #0e1512;
+  --surface: #14201b;
+  --surface-2: #1a2a22;
+  --text: #ecefea;
+  --muted: #9aa39d;
+  --faint: #6f7a73;
+  --line: #26332c;
+  --accent: #6fbfa3;
+  --accent-hover: #8ad0b6;
+  --accent-soft: #16281f;
+  --on-accent: #0e1512;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; background: var(--bg); }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-h1, h2, h3 {
-  font-family: 'Playfair Display', Georgia, serif;
-  line-height: 1.2;
+h1, h2, h3, h4 {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--text);
 }
+
+a { color: inherit; }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
 
+  /* was a gold gradient — now a solid, intentional accent */
   .gold-gradient {
-    background: linear-gradient(135deg, #c9a84c, #e0c070, #c9a84c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+    background: none;
   }
 
-  .gold-border {
-    border: 1px solid rgba(201, 168, 76, 0.3);
-  }
-
-  .card-glow {
-    box-shadow: 0 0 30px rgba(201, 168, 76, 0.08);
-  }
+  .gold-border { border: 1px solid var(--line); }
+  .card-glow { box-shadow: none; }
+  .rule { border-top: 1px solid var(--line); }
 
   .section-fade {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(16px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
+  .section-fade.visible { opacity: 1; transform: translateY(0); }
+}
 
-  .section-fade.visible {
-    opacity: 1;
-    transform: translateY(0);
+@layer components {
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--accent); color: var(--on-accent);
+    padding: 0.85rem 1.6rem; border-radius: 2px;
+    font-weight: 500; letter-spacing: 0.01em;
+    transition: background-color 0.15s ease;
+  }
+  .btn-primary:hover { background: var(--accent-hover); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; color: var(--text);
+    padding: 0.85rem 1.6rem; border-radius: 2px;
+    border: 1px solid var(--line);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .btn-ghost:hover { border-color: var(--accent); }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
   }
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: #c9a84c;
-  border-radius: 3px;
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 0; }
 
-/* Focus styles */
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: #c9a84c !important;
-  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2);
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--accent-soft);
 }

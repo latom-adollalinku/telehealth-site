@@ -4,7 +4,7 @@
  * Shared Framer Motion primitives for LATOM Wellness.
  *
  * - StaggerGroup / StaggerItem: reveal a set of children in sequence as they
- *   scroll into view. Used for card grids so they cascade instead of popping.
+ * scroll into view. Used for card grids so they cascade instead of popping.
  * - HoverCard: a card wrapper that lifts and brightens on hover, with a spring.
  * - FadeUp: a single element reveal (thin wrapper over the same motion config).
  *
@@ -21,55 +21,55 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 // ---------------------------------------------------------------------------
 
 const groupVariants: Variants = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.05 },
-  },
+ hidden: {},
+ show: {
+ transition: { staggerChildren: 0.09, delayChildren: 0.05 },
+ },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
+ hidden: { opacity: 0, y: 28 },
+ show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
 };
 
 export function StaggerGroup({
-  children,
-  className = '',
+ children,
+ className = '',
 }: {
-  children: React.ReactNode;
-  className?: string;
+ children: React.ReactNode;
+ className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
-  if (reduceMotion) return <div className={className}>{children}</div>;
+ const reduceMotion = useReducedMotion();
+ if (reduceMotion) return <div className={className}>{children}</div>;
 
-  return (
-    <motion.div
-      className={className}
-      variants={groupVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: '-80px' }}
-    >
-      {children}
-    </motion.div>
-  );
+ return (
+ <motion.div
+ className={className}
+ variants={groupVariants}
+ initial="hidden"
+ whileInView="show"
+ viewport={{ once: true, margin: '-80px' }}
+ >
+ {children}
+ </motion.div>
+ );
 }
 
 export function StaggerItem({
-  children,
-  className = '',
+ children,
+ className = '',
 }: {
-  children: React.ReactNode;
-  className?: string;
+ children: React.ReactNode;
+ className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
-  if (reduceMotion) return <div className={className}>{children}</div>;
+ const reduceMotion = useReducedMotion();
+ if (reduceMotion) return <div className={className}>{children}</div>;
 
-  return (
-    <motion.div className={className} variants={itemVariants}>
-      {children}
-    </motion.div>
-  );
+ return (
+ <motion.div className={className} variants={itemVariants}>
+ {children}
+ </motion.div>
+ );
 }
 
 // ---------------------------------------------------------------------------
@@ -77,24 +77,24 @@ export function StaggerItem({
 // ---------------------------------------------------------------------------
 
 export function HoverCard({
-  children,
-  className = '',
+ children,
+ className = '',
 }: {
-  children: React.ReactNode;
-  className?: string;
+ children: React.ReactNode;
+ className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
-  if (reduceMotion) return <div className={className}>{children}</div>;
+ const reduceMotion = useReducedMotion();
+ if (reduceMotion) return <div className={className}>{children}</div>;
 
-  return (
-    <motion.div
-      className={className}
-      whileHover={{ y: -6 }}
-      transition={{ type: 'spring', stiffness: 320, damping: 24 }}
-    >
-      {children}
-    </motion.div>
-  );
+ return (
+ <motion.div
+ className={className}
+ whileHover={{ y: -6 }}
+ transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+ >
+ {children}
+ </motion.div>
+ );
 }
 
 // ---------------------------------------------------------------------------
@@ -102,28 +102,28 @@ export function HoverCard({
 // ---------------------------------------------------------------------------
 
 export function FadeUp({
-  children,
-  className = '',
-  delay = 0,
+ children,
+ className = '',
+ delay = 0,
 }: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
+ children: React.ReactNode;
+ className?: string;
+ delay?: number;
 }) {
-  const reduceMotion = useReducedMotion();
-  if (reduceMotion) return <div className={className}>{children}</div>;
+ const reduceMotion = useReducedMotion();
+ if (reduceMotion) return <div className={className}>{children}</div>;
 
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, delay, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
+ return (
+ <motion.div
+ className={className}
+ initial={{ opacity: 0, y: 24 }}
+ whileInView={{ opacity: 1, y: 0 }}
+ viewport={{ once: true, margin: '-60px' }}
+ transition={{ duration: 0.6, delay, ease: EASE }}
+ >
+ {children}
+ </motion.div>
+ );
 }
 
 // ---------------------------------------------------------------------------
@@ -131,25 +131,25 @@ export function FadeUp({
 // ---------------------------------------------------------------------------
 
 export function HeroReveal({
-  children,
-  className = '',
-  delay = 0,
+ children,
+ className = '',
+ delay = 0,
 }: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
+ children: React.ReactNode;
+ className?: string;
+ delay?: number;
 }) {
-  const reduceMotion = useReducedMotion();
-  if (reduceMotion) return <div className={className}>{children}</div>;
+ const reduceMotion = useReducedMotion();
+ if (reduceMotion) return <div className={className}>{children}</div>;
 
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay, ease: EASE }}
-    >
-      {children}
-    </motion.div>
-  );
+ return (
+ <motion.div
+ className={className}
+ initial={{ opacity: 0, y: 20 }}
+ animate={{ opacity: 1, y: 0 }}
+ transition={{ duration: 0.7, delay, ease: EASE }}
+ >
+ {children}
+ </motion.div>
+ );
 }

@@ -3,10 +3,10 @@
 import { motion, useReducedMotion } from 'framer-motion';
 
 interface ScrollFadeProps {
-  children: React.ReactNode;
-  className?: string;
-  /** Delay in milliseconds before the reveal animation starts. */
-  delay?: number;
+ children: React.ReactNode;
+ className?: string;
+ /** Delay in milliseconds before the reveal animation starts. */
+ delay?: number;
 }
 
 /**
@@ -16,29 +16,29 @@ interface ScrollFadeProps {
  * instantly, no transform) for accessibility and crawler visibility.
  */
 export default function ScrollFade({
-  children,
-  className = '',
-  delay = 0,
+ children,
+ className = '',
+ delay = 0,
 }: ScrollFadeProps) {
-  const reduceMotion = useReducedMotion();
+ const reduceMotion = useReducedMotion();
 
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+ if (reduceMotion) {
+ return <div className={className}>{children}</div>;
+ }
 
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{
-        duration: 0.6,
-        delay: delay / 1000,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+ return (
+ <motion.div
+ className={className}
+ initial={{ opacity: 0, y: 24 }}
+ whileInView={{ opacity: 1, y: 0 }}
+ viewport={{ once: true, margin: '-60px' }}
+ transition={{
+ duration: 0.6,
+ delay: delay / 1000,
+ ease: [0.22, 1, 0.36, 1],
+ }}
+ >
+ {children}
+ </motion.div>
+ );
 }

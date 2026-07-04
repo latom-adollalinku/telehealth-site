@@ -2,119 +2,119 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "LATOM Medical & Wellness terms of service.",
+ title: "Terms of Service",
+ description: "LATOM Medical & Wellness terms of service.",
 };
 
 export default function TermsPage() {
-  return (
-    <div className="pt-28 pb-24 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="mb-10">
-        <Link href="/" className="text-[#c9a84c] text-sm hover:underline">
-          ← Back to Home
-        </Link>
-      </div>
+ return (
+ <div className="pt-28 pb-24 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div className="mb-10">
+ <Link href="/" className="text-accent text-sm hover:underline">
+ ← Back to Home
+ </Link>
+ </div>
 
-      <h1 className="font-serif text-4xl font-bold text-white mb-2">
-        Terms of Service
-      </h1>
-      <p className="text-gray-500 text-sm mb-10">Last updated: April 2026</p>
+ <h1 className="font-serif text-4xl font-bold text-ink mb-2">
+ Terms of Service
+ </h1>
+ <p className="text-faint text-sm mb-10">Last updated: April 2026</p>
 
-      <div className="space-y-8">
-        <section>
-          <h2 className="font-serif text-xl font-bold text-white mb-3">
-            Proprietary Content
-          </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            All medical protocol content, dosing tables, peptide databases, lab
-            interpretation templates, and wellness frameworks on this site are
-            proprietary and copyrighted by LATOM Wellness, PLLC. No license is
-            granted to reproduce, distribute, or use this content for AI training
-            or any commercial purpose. For full copyright, DMCA, and trademark
-            information, see our{" "}
-            <Link href="/legal" className="text-[#c9a84c] hover:underline">
-              Legal &amp; Copyright
-            </Link>{" "}
-            page.
-          </p>
-        </section>
+ <div className="space-y-8">
+ <section>
+ <h2 className="font-serif text-xl font-bold text-ink mb-3">
+ Proprietary Content
+ </h2>
+ <p className="text-muted text-sm leading-relaxed">
+ All medical protocol content, dosing tables, peptide databases, lab
+ interpretation templates, and wellness frameworks on this site are
+ proprietary and copyrighted by LATOM Wellness, PLLC. No license is
+ granted to reproduce, distribute, or use this content for AI training
+ or any commercial purpose. For full copyright, DMCA, and trademark
+ information, see our{" "}
+ <Link href="/legal" className="text-accent hover:underline">
+ Legal &amp; Copyright
+ </Link>{" "}
+ page.
+ </p>
+ </section>
 
-        <section>
-          <h2 className="font-serif text-xl font-bold text-white mb-3">
-            Agreement to Terms
-          </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            By accessing this website, you agree to be bound by these Terms of
-            Service and our Privacy Policy. If you do not agree, please do not
-            use this site.
-          </p>
-        </section>
+ <section>
+ <h2 className="font-serif text-xl font-bold text-ink mb-3">
+ Agreement to Terms
+ </h2>
+ <p className="text-muted text-sm leading-relaxed">
+ By accessing this website, you agree to be bound by these Terms of
+ Service and our Privacy Policy. If you do not agree, please do not
+ use this site.
+ </p>
+ </section>
 
-        <section>
-          <h2 className="font-serif text-xl font-bold text-white mb-3">
-            Educational Content Only
-          </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            All content on this site - including articles, guides, compound
-            profiles, and tax strategy information - is provided for educational
-            purposes only. It does not constitute medical, legal, financial, or
-            tax advice. Results described are individual examples and not
-            guaranteed.
-          </p>
-        </section>
+ <section>
+ <h2 className="font-serif text-xl font-bold text-ink mb-3">
+ Educational Content Only
+ </h2>
+ <p className="text-muted text-sm leading-relaxed">
+ All content on this site - including articles, guides, compound
+ profiles, and tax strategy information - is provided for educational
+ purposes only. It does not constitute medical, legal, financial, or
+ tax advice. Results described are individual examples and not
+ guaranteed.
+ </p>
+ </section>
 
-        <section>
-          <h2 className="font-serif text-xl font-bold text-white mb-3">
-            No Patient-Physician Relationship
-          </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            Accessing or submitting information on this site does not create a
-            patient-physician relationship with Dr. Abdul or any
-            affiliated provider. A formal patient-physician relationship is only
-            established through explicit written consent after proper intake
-            procedures.
-          </p>
-        </section>
+ <section>
+ <h2 className="font-serif text-xl font-bold text-ink mb-3">
+ No Patient-Physician Relationship
+ </h2>
+ <p className="text-muted text-sm leading-relaxed">
+ Accessing or submitting information on this site does not create a
+ patient-physician relationship with Dr. Abdul or any
+ affiliated provider. A formal patient-physician relationship is only
+ established through explicit written consent after proper intake
+ procedures.
+ </p>
+ </section>
 
-        <section>
-          <h2 className="font-serif text-xl font-bold text-white mb-3">
-            Consulting Services
-          </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            Tax and business consulting services are provided by Adolla Link
-            Management LLC. These are consulting services, not legal or
-            accounting services. Always consult a licensed CPA and attorney for
-            final tax and legal decisions.
-          </p>
-        </section>
+ <section>
+ <h2 className="font-serif text-xl font-bold text-ink mb-3">
+ Consulting Services
+ </h2>
+ <p className="text-muted text-sm leading-relaxed">
+ Tax and business consulting services are provided by Adolla Link
+ Management LLC. These are consulting services, not legal or
+ accounting services. Always consult a licensed CPA and attorney for
+ final tax and legal decisions.
+ </p>
+ </section>
 
-        <section>
-          <h2 className="font-serif text-xl font-bold text-white mb-3">
-            Limitation of Liability
-          </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            LATOM Medical & Wellness, Adolla Link Management LLC, and Dr.
-            Abdul are not liable for any direct, indirect,
-            incidental, or consequential damages resulting from use of
-            information on this site or decisions made based on content herein.
-          </p>
-        </section>
+ <section>
+ <h2 className="font-serif text-xl font-bold text-ink mb-3">
+ Limitation of Liability
+ </h2>
+ <p className="text-muted text-sm leading-relaxed">
+ LATOM Medical & Wellness, Adolla Link Management LLC, and Dr.
+ Abdul are not liable for any direct, indirect,
+ incidental, or consequential damages resulting from use of
+ information on this site or decisions made based on content herein.
+ </p>
+ </section>
 
-        <section>
-          <h2 className="font-serif text-xl font-bold text-white mb-3">
-            Contact
-          </h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            Questions about these terms:{" "}
-            <a
-              href="mailto:info@latomwellness.com"
-              className="text-[#c9a84c] hover:underline"
-            >
-              info@latomwellness.com
-            </a>
-          </p>
-        </section>
-      </div>
-    </div>
-  );
+ <section>
+ <h2 className="font-serif text-xl font-bold text-ink mb-3">
+ Contact
+ </h2>
+ <p className="text-muted text-sm leading-relaxed">
+ Questions about these terms:{" "}
+ <a
+ href="mailto:info@latomwellness.com"
+ className="text-accent hover:underline"
+ >
+ info@latomwellness.com
+ </a>
+ </p>
+ </section>
+ </div>
+ </div>
+ );
 }

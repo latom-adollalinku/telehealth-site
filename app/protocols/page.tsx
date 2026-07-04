@@ -3,141 +3,141 @@ import Link from "next/link";
 import ScrollFade from "../components/ScrollFade";
 
 export const metadata: Metadata = {
-  title: "Physician-Designed Protocols | Evidence-Based Supplement Stacks",
-  description:
-    "Evidence-based supplement protocols designed by a physician. Cardiovascular, metabolic, hormone, longevity, and surgical preop optimization.",
-  robots: { index: false, follow: false },
+ title: "Physician-Designed Protocols | Evidence-Based Supplement Stacks",
+ description:
+ "Evidence-based supplement protocols designed by a physician. Cardiovascular, metabolic, hormone, longevity, and surgical preop optimization.",
+ robots: { index: false, follow: false },
 };
 
 import { protocols } from "../lib/protocolCatalog";
 
 export default function ProtocolsPage() {
-  return (
-    <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0d0d1a] to-[#0a0a0a]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,168,76,0.05)_0%,_transparent_70%)]" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#c9a84c]/30 bg-[#c9a84c]/5 mb-8">
-            <span className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium">
-              Physician-Designed Protocols
-            </span>
-          </div>
-          <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6">
-            Evidence-Based
-            <span className="block gold-gradient">Supplement Protocols</span>
-          </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Complete daily supplement stacks designed by a physician.
-            Exact dosing, timing, brand recommendations, safety notes, and expected outcomes.
-          </p>
-        </div>
-      </section>
+ return (
+ <>
+ {/* Hero */}
+ <section className="relative pt-32 pb-20 overflow-hidden">
+ <div className="absolute inset-0 bg-bg" />
+ <div className="absolute inset-0 " />
+ <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+ <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-line bg-accent-soft mb-8">
+ <span className="text-accent text-xs tracking-widest uppercase font-medium">
+ Physician-Designed Protocols
+ </span>
+ </div>
+ <h1 className="font-serif text-5xl sm:text-6xl font-bold text-ink mb-6">
+ Evidence-Based
+ <span className="block gold-gradient">Supplement Protocols</span>
+ </h1>
+ <p className="text-muted text-lg max-w-2xl mx-auto leading-relaxed">
+ Complete daily supplement stacks designed by a physician.
+ Exact dosing, timing, brand recommendations, safety notes, and expected outcomes.
+ </p>
+ </div>
+ </section>
 
-      {/* How It Works */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollFade>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-              {[
-                { step: "01", title: "Get Your Labs", detail: "Order through Fullscript, Rythm, or Quest. Or use labs from the past 90 days." },
-                { step: "02", title: "Purchase the Protocol", detail: "Instant access to the complete daily stack - dosing, timing, brands, safety." },
-                { step: "03", title: "Optional: Book Review", detail: "Add a 1:1 consultation to review your specific labs and customize the protocol." },
-              ].map((item, i) => (
-                <div key={i} className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/30 flex items-center justify-center mb-4">
-                    <span className="text-[#c9a84c] font-bold text-sm">{item.step}</span>
-                  </div>
-                  <h3 className="text-white font-semibold text-lg mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.detail}</p>
-                </div>
-              ))}
-            </div>
-          </ScrollFade>
-        </div>
-      </section>
+ {/* How It Works */}
+ <section className="py-16">
+ <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+ <ScrollFade>
+ <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+ {[
+ { step: "01", title: "Get Your Labs", detail: "Order through Fullscript, Rythm, or Quest. Or use labs from the past 90 days." },
+ { step: "02", title: "Purchase the Protocol", detail: "Instant access to the complete daily stack - dosing, timing, brands, safety." },
+ { step: "03", title: "Optional: Book Review", detail: "Add a 1:1 consultation to review your specific labs and customize the protocol." },
+ ].map((item, i) => (
+ <div key={i} className="text-center">
+ <div className="w-12 h-12 mx-auto rounded-full bg-accent-soft border border-line flex items-center justify-center mb-4">
+ <span className="text-accent font-bold text-sm">{item.step}</span>
+ </div>
+ <h3 className="text-ink font-semibold text-lg mb-2">{item.title}</h3>
+ <p className="text-muted text-sm">{item.detail}</p>
+ </div>
+ ))}
+ </div>
+ </ScrollFade>
+ </div>
+ </section>
 
-      {/* Protocol Cards */}
-      <section className="py-16 bg-[#0d0d1a]/60">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollFade>
-            <div className="text-center mb-12">
-              <h2 className="font-serif text-4xl font-bold text-white mb-4">Available Protocols</h2>
-              <p className="text-gray-400 max-w-xl mx-auto">
-                Each protocol is a complete, evidence-based supplement stack with exact dosing and timing.
-              </p>
-            </div>
-          </ScrollFade>
+ {/* Protocol Cards */}
+ <section className="py-16 bg-surface/60">
+ <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+ <ScrollFade>
+ <div className="text-center mb-12">
+ <h2 className="font-serif text-4xl font-bold text-ink mb-4">Available Protocols</h2>
+ <p className="text-muted max-w-xl mx-auto">
+ Each protocol is a complete, evidence-based supplement stack with exact dosing and timing.
+ </p>
+ </div>
+ </ScrollFade>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {protocols.map((p, i) => (
-              <ScrollFade key={p.id} delay={i * 75}>
-                <div className="group h-full bg-[#1a1a2e] border border-[#2a2a4e] rounded-xl p-8 hover:border-[#c9a84c]/40 hover:shadow-[0_0_30px_rgba(201,168,76,0.08)] transition-all duration-300 flex flex-col">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`px-3 py-1 ${p.badgeColor} text-white text-xs font-bold rounded-full`}>
-                      {p.badge}
-                    </span>
-                    <span className="font-serif text-3xl font-bold text-[#c9a84c]">{p.price}</span>
-                  </div>
+ <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+ {protocols.map((p, i) => (
+ <ScrollFade key={p.id} delay={i * 75}>
+ <div className="group h-full bg-surface border border-line rounded-xl p-8 hover:border-accent/40 hover:shadow-[0_0_30px_rgba(201,168,76,0.08)] transition-all duration-300 flex flex-col">
+ <div className="flex items-center justify-between mb-4">
+ <span className={`px-3 py-1 ${p.badgeColor} text-ink text-xs font-bold rounded-full`}>
+ {p.badge}
+ </span>
+ <span className="font-serif text-3xl font-bold text-accent">{p.price}</span>
+ </div>
 
-                  <h3 className="font-serif text-2xl font-bold text-white mb-1">{p.title}</h3>
-                  <p className="text-[#c9a84c] text-sm mb-4">{p.subtitle}</p>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">{p.description}</p>
+ <h3 className="font-serif text-2xl font-bold text-ink mb-1">{p.title}</h3>
+ <p className="text-accent text-sm mb-4">{p.subtitle}</p>
+ <p className="text-muted text-sm leading-relaxed mb-6 flex-1">{p.description}</p>
 
-                  <div className="mb-4">
-                    <p className="text-gray-500 text-xs uppercase tracking-wider mb-2">Targets markers</p>
-                    <div className="flex flex-wrap gap-2">
-                      {p.markers.map((m, j) => (
-                        <span key={j} className="px-2 py-1 bg-[#0a0a0a] border border-[#2a2a4e] text-gray-300 text-xs rounded">
-                          {m}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+ <div className="mb-4">
+ <p className="text-faint text-xs uppercase tracking-wider mb-2">Targets markers</p>
+ <div className="flex flex-wrap gap-2">
+ {p.markers.map((m, j) => (
+ <span key={j} className="px-2 py-1 bg-bg border border-line text-muted text-xs rounded">
+ {m}
+ </span>
+ ))}
+ </div>
+ </div>
 
-                  <p className="text-gray-500 text-xs mb-4">{p.duration}</p>
+ <p className="text-faint text-xs mb-4">{p.duration}</p>
 
-                  <Link
-                    href={p.href}
-                    className="block w-full text-center px-6 py-3 bg-[#c9a84c] text-black font-semibold rounded tracking-wide hover:bg-[#e0c070] transition-colors"
-                  >
-                    View Protocol
-                  </Link>
-                </div>
-              </ScrollFade>
-            ))}
-          </div>
-        </div>
-      </section>
+ <Link
+ href={p.href}
+ className="block w-full text-center px-6 py-3 bg-accent text-[color:var(--on-accent)] font-semibold rounded tracking-wide hover:bg-accent-hover transition-colors"
+ >
+ View Protocol
+ </Link>
+ </div>
+ </ScrollFade>
+ ))}
+ </div>
+ </div>
+ </section>
 
-      {/* Membership Inclusion */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollFade>
-            <div className="bg-[#1a1a2e] border border-[#c9a84c]/20 rounded-lg p-8 sm:p-12 text-center">
-              <p className="text-[#c9a84c] text-xs tracking-widest uppercase font-medium mb-4">
-                Save With Membership
-              </p>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
-                All Protocols Included
-              </h2>
-              <p className="text-gray-300 max-w-2xl mx-auto mb-8">
-                Optimization ($199/mo) and Premium Longevity ($399/mo) memberships include
-                access to all protocols plus physician customization, lab coordination, and ongoing support.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/services" className="px-8 py-4 bg-[#c9a84c] text-black font-semibold rounded hover:bg-[#e0c070] transition-colors">
-                  View Memberships
-                </Link>
-                <Link href="/book" className="px-8 py-4 border border-[#c9a84c] text-[#c9a84c] font-semibold rounded hover:bg-[#c9a84c] hover:text-black transition-colors">
-                  Book Consultation
-                </Link>
-              </div>
-            </div>
-          </ScrollFade>
-        </div>
-      </section>
-    </>
-  );
+ {/* Membership Inclusion */}
+ <section className="py-24">
+ <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+ <ScrollFade>
+ <div className="bg-surface border border-line rounded-lg p-8 sm:p-12 text-center">
+ <p className="text-accent text-xs tracking-widest uppercase font-medium mb-4">
+ Save With Membership
+ </p>
+ <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink mb-4">
+ All Protocols Included
+ </h2>
+ <p className="text-muted max-w-2xl mx-auto mb-8">
+ Optimization ($199/mo) and Premium Longevity ($399/mo) memberships include
+ access to all protocols plus physician customization, lab coordination, and ongoing support.
+ </p>
+ <div className="flex flex-col sm:flex-row gap-4 justify-center">
+ <Link href="/services" className="px-8 py-4 bg-accent text-[color:var(--on-accent)] font-semibold rounded hover:bg-accent-hover transition-colors">
+ View Memberships
+ </Link>
+ <Link href="/book" className="px-8 py-4 border border-accent text-accent font-semibold rounded hover:bg-accent hover:text-[color:var(--on-accent)] transition-colors">
+ Book Consultation
+ </Link>
+ </div>
+ </div>
+ </ScrollFade>
+ </div>
+ </section>
+ </>
+ );
 }
