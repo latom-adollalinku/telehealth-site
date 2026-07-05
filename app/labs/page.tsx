@@ -9,26 +9,7 @@ export const metadata: Metadata = {
 };
 
 const labPartners = [
- {
- name: "Rythm Health",
- badge: "Recommended",
- badgeColor: "bg-green-600",
- description:
- "Comprehensive monthly blood panels with at-home finger-prick collection. FDA-cleared device with 95-99% accuracy compared to traditional blood draws. Results in days, not weeks.",
- price: "$79/month",
- priceNote: "Included in Optimization & Premium memberships",
- features: [
- "Hormone panel including key reproductive and stress markers",
- "Metabolic markers (HbA1c, fasting glucose, insulin)",
- "Heart health (lipid panel, hs-CRP, homocysteine)",
- "Thyroid function (TSH, T3, T4)",
- "At-home collection - no lab visit needed",
- "Cycle-specific reference ranges for women",
- ],
- cta: "Order Through Rythm",
- ctaLink: "https://rythmhealth.com/home",
- ideal: "Monthly monitoring for membership patients",
- },
+
  {
  name: "Fullscript Labs",
  badge: "Best Value",
@@ -597,10 +578,6 @@ export default function LabsPage() {
  {
  q: "What if my results are abnormal?",
  a: "Your physician reviews every result personally. If anything is out of range, we'll discuss it during your consultation and adjust your protocol or refer you to a specialist if needed.",
- },
- {
- q: "Are at-home labs as accurate as in-person draws?",
- a: "Rythm Health's FDA-cleared collection device shows 95-99% concordance with traditional venipuncture. For most panels, at-home collection is clinically equivalent.",
  },
  ].map((item, i) => (
  <ScrollFade key={i} delay={i * 50}>
