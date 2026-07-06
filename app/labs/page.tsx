@@ -11,6 +11,26 @@ export const metadata: Metadata = {
 const labPartners = [
 
  {
+ name: "GoodLabs",
+ badge: "Most Affordable",
+ badgeColor: "bg-blue-600",
+ description:
+ "Cash-pay lab testing at deeply discounted prices through Quest and Labcorp. Free labs for blood donors. No insurance needed, no hidden fees.",
+ price: "From $0-$99",
+ priceNote: "20% off with our referral link",
+ features: [
+ "Uses Quest Diagnostics and Labcorp (same labs your doctor uses)",
+ "CLIA-certified, CAP-accredited results",
+ "Free comprehensive panel with blood donation",
+ "Cash-pay pricing, no insurance required",
+ "Walk into any Quest or Labcorp location",
+ "Results available online within days",
+ ],
+ cta: "Get 20% Off with Our Code",
+ ctaLink: "https://app.goodlabs.com/login?referralCode=PQ5PUU&mode=signup&utm_source=referral&utm_medium=referral&utm_campaign=referrals&utm_content=generic",
+ ideal: "Baseline labs and one-time panels",
+ },
+ {
  name: "Fullscript Labs",
  badge: "Best Value",
  badgeColor: "bg-blue-600",
